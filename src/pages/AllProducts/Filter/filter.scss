@@ -1,0 +1,39 @@
+.filter {
+  width: 100%;
+  height: auto;
+  padding: 0 0.5rem 0;
+  input {
+    // -webkit-appearance: none;
+    accent-color: $color-tertiary;
+    width: 100%;
+    color: white;
+    border-radius: 30px;
+    border: 0;
+    outline: none;
+    height: 5px;
+  }
+
+  .values {
+    margin: 2.4rem 0;
+    @include flex-layout($justify: space-between);
+    font-size: var(--xs-600);
+    font-weight: 700;
+    p {
+      line-height: 2;
+    }
+  }
+  .buttons-container {
+    @include flex-layout($justify: flex-end);
+  }
+
+  #reset-btn {
+    padding: 1rem 1.5rem;
+  }
+
+  button {
+    margin-left: 2rem;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}

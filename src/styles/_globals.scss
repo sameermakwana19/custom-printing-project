@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
+html {
+  font-size: 62.5%;
+  background-color: $color-primary;
+  color: $color-secondary;
+  font-family: "Poppins";
+
+  @include responsive(medium) {
+    font-size: 56.25%;
+  }
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: $color-secondary;
+}
+
+:root {
+  @each $size, $weights in $font-size {
+    @each $weight, $value in $weights {
+      --#{$size}-#{$weight}: #{$value};
+    }
+  }
+}

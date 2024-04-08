@@ -1,0 +1,17 @@
+.most-loved-products-container {
+  @include flex-layout($direction: column);
+  @include full-width-container;
+  margin: 8rem auto 4rem;
+
+  .product-container {
+    width: 100%;
+    margin: 3rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 28.5rem);
+    grid-template-rows: 1fr;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+  }
+}

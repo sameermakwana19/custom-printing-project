@@ -1,0 +1,55 @@
+%btn-layout {
+  color: $color-primary;
+  background-color: $color-tertiary;
+  padding: 1rem 4rem;
+  margin: 2.5rem 0;
+  font-size: var(--xs-600);
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  display: block;
+  @include flex-layout;
+  transition: all 0.1s ease-in-out;
+
+  i {
+    size: 1.2;
+    margin: 0 0.5rem;
+  }
+
+  &:hover {
+    background-color: darken($color-tertiary, 10%);
+  }
+}
+
+.btn {
+  @extend %btn-layout;
+  @include flex-layout;
+  width: fit-content;
+  border-radius: 5px;
+}
+
+.btn-lg {
+  @extend %btn-layout;
+  font-size: var(--sm-400);
+  font-weight: 500;
+  border-radius: 5px;
+  width: 95%;
+  margin: 2.5rem auto;
+}
+
+.btn-transparent {
+  @extend %btn-layout;
+  width: fit-content;
+  background: transparent;
+  border-radius: 5px;
+  color: $color-primary;
+  border: 2px solid $color-primary;
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-tertiary;
+  }
+}

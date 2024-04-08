@@ -1,0 +1,10 @@
+.divider-line-container {
+  max-width: 100%;
+  margin: 1rem 0;
+
+  .dividerline {
+    width: 8%;
+    min-width: 8rem;
+    border-bottom: 3px solid $color-tertiary;
+  }
+}

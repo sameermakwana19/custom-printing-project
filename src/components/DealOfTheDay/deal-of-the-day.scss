@@ -1,0 +1,15 @@
+.deal-of-the-day-container {
+  width: 100%;
+
+  .banner__tagline {
+    font-size: var(--md-500);
+  }
+
+  .banner__heading {
+    font-size: var(--md-600);
+  }
+  .banner__sub-heading {
+    font-size: var(--sm-600);
+    font-weight: 600;
+  }
+}

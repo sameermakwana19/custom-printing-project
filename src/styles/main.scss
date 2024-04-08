@@ -1,0 +1,32 @@
+@import "./abstracts/variables", "./abstracts/breakpoints", "./abstracts/mixins";
+
+@import "./globals";
+
+// ui-components
+@import "../components/ui/button/button.scss", "../components/ui/Logo/logo.scss",
+  "../components/ui/HamburgerIcon/hamburgericon.scss",
+  "../components/ui/DividerLine/dividerLine.scss",
+  "../components/ui/Heading/heading.scss",
+  "../components/ui/FlexibleBorder/flexibleBorder.scss",
+  "../components/ClientReviewSection/ClientReviewCard/ClientReviewCard.scss",
+  "../components/ui/Rating/rating.scss";
+
+// generic components
+@import "../components/Navbar/navbar.scss", "../components/Banner/Banner.scss",
+  "../components/PopularSection/PopularSection.scss",
+  "../components/PopularSection/PopularSectionCard/PopularSectionCard.scss",
+  "../components/ProductCard/product-card.scss",
+  "../components/FeaturesSection/Features-section.scss",
+  "../components/DealOfTheDay/deal-of-the-day.scss",
+  "../components/MostLovedProducts/most-loved-product.scss",
+  "../components/ClientReviewSection/client-review-section.scss",
+  "../components/FeaturedSection/FeaturedSection.scss",
+  "../components/Footer/footer.scss",
+  "../components/ui/BreadCrumb/BreadCrumb.scss";
+
+// Pages
+
+@import "../pages/AllProducts/AllProducts.scss",
+  "../pages/AllProducts/Filter/filter.scss",
+  "../pages/AllProducts/Category/Category.scss",
+  "../pages/AllProducts/HottestDeals/hottest-deals.scss";

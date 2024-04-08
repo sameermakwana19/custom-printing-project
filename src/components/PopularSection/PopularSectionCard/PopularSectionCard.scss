@@ -1,0 +1,38 @@
+.popular-card {
+  width: 100%;
+  height: auto;
+  max-width: 40rem;
+  margin: 0 auto;
+  text-align: center;
+  @include flex-layout($direction: column);
+  padding: 2rem;
+
+  @include responsive(small) {
+    max-width: 55rem;
+    padding: 2.5rem 0;
+  }
+
+  .popular__image-container {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(111%) contrast(109%) saturate(100%) blur(0px)
+        hue-rotate(0deg);
+    }
+  }
+
+  .popular__sub-heading {
+    font-size: var(--sm-400);
+    font-weight: 400;
+    margin: 1rem 0 0.5rem;
+  }
+
+  .popular__heading {
+    font-size: var(--sm-600);
+    font-weight: 600;
+  }
+}

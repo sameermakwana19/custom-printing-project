@@ -1,0 +1,22 @@
+.client-review-section {
+  @include flex-layout($direction: column);
+  @include full-width-container;
+  height: auto;
+  padding: 0 2rem;
+
+  .client-review-card-container {
+    margin: 2rem 0;
+    height: fit-content;
+    min-height: 40rem;
+    overflow: hidden;
+
+    @include flex-layout($align: flex-start);
+    @include responsive(small) {
+      flex-wrap: wrap;
+    }
+
+    .client-review-card {
+      max-width: 100%;
+    }
+  }
+}

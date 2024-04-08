@@ -1,0 +1,22 @@
+.category {
+  margin: 2.4rem 0 4.2rem;
+
+  .heading {
+    font-size: var(--md-400);
+    font-weight: 400;
+  }
+
+  .link-container {
+    font-size: var(--sm-500);
+
+    .link {
+      @include flex-layout($justify: space-between);
+      margin-bottom: 0.4rem;
+    }
+
+    a {
+      color: $color-tertiary;
+      line-height: 2;
+    }
+  }
+}

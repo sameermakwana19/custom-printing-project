@@ -1,0 +1,10 @@
+.flexible-border {
+  width: 100%;
+  height: auto;
+  margin-bottom: 2rem;
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}

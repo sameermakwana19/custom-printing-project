@@ -1,0 +1,32 @@
+@mixin flex-layout(
+  $justify: center,
+  $align: center,
+  $direction: row,
+  $wrap: nowrap
+) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+@mixin full-width-container($vertical-margin: 0, $max: 1240px) {
+  width: 100%;
+  max-width: $max;
+  margin: $vertical-margin auto;
+}
+
+@mixin responsive($key: "large") {
+  $size: map-get($breakpoints, $key);
+
+  @if ($key == "xlarge") {
+    @media screen and (min-width: $size) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: $size) {
+      @content;
+    }
+  }
+}

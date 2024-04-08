@@ -1,0 +1,19 @@
+.popular-section {
+  @include full-width-container;
+  @include flex-layout;
+  padding: 11rem 0 5rem 0;
+
+  @include responsive(small) {
+    flex-direction: column;
+    padding: 5rem;
+  }
+
+  .popular-card:nth-child(2n) {
+    .popular__image-container {
+      order: 10;
+      margin-top: 3rem;
+      filter: brightness(90%) contrast(125%) saturate(90%) blur(0px)
+        hue-rotate(0deg);
+    }
+  }
+}
