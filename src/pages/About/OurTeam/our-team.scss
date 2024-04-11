@@ -1,0 +1,28 @@
+.our-team-section {
+  @include full-width-container;
+  @include flex-layout($direction: column);
+  gap: 1.5rem;
+  padding: 12rem 0 8rem;
+
+  .card-container {
+    @include flex-layout;
+    gap: 1.5rem;
+
+    @include responsive(small) {
+      flex-direction: column;
+    }
+
+    img {
+      filter: contrast(100%) saturate(100%);
+    }
+  }
+
+  .heading {
+    font-size: var(--md-600);
+    margin: 0;
+  }
+
+  .popular__sub-heading {
+    order: 10;
+  }
+}

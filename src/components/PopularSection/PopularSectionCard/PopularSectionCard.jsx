@@ -1,7 +1,11 @@
 import React from "react";
 import photo from "../../../assets/popular-1.jpg";
 
-const PopularSectionCard = ({ imageUrl, subHeading, heading }) => {
+const PopularSectionCard = ({
+  imageUrl = photo,
+  subHeading = "subHeading",
+  heading = "Heading",
+}) => {
   return (
     <div className="popular-card">
       <div className="popular__image-container">

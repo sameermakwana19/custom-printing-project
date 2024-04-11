@@ -18,6 +18,15 @@
   }
   .product-card {
     justify-content: flex-start;
+
+    .product__name {
+      color: $color-tertiary;
+      font-weight: 400;
+    }
+
+    .product__price {
+      font-weight: 400;
+    }
     @include responsive(small) {
       max-width: 30rem;
     }

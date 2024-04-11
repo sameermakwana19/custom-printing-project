@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import Logo from "../ui/Logo/Logo";
 import { NavLink, useLocation } from "react-router-dom";
 import HamburgerIcon from "../ui/HamburgerIcon/HamburgerIcon";
+import useCurrentLocation from "../../hooks/useCurrentLocation";
 
 const Navbar = () => {
   const [isHamburgerMenuExpanded, setIsHamburgerMenuExpanded] = useState(false);
   // const [isHamburgerMenuDropdownExpanded, setIsHamburgerMenuDropdownExpanded] =
   //   useState(false);
 
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
+  const pathname = useCurrentLocation();
 
   useEffect(() => {
     setIsHamburgerMenuExpanded(false);
@@ -24,7 +26,10 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar">
+      <div
+        className="navbar"
+        style={{ background: pathname === "allproducts" && "white" }}
+      >
         <div className="navbar__header">
           <div className="logo-container">
             <Logo />

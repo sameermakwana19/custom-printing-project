@@ -14,6 +14,7 @@ import ClientReviewSection from "./components/ClientReviewSection/ClientReviewSe
 import FeaturedSection from "./components/FeaturedSection/FeaturedSection";
 import Footer from "./components/Footer/Footer";
 import AllProducts from "./pages/AllProducts/AllProducts";
+import About from "./pages/About/About";
 
 function App() {
   return (
@@ -49,7 +50,7 @@ function App() {
           ></Route>
           <Route path="allproducts" element={<AllProducts />} />
           <Route path="mugs" element={<AllProducts />} />
-          <Route path="About" element={<AllProducts />} />
+          <Route path="About" element={<About />} />
         </Routes>
         <footer>
           <Footer />

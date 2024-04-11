@@ -1,6 +1,10 @@
 .deal-of-the-day-container {
   width: 100%;
 
+  .banner {
+    padding: "14rem 8rem";
+  }
+
   .banner__tagline {
     font-size: var(--md-500);
   }

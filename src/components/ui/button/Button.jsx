@@ -6,7 +6,14 @@ const VARIANTS = {
   transparent: "btn-transparent",
 };
 
-const Button = ({ variant = "default", icon, children, ...delegated }) => {
+const rightIcon = <i className="fa-solid fa-chevron-right"></i>;
+
+const Button = ({
+  variant = "default",
+  icon = rightIcon,
+  children,
+  ...delegated
+}) => {
   if (!VARIANTS[variant]) {
     console.error(`Variant ${variant} is not supported`);
     variant = "default";

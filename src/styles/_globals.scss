@@ -10,6 +10,9 @@ html {
   background-color: $color-primary;
   color: $color-secondary;
   font-family: "Poppins";
+  width: 100%;
+  height: auto;
+  min-width: 322px;
 
   @include responsive(medium) {
     font-size: 56.25%;

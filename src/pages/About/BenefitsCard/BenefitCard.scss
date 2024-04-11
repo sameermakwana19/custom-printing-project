@@ -1,0 +1,24 @@
+.benefit-card {
+  width: 100%;
+  height: 100%;
+
+  &__icon {
+    width: 25px;
+    font-size: 2.2rem;
+    color: $color-tertiary;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__heading {
+    font-size: var(--md-400);
+    font-weight: 600;
+  }
+
+  &__content {
+    font-size: var(--sm-400);
+  }
+}

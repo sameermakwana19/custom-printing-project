@@ -6,7 +6,6 @@ const DealOfTheDay = () => {
   return (
     <div className="deal-of-the-day-container">
       <Banner
-        style={{ padding: "14rem 8rem" }}
         background={fixedBackground}
         tagline={"Hurry Up!"}
         heading={`Deal of the Day!`}

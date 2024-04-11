@@ -1,0 +1,35 @@
+.offer-banner {
+  width: 100%;
+  padding: 3.5rem 1rem;
+  background-color: $color-tertiary;
+  color: $color-primary;
+
+  @include responsive(large) {
+    padding: 0 3rem;
+  }
+
+  &__content {
+    @include full-width-container($max: 1200px);
+    @include flex-layout($justify: space-between);
+    gap: 1rem;
+
+    @include responsive(medium) {
+      padding: 0 2rem;
+    }
+    @include responsive(small) {
+      flex-direction: column;
+      padding: 3rem 0;
+    }
+  }
+
+  &__text {
+    width: 70%;
+    font-size: var(--md-600);
+    font-weight: 600;
+
+    @include responsive(medium) {
+      width: fit-content;
+      font-size: 2.5rem;
+    }
+  }
+}

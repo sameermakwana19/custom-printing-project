@@ -1,14 +1,14 @@
 .navbar {
-  @include full-width-container;
   color: $color-secondary;
 
+  background: none;
   .active {
     color: $color-tertiary;
   }
 
   .navbar__header {
+    @include full-width-container;
     @include flex-layout($justify: space-between, $align: center);
-    // background: blueviolet;
     padding: 2rem 1rem;
     width: 100%;
     min-height: 70px;
