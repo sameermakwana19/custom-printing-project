@@ -51,4 +51,6 @@
 @import "../pages/Login/login.scss";
 
 // cart
-// @import "../pages/Cart/cart.scss";
+@import "../pages/Cart/cart.scss",
+  "../pages/Cart/ProductTable/product-table.scss",
+  "../pages/Cart/CartTotalTable/cart-total-table.scss";

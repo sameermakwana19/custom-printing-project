@@ -1,0 +1,5 @@
+.cart {
+  @include full-width-container($max: 1200px);
+  @include flex-layout($direction: column);
+  padding: 5rem 0 10rem;
+}

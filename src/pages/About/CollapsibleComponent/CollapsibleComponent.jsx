@@ -8,7 +8,13 @@ const CollapsibleComponent = ({
   content,
 }) => {
   return (
-    <div className={`collapsible`}>
+    <div
+      className={`${
+        collapisibleExpandedIndex === currentIndex
+          ? "collapsible--expanded"
+          : "collapsible"
+      } `}
+    >
       <div
         className="collapsible__header"
         onClick={() => changeCollapsibleIndex(currentIndex)}
@@ -20,13 +26,7 @@ const CollapsibleComponent = ({
         )}
         {heading ?? `Heading`}
       </div>
-      <div
-        className={`${
-          collapisibleExpandedIndex === currentIndex
-            ? "expanded"
-            : "collapsible__body"
-        } `}
-      >
+      <div className={"collapsible__body"}>
         <p>
           {content ??
             `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur,

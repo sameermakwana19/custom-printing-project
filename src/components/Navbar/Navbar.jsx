@@ -4,7 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import HamburgerIcon from "../ui/HamburgerIcon/HamburgerIcon";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
 
-const BACKGROUND_WHITE_IN = ["allproducts", "login"];
+const BACKGROUND_WHITE_IN = ["allproducts", "login", "cart"];
 
 const Navbar = () => {
   const [isHamburgerMenuExpanded, setIsHamburgerMenuExpanded] = useState(false);

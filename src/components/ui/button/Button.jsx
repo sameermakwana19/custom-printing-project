@@ -2,6 +2,7 @@ import PropsTypes from "prop-types";
 
 const VARIANTS = {
   default: "btn",
+  small: "btn-sm",
   large: "btn-lg",
   transparent: "btn-transparent",
 };

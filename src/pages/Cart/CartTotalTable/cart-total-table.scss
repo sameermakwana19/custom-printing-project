@@ -1,0 +1,28 @@
+.cart-total-table {
+  font-size: var(--md-400);
+
+  width: 57rem;
+  border: 1px solid $border-color;
+  margin-left: auto;
+
+  .cart-total__heading {
+    font-weight: 700;
+    padding: 1.3rem 1.8rem;
+    background: white;
+    border-bottom: 1px solid $border-color;
+
+    margin-bottom: 2rem;
+  }
+
+  .cart-total__row {
+    font-size: var(--sm-600);
+    @include flex-layout($justify: space-between);
+    margin: 0 2rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid $border-color;
+  }
+
+  button {
+    padding: 1.7rem;
+  }
+}

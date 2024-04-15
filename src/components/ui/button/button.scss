@@ -11,6 +11,8 @@
   border: 0;
   cursor: pointer;
   display: block;
+  border-radius: 5px;
+
   @include flex-layout;
   transition: all 0.1s ease-in-out;
 
@@ -24,18 +26,21 @@
   }
 }
 
+.btn-sm {
+  @extend %btn-layout;
+  padding: 0.7rem 0.4rem;
+}
+
 .btn {
   @extend %btn-layout;
   @include flex-layout;
   width: fit-content;
-  border-radius: 5px;
 }
 
 .btn-lg {
   @extend %btn-layout;
   font-size: var(--sm-400);
   font-weight: 500;
-  border-radius: 5px;
   width: 95%;
   margin: 2.5rem auto;
 }
@@ -44,7 +49,6 @@
   @extend %btn-layout;
   width: fit-content;
   background: transparent;
-  border-radius: 5px;
   color: $color-primary;
   border: 2px solid $color-primary;
 
