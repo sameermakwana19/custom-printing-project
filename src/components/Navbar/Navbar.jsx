@@ -4,6 +4,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import HamburgerIcon from "../ui/HamburgerIcon/HamburgerIcon";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
 
+const BACKGROUND_WHITE_IN = ["allproducts", "login"];
+
 const Navbar = () => {
   const [isHamburgerMenuExpanded, setIsHamburgerMenuExpanded] = useState(false);
   // const [isHamburgerMenuDropdownExpanded, setIsHamburgerMenuDropdownExpanded] =
@@ -24,12 +26,16 @@ const Navbar = () => {
   }
   // console.log({ isHamburgerMenuExpanded });
 
+  const style =
+    BACKGROUND_WHITE_IN.indexOf(pathname) !== -1
+      ? { background: "white" }
+      : { background: "transparent" };
+
+  console.log({ style }, { pathname });
+
   return (
     <>
-      <div
-        className="navbar"
-        style={{ background: pathname === "allproducts" && "white" }}
-      >
+      <div className="navbar" style={style}>
         <div className="navbar__header">
           <div className="logo-container">
             <Logo />
@@ -59,10 +65,14 @@ const Navbar = () => {
               <li className="accounts-dropdown">
                 <div className="accounts-dropdown-header navbar__link">
                   Accounts <i className="fa-solid fa-chevron-down"></i>
-                  <div className="accounts-dropdown-body">
-                    <div className="navbar__link">My Account</div>
-                    <div className="navbar__link">Cart</div>
-                  </div>
+                </div>
+                <div className="accounts-dropdown-body">
+                  <NavLink to="/login" className="navbar__link">
+                    My Account
+                  </NavLink>
+                  <NavLink to="/cart" className="navbar__link">
+                    Cart
+                  </NavLink>
                 </div>
               </li>
             </ul>
@@ -116,11 +126,15 @@ const Navbar = () => {
                 Accounts <i className="fa-solid fa-chevron-down"></i>
               </div>
               <div className="accounts-dropdown-body">
-                <div className="navbar__link">
-                  <i className="fa-solid fa-chevron-right"></i>My Account
+                <div>
+                  <NavLink to="/login" className="navbar__link">
+                    <i className="fa-solid fa-chevron-right"></i>My Account
+                  </NavLink>
                 </div>
-                <div className="navbar__link">
-                  <i className="fa-solid fa-chevron-right"></i>Cart
+                <div>
+                  <NavLink to="/cart" className="navbar__link">
+                    <i className="fa-solid fa-chevron-right"></i>Cart
+                  </NavLink>
                 </div>
               </div>
             </li>

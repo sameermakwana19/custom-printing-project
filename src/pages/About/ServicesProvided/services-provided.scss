@@ -4,6 +4,12 @@
   display: grid;
   align-items: center;
   grid-template-columns: 1fr 1fr;
+  padding: 10rem 3rem;
+
+  @include responsive(small) {
+    grid-template-columns: 1fr;
+    row-gap: 3rem;
+  }
 
   &__left {
     padding-right: 5rem;
@@ -11,52 +17,18 @@
     .icon-list-container {
       margin-top: 2rem;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 40% 60%;
       gap: 1rem;
 
-      .icon-list-item {
-        @include flex-layout($justify: flex-start);
-        width: 100%;
-        gap: 10px;
-        .icon-container {
-          width: 17;
-          height: 17;
-          color: $color-tertiary;
-          font-size: 1.5rem;
-        }
-        .label {
-          font-size: var(--sm-500);
-        }
+      @include responsive(medium) {
+        grid-template-columns: 1fr;
       }
     }
   }
   &__right {
-    border: 1px solid black;
+    // border: 1px solid black;
 
-    // .collapsible {
-    //   transition: all 0.3 ease-in-out;
-    // }
-
-    .collapsible__header {
-      font-size: 2rem;
-      padding: 2rem 1rem;
-      border-bottom: 1px solid $color-secondary;
-    }
-
-    .collapsible--expanded {
-      .collapsible__body {
-        max-height: 100vh;
-        opacity: 1;
-        // display: block;
-        border: 1px solid black;
-      }
-    }
-
-    .collapsible__body {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
+    border-radius: 5px;
+    box-shadow: 0 5px 30px 5px rgba(0, 0, 0, 0.06);
   }
 }

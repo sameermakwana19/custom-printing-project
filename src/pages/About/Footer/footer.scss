@@ -1,0 +1,47 @@
+.about-footer {
+  background-color: lighten($color-secondary, 61%);
+  // background-color: rgb(244, 245, 246);
+  width: 100%;
+  .card-container {
+    @include full-width-container;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    gap: 3rem;
+
+    @include responsive(large) {
+      padding: 2rem;
+      gap: 2rem;
+    }
+
+    @include responsive(medium) {
+      grid-template-columns: 1fr 1fr;
+      row-gap: 10rem;
+      padding: 9rem 2rem;
+    }
+
+    @include responsive(xsmall) {
+      grid-template-columns: 1fr;
+      // row-gap: 10rem;
+      // padding: 9rem 2rem;
+    }
+
+    .benefit-card {
+      @include flex-layout($direction: column);
+
+      text-align: center;
+
+      .benefit-card__heading {
+        margin-bottom: 2rem;
+      }
+
+      .benefit-card__content {
+        width: 80%;
+      }
+    }
+  }
+}

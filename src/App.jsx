@@ -15,6 +15,9 @@ import FeaturedSection from "./components/FeaturedSection/FeaturedSection";
 import Footer from "./components/Footer/Footer";
 import AllProducts from "./pages/AllProducts/AllProducts";
 import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
+import Login from "./pages/Login/Login";
+import Cart from "./pages/Cart/Cart";
 
 function App() {
   return (
@@ -47,10 +50,13 @@ function App() {
                 </main>
               </>
             }
-          ></Route>
+          />
+          <Route path="login" element={<Login />} />
+          <Route path="cart" element={<Cart />} />
           <Route path="allproducts" element={<AllProducts />} />
           <Route path="mugs" element={<AllProducts />} />
           <Route path="About" element={<About />} />
+          <Route path="contact" element={<Contact />} />
         </Routes>
         <footer>
           <Footer />

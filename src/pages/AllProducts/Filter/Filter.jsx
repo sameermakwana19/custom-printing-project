@@ -3,7 +3,7 @@ import Heading from "../../../components/ui/Heading/Heading";
 import Button from "../../../components/ui/Button/Button";
 
 const Filter = ({ max, min }) => {
-  const [filterValue, setFilterValue] = useState(10);
+  const [filterValue, setFilterValue] = useState(40);
 
   const changeFilterValue = (newValue) => {
     setFilterValue(newValue);

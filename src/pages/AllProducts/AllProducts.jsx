@@ -10,16 +10,15 @@ const PRODUCT_PER_PAGE = 9;
 
 const AllProducts = () => {
   const [page, setPage] = useState(1);
-  const [totalProducts, setTotalProducts] = useState(50);
+  const [totalProducts] = useState(50);
 
   const skip = page * PRODUCT_PER_PAGE - PRODUCT_PER_PAGE;
 
   const title = useCurrentLocation();
 
-  let pageNumbersArray = Array(
-    Math.ceil(totalProducts / PRODUCT_PER_PAGE)
-  ).fill(0);
-  pageNumbersArray = pageNumbersArray.map((_, index) => index + 1);
+  let pageNumbersArray = Array(Math.ceil(totalProducts / PRODUCT_PER_PAGE))
+    .fill(0)
+    .map((_, index) => index + 1);
 
   const changePage = (nextPage) => {
     if (nextPage <= 0 || nextPage > pageNumbersArray.length) {
@@ -49,9 +48,7 @@ const AllProducts = () => {
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
                 <ProductCard
                   key={item}
-                  isOnSale={
-                    [1, 5, 9, 3].indexOf(index + 1) !== -1 ? true : false
-                  }
+                  isOnSale={[1, 5, 9, 3].indexOf(index + 1) !== -1}
                 />
               ))}
             </div>

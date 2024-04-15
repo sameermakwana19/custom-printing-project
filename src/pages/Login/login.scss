@@ -1,0 +1,65 @@
+.login {
+  @include flex-layout($direction: column, $align: flex-start);
+  @include full-width-container;
+  padding: 6rem 2rem;
+
+  .heading {
+    font-size: var(--md-600);
+    margin-bottom: 1rem;
+  }
+
+  .form-container {
+    width: 100%;
+    margin: 2rem 0;
+    padding: 2rem;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+
+    .input-grp {
+      @include flex-layout($direction: column, $align: flex-start);
+      margin-bottom: 1rem;
+    }
+
+    .checkbox-input-grp {
+      @include flex-layout($justify: flex-start);
+
+      label {
+        width: fit-content;
+      }
+      input {
+        width: fit-content;
+        margin: 0 0.5rem;
+      }
+    }
+
+    label {
+      font-size: var(--xs-600);
+      font-weight: 700;
+      line-height: 2;
+    }
+
+    .asterisk {
+      color: $color-tertiary;
+    }
+
+    input {
+      // margin: 0.5rem 0;
+      width: 100%;
+      padding: 1.2rem;
+      font-size: var(--sm-600);
+      outline: none;
+      border: 1px solid #dddddd;
+    }
+
+    button {
+      margin: 0.5rem 0;
+    }
+
+    .lost-your-password {
+      display: block;
+      font-size: var(--sm-400);
+      color: $color-tertiary;
+      margin: 1.5rem 0 2rem 0;
+    }
+  }
+}

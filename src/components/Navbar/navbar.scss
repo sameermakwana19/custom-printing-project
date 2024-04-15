@@ -1,7 +1,6 @@
 .navbar {
   color: $color-secondary;
 
-  background: none;
   .active {
     color: $color-tertiary;
   }
@@ -64,7 +63,8 @@
       width: 24rem;
       top: 100%;
       left: -5%;
-      transition: all 0.3s ease-in-out;
+      background-color: white;
+
       box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.1);
       div {
         padding: 1.2rem 2rem;
@@ -143,28 +143,36 @@
     }
 
     .account-dropdown {
+      cursor: pointer;
       width: 100%;
       position: relative;
+      transition: all 0.3s linear;
 
       &:hover {
         .accounts-dropdown-body {
+          background-color: white;
           opacity: 1;
+          display: block;
           max-height: 50vh;
         }
       }
     }
 
     .accounts-dropdown-body {
-      opacity: 1;
+      z-index: 50;
+      opacity: 0;
       max-height: 0vh;
       overflow: hidden;
       position: absolute;
+      top: 100%;
+      left: 0%;
       width: 100%;
-      transition: all 0.5s ease-in-out;
-
+      transition: all 0.3s ease-in-out;
       box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.1);
       div {
-        padding: 1.2rem 2rem;
+        padding: 0rem 2rem;
+        width: 100%;
+        height: 100%;
       }
     }
   }

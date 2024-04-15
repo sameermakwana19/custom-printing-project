@@ -10,7 +10,7 @@ const rightIcon = <i className="fa-solid fa-chevron-right"></i>;
 
 const Button = ({
   variant = "default",
-  icon = rightIcon,
+  isIconPresent = true,
   children,
   ...delegated
 }) => {
@@ -23,7 +23,7 @@ const Button = ({
   return (
     <button className={VARIANTS[variant]} {...delegated}>
       {children}
-      {icon}
+      {isIconPresent && rightIcon}
     </button>
   );
 };

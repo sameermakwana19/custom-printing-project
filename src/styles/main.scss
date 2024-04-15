@@ -22,18 +22,33 @@
   "../components/ClientReviewSection/client-review-section.scss",
   "../components/FeaturedSection/FeaturedSection.scss",
   "../components/Footer/footer.scss",
-  "../components/ui/BreadCrumb/BreadCrumb.scss";
+  "../components/ui/BreadCrumb/BreadCrumb.scss",
+  "../components/IconList/icon-list.scss",
+  "../components/ui/Backdrop/backdrop.scss";
 
 // Pages
 
+// all products page
 @import "../pages/AllProducts/AllProducts.scss",
   "../pages/AllProducts/Filter/filter.scss",
   "../pages/AllProducts/Category/Category.scss",
   "../pages/AllProducts/HottestDeals/hottest-deals.scss";
 
+//  about page
 @import "../pages/About/About.scss",
   "../pages/About/BenefitsCard/BenefitCard.scss",
   "../pages/About/OfferBanner/OfferBanner.scss",
   "../pages/About/AboutDetails/AboutDetails.scss",
   "../pages/About/OurTeam/our-team.scss",
-  "../pages/About/ServicesProvided/services-provided.scss";
+  "../pages/About/ServicesProvided/services-provided.scss",
+  "../pages/About/CollapsibleComponent/collapsible-component.scss",
+  "../pages/About/Footer/footer.scss";
+
+// contact page
+@import "../pages/Contact/Contact.scss";
+
+// login
+@import "../pages/Login/login.scss";
+
+// cart
+// @import "../pages/Cart/cart.scss";

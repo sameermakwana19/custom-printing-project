@@ -1,0 +1,61 @@
+.collapsible {
+  height: fit-content;
+}
+
+.collapsible__header {
+  text-transform: capitalize;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 4rem 3rem;
+  border-bottom: 1px solid lighten($color-secondary, 50%);
+  i {
+    color: $color-tertiary;
+    font-weight: 700;
+    margin: 0 2rem;
+  }
+}
+
+// .expanded {
+.collapsible__header {
+  color: $color-tertiary;
+}
+
+.expanded {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  border-bottom: 1px solid lighten($color-secondary, 50%);
+  font-size: var(--sm-500);
+
+  opacity: 1;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 2s ease;
+  max-height: 1000px;
+
+  p {
+    padding: 2.5rem 3rem;
+  }
+}
+
+// .collapsible__body {
+//   max-height: 1000px;
+// }
+// }
+
+.collapsible__body {
+  // line-height: 0;
+  // padding: 0;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  border-bottom: 1px solid lighten($color-secondary, 50%);
+  font-size: var(--sm-500);
+
+  opacity: 1;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 2s ease;
+
+  p {
+    padding: 2.5rem 3rem;
+  }
+}

@@ -6,14 +6,23 @@
     width: 25px;
     font-size: 2.2rem;
     color: $color-tertiary;
+  }
+
+  .image-container {
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1rem;
 
     img {
       width: 100%;
       height: 100%;
+      object-fit: contain;
+      filter: contrast(0.5);
     }
   }
 
   &__heading {
+    text-transform: capitalize;
     font-size: var(--md-400);
     font-weight: 600;
   }

@@ -1,0 +1,12 @@
+.backdrop {
+  @include full-width-container($max: 1200px);
+  position: absolute;
+  background-color: $color-primary;
+  background-image: url("/src/assets/hero11-free-img.png");
+  z-index: -1;
+  height: 170%;
+  filter: grayscale(200%) brightness(1);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

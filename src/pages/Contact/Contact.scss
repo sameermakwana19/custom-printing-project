@@ -1,0 +1,92 @@
+.contact {
+  @include full-width-container($max: 1200px);
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  // height: 50rem;
+  padding: 8rem 1rem 10rem;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+
+  @include responsive(medium) {
+    grid-template-columns: 1fr;
+    row-gap: 4rem;
+  }
+
+  &__left {
+    width: 100%;
+    height: 100%;
+    padding-right: 7.2rem;
+    @include flex-layout($direction: column, $align: flex-start);
+    gap: 1.5rem;
+
+    @include responsive(medium) {
+      width: 90%;
+    }
+
+    @include responsive(xsmall) {
+      padding: 0;
+    }
+
+    .heading {
+      font-size: var(--lg-600);
+      margin-bottom: 0.5rem;
+    }
+    .divider-line-container {
+      padding: 2rem 0;
+    }
+    .content {
+      font-size: var(--sm-400);
+      font-weight: 400;
+    }
+
+    .contact-info {
+      .icon-list-item {
+        padding-bottom: 1.5rem;
+
+        &:last-child {
+          padding: 0;
+        }
+      }
+      .icon-container {
+        margin-right: 2rem;
+        @include flex-layout;
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  &__right {
+    @include flex-layout($direction: column, $align: flex-start);
+    gap: 1.5rem;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 6rem 4rem;
+    border-radius: 5px;
+    border: 2px solid rgba(122, 122, 122, 0.2);
+  }
+
+  // .heading {
+  //   margin: 0;
+  // }
+
+  .input-container {
+    width: 100%;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    outline: none;
+    border: 1px solid rgba(122, 122, 122, 0.2);
+    padding: 1.2rem;
+    font-size: var(--sm-400);
+
+    &:focus {
+      border-color: green;
+    }
+  }
+}
