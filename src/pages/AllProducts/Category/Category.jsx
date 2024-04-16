@@ -8,11 +8,11 @@ const Category = () => {
       <Heading>Categories</Heading>
       <div className="link-container">
         <div className="link">
-          <Link to="/mugs">Mugs</Link>
+          <Link to="mugs">Mugs</Link>
           <span>(5)</span>
         </div>
         <div className="link">
-          <Link to="/tshirts">Tshirts</Link>
+          <Link to="tshirts">Tshirts</Link>
           <span>(6)</span>
         </div>
       </div>

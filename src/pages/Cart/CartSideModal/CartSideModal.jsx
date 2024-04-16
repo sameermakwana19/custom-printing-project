@@ -13,15 +13,18 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
-      document.body.style.width = "100vw";
+      document.body.style.paddingRight = "17px";
     } else {
       document.body.style.overflow = "unset";
+      document.body.style.paddingRight = "0px";
     }
   }, [isModalOpen]);
 
   return createPortal(
     <div
-      className={`cart-side-modal ${isModalOpen && "cart-side-modal--visible"}`}
+      className={`cart-side-modal ${
+        isModalOpen ? "cart-side-modal--visible" : ""
+      }`}
     >
       <div
         className={`cart-side-modal__overlay ${
@@ -84,18 +87,20 @@ export default CartSideModal;
 
 function CartSideModalProduct({ photo, twoDigitAfterDecimal }) {
   return (
-    <div className="product">
+    <div className="cart-side-modal__product">
       <div className="image-container">
         <img src={photo} alt="" />
       </div>
-      <div className="product-details">
+      <div className="cart-side-modal__product-details">
         <p className="product-name">Black printed Coffee Mug</p>
-        <div className="product-details__quantity">
-          <span className="product-quantity">2</span>
+        <div className="cart-side-modal__product-quantity">
+          <span className="cart-side-modal__product-quantity-value">2</span>
           <span className="multiply-icon">
             <i className="fa-solid fa-x"></i>{" "}
           </span>
-          <span className="product-price">${twoDigitAfterDecimal(39)}</span>
+          <span className="cart-side-modal__product--price">
+            ${twoDigitAfterDecimal(39)}
+          </span>
         </div>
       </div>
       <div className="remove-btn">

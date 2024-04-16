@@ -5,7 +5,7 @@ import HamburgerIcon from "../ui/HamburgerIcon/HamburgerIcon";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
 import CartSideModal from "../../pages/Cart/CartSideModal/CartSideModal";
 
-const BACKGROUND_WHITE_IN = ["allproducts", "login", "cart"];
+const BACKGROUND_WHITE_IN = ["allproducts", "login", "cart", "mugs", "tshirts"];
 
 const Navbar = () => {
   const [isHamburgerMenuExpanded, setIsHamburgerMenuExpanded] = useState(false);

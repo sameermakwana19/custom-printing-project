@@ -14,6 +14,8 @@ html {
   width: 100%;
   height: auto;
   min-width: 322px;
+  padding: 0;
+  margin: 0;
 
   // @include responsive(medium) {
   //   font-size: 56.25%;
@@ -27,7 +29,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  width: 100vw;
+  width: 100%;
 }
 
 a {

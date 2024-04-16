@@ -6,6 +6,7 @@ import Filter from "./Filter/Filter";
 import Category from "./Category/Category";
 import HottestDeal from "./HottestDeals/HottestDeal";
 import SearchInput from "../../components/SearchInput/SearchInput";
+import { Link } from "react-router-dom";
 
 const PRODUCT_PER_PAGE = 9;
 
@@ -30,38 +31,40 @@ const AllProducts = () => {
 
   return (
     <>
-      <div className="all-products">
+      {/* <div className="all-products">
         <div className="all-products__left">
           <Filter min={10} max={40} />
           <Category />
           <HottestDeal />
-        </div>
-        <div className="all-products__right">
-          <header>
-            <BreadCrumb />
-            <div className="heading">
-              <p>{title}</p>
-            </div>
-            <SearchInput />
-          </header>
-          <main>
-            <ContentDetails />
-            <div className="product-container">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
+        </div> */}
+      <div className="all-products__right">
+        <header>
+          <BreadCrumb />
+          <div className="heading">
+            <p>{title}</p>
+          </div>
+          <SearchInput />
+        </header>
+        <main>
+          <ContentDetails />
+          <div className="product-container">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
+              <Link to={`/product/${index + 1}`}>
                 <ProductCard
                   key={item}
                   isOnSale={[1, 5, 9, 3].indexOf(index + 1) !== -1}
                 />
-              ))}
-            </div>
-          </main>
-          <PageNumbersButtons
-            page={page}
-            changePage={changePage}
-            pageNumbersArray={pageNumbersArray}
-          />
-        </div>
+              </Link>
+            ))}
+          </div>
+        </main>
+        <PageNumbersButtons
+          page={page}
+          changePage={changePage}
+          pageNumbersArray={pageNumbersArray}
+        />
       </div>
+      {/* </div> */}
     </>
   );
 };

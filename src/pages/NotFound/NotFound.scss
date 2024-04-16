@@ -1,0 +1,13 @@
+.not-found {
+  @include full-width-container;
+  padding: 8rem 2rem;
+
+  font-size: var(--md-600);
+  @include flex-layout($direction: column);
+
+  a {
+    color: $color-tertiary;
+    text-decoration: none;
+    margin: 0.5rem 0;
+  }
+}
