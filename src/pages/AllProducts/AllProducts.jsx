@@ -5,6 +5,7 @@ import useCurrentLocation from "../../hooks/useCurrentLocation";
 import Filter from "./Filter/Filter";
 import Category from "./Category/Category";
 import HottestDeal from "./HottestDeals/HottestDeal";
+import SearchInput from "../../components/SearchInput/SearchInput";
 
 const PRODUCT_PER_PAGE = 9;
 
@@ -41,6 +42,7 @@ const AllProducts = () => {
             <div className="heading">
               <p>{title}</p>
             </div>
+            <SearchInput />
           </header>
           <main>
             <ContentDetails />

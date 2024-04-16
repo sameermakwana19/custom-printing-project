@@ -5,6 +5,12 @@
   border: 1px solid $border-color;
   margin-left: auto;
 
+  @include responsive(small) {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
   .cart-total__heading {
     font-weight: 700;
     padding: 1.3rem 1.8rem;

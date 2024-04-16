@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 import ProductTable from "./ProductTable/ProductTable";
 import CartTotalTable from "./CartTotalTable/CartTotalTable";
+import ProductTableMobileView from "./ProductTableMoblieView/ProductTableMobileView";
+import CartSideModal from "./CartSideModal/CartSideModal";
 
 const Cart = () => {
   return (
     <div className="cart">
       <ProductTable />
+      <ProductTableMobileView />
       <CartTotalTable />
     </div>
   );

@@ -3,6 +3,7 @@ import Logo from "../ui/Logo/Logo";
 import { NavLink, useLocation } from "react-router-dom";
 import HamburgerIcon from "../ui/HamburgerIcon/HamburgerIcon";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
+import CartSideModal from "../../pages/Cart/CartSideModal/CartSideModal";
 
 const BACKGROUND_WHITE_IN = ["allproducts", "login", "cart"];
 
@@ -11,8 +12,19 @@ const Navbar = () => {
   // const [isHamburgerMenuDropdownExpanded, setIsHamburgerMenuDropdownExpanded] =
   //   useState(false);
 
-  // const { pathname } = useLocation();
   const pathname = useCurrentLocation();
+  const [demo, setDemo] = useState(false);
+
+  const toggleModal = () => {
+    if (pathname === "cart") {
+      setDemo(false);
+      return;
+    }
+
+    setDemo((prev) => !prev);
+  };
+
+  // const { pathname } = useLocation();
 
   useEffect(() => {
     setIsHamburgerMenuExpanded(false);
@@ -31,7 +43,7 @@ const Navbar = () => {
       ? { background: "white" }
       : { background: "transparent" };
 
-  console.log({ style }, { pathname });
+  // console.log({ style }, { pathname });
 
   return (
     <>
@@ -76,7 +88,14 @@ const Navbar = () => {
                 </div>
               </li>
             </ul>
-            <div to="/" className={"navbar__link"}>
+            <div
+              to="/"
+              className={"navbar__link"}
+              onClick={() => {
+                console.log({ demo });
+                toggleModal();
+              }}
+            >
               <div className={"cart-icon-container"}>
                 <p className={"cart-total"}>$0.00</p>
                 <span className={"cart-icon"}>
@@ -141,6 +160,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
+      <CartSideModal toggleModal={toggleModal} isModalOpen={demo} />
     </>
   );
 };

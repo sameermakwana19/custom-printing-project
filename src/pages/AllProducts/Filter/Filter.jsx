@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Heading from "../../../components/ui/Heading/Heading";
 import Button from "../../../components/ui/Button/Button";
+import { useSearchParams } from "react-router-dom";
 
 const Filter = ({ max, min }) => {
   const [filterValue, setFilterValue] = useState(40);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const changeFilterValue = (newValue) => {
-    setFilterValue(newValue);
+  const applyFilterValue = () => {
+    setSearchParams({ price: filterValue });
   };
 
   return (
@@ -19,9 +21,8 @@ const Filter = ({ max, min }) => {
           max={max}
           value={filterValue}
           onChange={(e) => {
-            const value = Number(e.target.value);
-            console.log(typeof Number(e.target.value));
-            changeFilterValue(value);
+            // const value = Number(e.target.value);
+            setFilterValue(e.target.value);
           }}
         />
         <div className="values">
@@ -30,11 +31,17 @@ const Filter = ({ max, min }) => {
         </div>
         <div className="buttons-container">
           {filterValue !== max && (
-            <Button id="reset-btn" onClick={() => changeFilterValue(max)}>
+            <Button
+              id="reset-btn"
+              onClick={() => {
+                setFilterValue(max);
+                setSearchParams({});
+              }}
+            >
               Reset
             </Button>
           )}
-          <Button onClick={() => alert("working")}>Apply</Button>
+          <Button onClick={() => applyFilterValue()}>Apply</Button>
         </div>
       </div>
     </div>

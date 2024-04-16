@@ -2,7 +2,7 @@
   @include full-width-container;
   @include flex-layout;
   // gap: 10rem;
-  gap: 7rem;
+  // gap: 7rem;
   padding: 1rem;
 
   @include responsive(large) {
@@ -13,10 +13,11 @@
   }
 
   .heading {
-    width: 20%;
+    width: fit-content;
     height: 100%;
     font-size: var(--sm-600);
     margin: 0;
+    padding-left: 4rem;
     text-align: center;
 
     @include responsive(large) {
@@ -28,8 +29,7 @@
   }
 
   .logos-container {
-    width: 80%;
-    // flex-grow: 1;
+    flex-grow: 1;
     @include flex-layout;
     gap: 7rem;
 

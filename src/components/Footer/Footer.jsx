@@ -8,11 +8,11 @@ const Footer = () => {
       <div className="footer__content">
         <div>
           <p className="heading">Custom Print Store</p>
-          <div className="content">
-            <i className="fa-brands fa-instagram"></i>
-            <i className="fa-brands fa-twitter"></i>
-            <i className="fa-brands fa-linkedin-in"></i>
-            <i className="fa-brands fa-square-facebook"></i>
+          <div className="icon-container">
+            <i className="fa-brands fa-instagram link"></i>
+            <i className="fa-brands fa-twitter link"></i>
+            <i className="fa-brands fa-linkedin-in link"></i>
+            <i className="fa-brands fa-square-facebook link"></i>
           </div>
         </div>
         <div>

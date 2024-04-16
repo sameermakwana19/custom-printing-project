@@ -24,7 +24,8 @@
   "../components/Footer/footer.scss",
   "../components/ui/BreadCrumb/BreadCrumb.scss",
   "../components/IconList/icon-list.scss",
-  "../components/ui/Backdrop/backdrop.scss";
+  "../components/ui/Backdrop/backdrop.scss",
+  "../components/SearchInput/SearchInput.scss";
 
 // Pages
 
@@ -53,4 +54,6 @@
 // cart
 @import "../pages/Cart/cart.scss",
   "../pages/Cart/ProductTable/product-table.scss",
-  "../pages/Cart/CartTotalTable/cart-total-table.scss";
+  "../pages/Cart/CartTotalTable/cart-total-table.scss",
+  "../pages/Cart/ProductTableMoblieView/ProductTableMobileView.scss",
+  "../pages/Cart/CartSideModal/CartSideModal.scss";
