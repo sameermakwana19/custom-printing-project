@@ -22,10 +22,21 @@
     }
   }
 
+  button {
+    @include responsive(medium) {
+      width: fit-content;
+      padding: 1rem 1.5rem;
+    }
+  }
+
   &__text {
     width: 70%;
     font-size: var(--md-600);
     font-weight: 600;
+
+    @include responsive(medium) {
+      text-align: center;
+    }
 
     @include responsive(medium) {
       width: fit-content;

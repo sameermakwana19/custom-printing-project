@@ -6,6 +6,10 @@
   grid-template-columns: 1fr 1fr;
   padding: 10rem 3rem;
 
+  @include responsive(medium) {
+    padding: 5rem 1rem;
+  }
+
   @include responsive(small) {
     grid-template-columns: 1fr;
     row-gap: 3rem;

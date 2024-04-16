@@ -15,9 +15,13 @@ html {
   height: auto;
   min-width: 322px;
 
-  @include responsive(medium) {
-    font-size: 56.25%;
-  }
+  // @include responsive(medium) {
+  //   font-size: 56.25%;
+  // }
+
+  // @include responsive(xsmall) {
+  //   font-size: 50%;
+  // }
 }
 
 body {

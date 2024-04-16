@@ -3,6 +3,16 @@
 
   .banner {
     padding: 12rem 8rem;
+
+    @include responsive(large) {
+      padding: 8rem 4rem;
+    }
+    @include responsive(medium) {
+      padding: 6rem 2rem;
+    }
+    @include responsive(small) {
+      padding: 4rem 2rem;
+    }
   }
 
   .banner__tagline {

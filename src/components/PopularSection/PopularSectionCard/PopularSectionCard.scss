@@ -9,7 +9,8 @@
 
   @include responsive(small) {
     max-width: 55rem;
-    padding: 2.5rem 0;
+    padding: 0.5rem 0;
+    margin-bottom: 1.5rem;
   }
 
   .popular__image-container {
@@ -29,10 +30,19 @@
     font-size: var(--sm-400);
     font-weight: 400;
     margin: 1rem 0 0.5rem;
+
+    @include responsive(small) {
+      margin: 0.5rem 0;
+    }
   }
 
   .popular__heading {
     font-size: var(--sm-600);
     font-weight: 600;
+
+    @include responsive(small) {
+      // margin-top: 2rem;
+      font-size: var(--md-400);
+    }
   }
 }

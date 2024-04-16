@@ -4,6 +4,10 @@
   gap: 1.5rem;
   padding: 12rem 0 8rem;
 
+  @include responsive(medium) {
+    padding: 5rem 0;
+  }
+
   .card-container {
     @include flex-layout;
     gap: 1.5rem;
@@ -20,6 +24,9 @@
   .heading {
     font-size: var(--md-600);
     margin: 0;
+    @include responsive(small) {
+      font-size: var(--md-400);
+    }
   }
 
   .popular__sub-heading {

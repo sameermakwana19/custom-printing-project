@@ -42,7 +42,9 @@
     }
 
     @include responsive(small) {
-      justify-content: space-between;
+      flex-wrap: wrap;
+      padding-left: 0.5rem;
+      justify-content: flex-start;
     }
 
     .logo-image-container {
@@ -50,6 +52,22 @@
       max-width: 11.5%;
       height: 11.5rem;
       filter: opacity(0.5);
+
+      @include responsive(large) {
+        width: 20%;
+        max-width: 15%;
+        height: 9rem;
+      }
+
+      @include responsive(medium) {
+        width: 25%;
+        max-width: 20%;
+      }
+
+      @include responsive(small) {
+        width: 40%;
+        max-width: 40%;
+      }
 
       transition: all 0.2s ease-in-out;
 
