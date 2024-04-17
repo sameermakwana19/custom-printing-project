@@ -1,6 +1,6 @@
 .backdrop {
-  @include full-width-container($max: 100vw);
-  width: 100vw;
+  @include full-width-container($max: 100%);
+  width: 100%;
   position: absolute;
   background-color: $color-primary;
   background-image: url("/src/assets/hero11-free-img.png");
@@ -10,5 +10,5 @@
   filter: grayscale(200%) brightness(1);
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  // background-repeat: no-repeat;
 }
