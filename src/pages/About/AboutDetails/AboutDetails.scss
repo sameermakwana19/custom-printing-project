@@ -2,7 +2,6 @@
   @include full-width-container($max: 1200px);
   padding: 11rem 0;
   display: grid;
-  background-color: $background-color;
   grid-template-columns: 1fr 1fr;
   @include responsive(large) {
     grid-template-columns: 1fr;
