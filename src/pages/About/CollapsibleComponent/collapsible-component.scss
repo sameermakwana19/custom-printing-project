@@ -28,7 +28,10 @@
   opacity: 1;
   max-height: 0;
   overflow: hidden;
-  // transition: all 1s cubic-bezier(1, 0, 0, 1);
+  // transition: all 0.5s cubic-bezier(1, 0, 0, 1);
+
+  // display: grid;
+  // grid-template-rows: auto;
 
   p {
     padding: 2.5rem 3rem;
@@ -45,8 +48,11 @@
     max-height: fit-content;
     overflow: hidden;
     max-height: 1000px;
-    transition: 0;
+    // transition: 0;
     transition: all 1s cubic-bezier(1, 0, 0, 1);
+    // transition: all 1s linear;
+
+    // grid-template-rows: 1fr;
   }
 
   p {

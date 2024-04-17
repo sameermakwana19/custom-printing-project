@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import BreadCrumb from "../../components/ui/BreadCrumb/BreadCrumb";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
-import Filter from "./Filter/Filter";
-import Category from "./Category/Category";
-import HottestDeal from "./HottestDeals/HottestDeal";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import { Link } from "react-router-dom";
 
@@ -31,12 +28,6 @@ const AllProducts = () => {
 
   return (
     <>
-      {/* <div className="all-products">
-        <div className="all-products__left">
-          <Filter min={10} max={40} />
-          <Category />
-          <HottestDeal />
-        </div> */}
       <div className="all-products__right">
         <header>
           <BreadCrumb />
@@ -64,7 +55,6 @@ const AllProducts = () => {
           pageNumbersArray={pageNumbersArray}
         />
       </div>
-      {/* </div> */}
     </>
   );
 };

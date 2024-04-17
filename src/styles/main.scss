@@ -9,7 +9,7 @@
   "../components/ui/Heading/heading.scss",
   "../components/ui/FlexibleBorder/flexibleBorder.scss",
   "../components/ClientReviewSection/ClientReviewCard/ClientReviewCard.scss",
-  "../components/ui/Rating/rating.scss";
+  "../components/ui/Rating/rating.scss", "../components/ui/Input/Input.scss";
 
 // generic components
 @import "../components/Navbar/navbar.scss", "../components/Banner/Banner.scss",
@@ -59,7 +59,10 @@
   "../pages/Cart/CartSideModal/CartSideModal.scss";
 
 // product page
-@import "../pages/Product/Product.scss";
+@import "../pages/Product/Product.scss",
+  "../pages/Product/ProductReviewAndDescriptionSection/product-review-and-description.scss",
+  "../pages/Product/ProductReviewAndDescriptionSection/ReviewSection/ReviewSection.scss",
+  "../pages/Product/RelatedProducts/RelatedProduct.scss";
 
 // NotFound page
 @import "../pages/NotFound/NotFound.scss";

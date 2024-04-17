@@ -1,8 +1,6 @@
 import React from "react";
 import DividerLine from "../ui/DividerLine/DividerLine";
 import Button from "../ui/Button/Button";
-// import banner from "../../assets/MainBannerPhoto.png";
-// import banner2 from "../../assets/MainBannerPhoto@2x.png";
 
 const Banner = ({
   images,
@@ -18,11 +16,8 @@ const Banner = ({
     ? {
         backgroundImage: `url(${background})`,
       }
-    : {};
+    : null;
 
-  // const style = delegated.style;
-
-  // console.log(delegated.style, { style }, { inBuilStyle });
   return (
     <div className="banner" style={{ ...delegated.style, ...inBuilStyle }}>
       <div className="banner__content">

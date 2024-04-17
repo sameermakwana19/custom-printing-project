@@ -2,6 +2,8 @@ import React from "react";
 import photo from "../../assets/product2.jpg";
 import { twoDigitAfterDecimal } from "../../utlis/helper";
 import Button from "../../components/ui/Button/Button";
+import ProductReviewAndDescription from "./ProductReviewAndDescriptionSection/ProductReviewAndDescription";
+import RelatedProducts from "./RelatedProducts/RelatedProducts";
 
 const Product = () => {
   return (
@@ -10,9 +12,9 @@ const Product = () => {
         photo={photo}
         twoDigitAfterDecimal={twoDigitAfterDecimal}
       />
-      <div className="product__description-and-review-section">
-        <header></header>
-      </div>
+      <ProductReviewAndDescription />
+
+      <RelatedProducts />
     </div>
   );
 };

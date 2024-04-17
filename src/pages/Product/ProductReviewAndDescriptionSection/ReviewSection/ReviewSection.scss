@@ -1,0 +1,58 @@
+.review-section {
+  .reviews {
+    font-size: var(--sm-400);
+    margin-bottom: 2.4rem;
+  }
+
+  .review-form {
+    padding: 2.5rem;
+    border: 1px solid $border-color;
+
+    &__heading {
+      font-size: 2rem;
+    }
+
+    &__sub-heading {
+      font-size: var(--sm-500);
+      margin: 0.2rem 0 0.6rem;
+    }
+
+    &__rating {
+      width: 100%;
+      @include flex-layout($justify: flex-start);
+      margin: 1.5rem 0;
+
+      .stars-container {
+        margin: 0 1rem;
+        @include flex-layout;
+        font-size: var(--sm-500);
+      }
+    }
+
+    .input-grp {
+      @include flex-layout($direction: column, $align: flex-start);
+      margin: 1rem 0;
+
+      label {
+        font-size: var(--sm-400);
+        margin-bottom: 0.5rem;
+      }
+      input,
+      textarea {
+        padding: 1rem;
+        width: 100%;
+        border: 1px solid $border-color;
+      }
+    }
+
+    .checkbox-input-grp {
+      @include flex-layout($justify: flex-start, $align: center);
+      margin: 1rem 0.5rem;
+
+      label {
+        font-size: var(--sm-400);
+        margin-left: 1rem;
+      }
+    }
+  }
+}
