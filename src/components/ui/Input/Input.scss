@@ -1,8 +1,10 @@
 .input-grp {
+  width: 100%;
   @include flex-layout($direction: column, $align: flex-start);
   margin-bottom: 1rem;
 
   label {
+    text-transform: capitalize;
     font-size: var(--xs-600);
     font-weight: 700;
     line-height: 2;
@@ -15,6 +17,7 @@
     font-size: var(--sm-600);
     outline: none;
     border: 1px solid #dddddd;
+    font-family: "Poppins";
   }
 }
 
@@ -22,6 +25,8 @@
   @include flex-layout($justify: flex-start);
 
   label {
+    text-transform: capitalize;
+
     width: fit-content;
     order: 10;
   }

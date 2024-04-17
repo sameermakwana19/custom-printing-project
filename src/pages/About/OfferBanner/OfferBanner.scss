@@ -9,7 +9,7 @@
   }
 
   &__content {
-    @include full-width-container($max: 1200px);
+    @include full-width-container;
     @include flex-layout($justify: space-between);
     gap: 1rem;
 

@@ -19,7 +19,7 @@ const ProductTable = () => {
       <div className="product-table__body">
         <div className="product-table__row">
           <span className="remove-btn">
-            <div className="icons-container">
+            <div className="icon-container">
               <i className="fa-solid fa-xmark"></i>
             </div>
           </span>
@@ -35,7 +35,7 @@ const ProductTable = () => {
         </div>
         <div className="product-table__row">
           <span className="remove-btn">
-            <div className="icons-container">
+            <div className="icon-container">
               <i className="fa-solid fa-xmark"></i>
             </div>
           </span>

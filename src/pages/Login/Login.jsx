@@ -8,22 +8,25 @@ const Login = () => {
   const id = useId();
 
   return (
-    <div className="login">
-      <Heading>Login</Heading>
-      <div className="form-container">
-        <form action="#">
-          <Input label="Username or email address" id={`${id}-text`} />
-          <Input label="Password" id={`${id}-password`} type="password" />
-          <Input
-            label={"remember me"}
-            id={`${id}-remember-me`}
-            type="checkbox"
-          />
-          <Button isIconPresent={false}> Log In</Button>
-        </form>
-        <Link to="#" className="lost-your-password">
-          Lost your Password?
-        </Link>
+    <div className="login-container">
+      <div className="login">
+        <Heading>Login</Heading>
+        <div className="form-container">
+          <form action="#">
+            <Input label="Username or email address" id={`${id}-text`} />
+            <Input label="Password" id={`${id}-password`} type="password" />
+            <Input
+              label={"remember me"}
+              id={`${id}-remember-me`}
+              type="checkbox"
+              isMandatory={false}
+            />
+            <Button isIconPresent={false}> Log In</Button>
+          </form>
+          <Link to="#" className="lost-your-password">
+            Lost your Password?
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,3 +1,8 @@
+.login-container {
+  width: 100%;
+  background-color: $background-color;
+}
+
 .login {
   @include flex-layout($direction: column, $align: flex-start);
   @include full-width-container;

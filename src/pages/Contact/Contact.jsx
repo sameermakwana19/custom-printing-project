@@ -4,6 +4,7 @@ import DividerLine from "../../components/ui/DividerLine/DividerLine";
 import IconList from "../../components/IconList/IconList";
 import Backdrop from "../../components/ui/Backdrop/Backdrop";
 import Button from "../../components/ui/Button/Button";
+import Input from "../../components/ui/Input/Input";
 
 const Contact = () => {
   return (
@@ -35,15 +36,10 @@ const Contact = () => {
         </div>
         <div className="contact__right">
           <Heading>Ask your queires</Heading>
-          <div className="input-container">
-            <input type="text" placeholder="Your Email" />
-          </div>
-          <div className="input-container">
-            <input type="text" placeholder="Subject" />
-          </div>
-          <div className="input-container">
-            <textarea type="text" placeholder="Message" />
-          </div>
+
+          <Input type="text" placeholder="Your Email" />
+          <Input type="text" placeholder="Subject" />
+          <Input type="textarea" placeholder="Message" />
           <Button isIconPresent={false}>send message</Button>
         </div>
       </div>

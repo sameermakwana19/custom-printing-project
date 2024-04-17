@@ -1,3 +1,7 @@
+.cart-container {
+  background-color: $background-color;
+}
+
 .cart {
   @include full-width-container($max: 1200px);
   @include flex-layout($direction: column);

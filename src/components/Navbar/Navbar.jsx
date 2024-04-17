@@ -10,12 +10,13 @@ import CartSideModal from "../../pages/Cart/CartSideModal/CartSideModal";
 const Navbar = () => {
   const [isHamburgerMenuExpanded, setIsHamburgerMenuExpanded] = useState(false);
 
+  const [mobileAccountDropdown, setMobileAccountDropdown] = useState(false);
+
   const pathname = useCurrentLocation() || "home";
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
     if (pathname === "cart") {
-      // setIsModalOpen(false);
       return;
     }
 
@@ -134,10 +135,20 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="account-dropdown">
-              <div className="accounts-dropdown-header navbar__link">
-                Account <i className="fa-solid fa-chevron-down"></i>
+              <div
+                className="accounts-dropdown-header navbar__link"
+                onClick={() => setMobileAccountDropdown((prev) => !prev)}
+              >
+                <span>Account</span>{" "}
+                <i className="fa-solid fa-chevron-down"></i>
               </div>
-              <div className="accounts-dropdown-body">
+              <div
+                className={`${
+                  mobileAccountDropdown
+                    ? "accounts-dropdown-body--expanded"
+                    : "accounts-dropdown-body"
+                }`}
+              >
                 <div>
                   <NavLink to="/login" className="navbar__link">
                     <i className="fa-solid fa-chevron-right"></i>My Account

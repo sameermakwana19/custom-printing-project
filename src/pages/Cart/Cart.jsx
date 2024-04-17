@@ -7,10 +7,12 @@ import CartSideModal from "./CartSideModal/CartSideModal";
 
 const Cart = () => {
   return (
-    <div className="cart">
-      <ProductTable />
-      <ProductTableMobileView />
-      <CartTotalTable />
+    <div className="cart-container">
+      <div className="cart">
+        <ProductTable />
+        <ProductTableMobileView />
+        <CartTotalTable />
+      </div>
     </div>
   );
 };
