@@ -1,6 +1,6 @@
 import React from "react";
 
-const DividerLine = ({ color = "#FF5151", width = 8, height = 3 }) => {
+const DividerLine = ({ color = "#FF5151", width = "55px", height = 3 }) => {
   const style = {
     borderBottom: `${height}px solid ${color}`,
     width: width,

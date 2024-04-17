@@ -70,7 +70,7 @@ const Navbar = () => {
               </li>
               <li className="accounts-dropdown">
                 <div className="accounts-dropdown-header navbar__link">
-                  Accounts <i className="fa-solid fa-chevron-down"></i>
+                  Account <i className="fa-solid fa-chevron-down"></i>
                 </div>
                 <div className="accounts-dropdown-body">
                   <NavLink to="/login" className="navbar__link">
@@ -135,7 +135,7 @@ const Navbar = () => {
             </li>
             <li className="account-dropdown">
               <div className="accounts-dropdown-header navbar__link">
-                Accounts <i className="fa-solid fa-chevron-down"></i>
+                Account <i className="fa-solid fa-chevron-down"></i>
               </div>
               <div className="accounts-dropdown-body">
                 <div>
