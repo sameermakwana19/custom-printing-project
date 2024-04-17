@@ -2,6 +2,7 @@ import React, { useId } from "react";
 import Heading from "../../components/ui/Heading/Heading";
 import Button from "../../components/ui/Button/Button";
 import { Link } from "react-router-dom";
+import Input from "../../components/ui/Input/Input";
 
 const Login = () => {
   const id = useId();
@@ -11,22 +12,13 @@ const Login = () => {
       <Heading>Login</Heading>
       <div className="form-container">
         <form action="#">
-          <div className="input-grp">
-            <label htmlFor={`${id}-text`}>
-              Username or email address <span className="asterisk">*</span>
-            </label>
-            <input type="text" name="" id={`${id}-text`} />
-          </div>
-          <div className="input-grp">
-            <label htmlFor={`${id}-password`}>
-              Password <span className="asterisk">*</span>
-            </label>
-            <input type="password" name="" id={`${id}-password`} />
-          </div>
-          <div className="checkbox-input-grp">
-            <input type="checkbox" name="" id={`${id}-remember-me`} />
-            <label htmlFor={`${id}-remember-me`}>Remember</label>
-          </div>
+          <Input label="Username or email address" id={`${id}-text`} />
+          <Input label="Password" id={`${id}-password`} type="password" />
+          <Input
+            label={"remember me"}
+            id={`${id}-remember-me`}
+            type="checkbox"
+          />
           <Button isIconPresent={false}> Log In</Button>
         </form>
         <Link to="#" className="lost-your-password">

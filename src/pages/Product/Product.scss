@@ -2,9 +2,12 @@
   @include full-width-container;
   background-color: white;
   padding: 8rem 10rem;
+  margin: 5rem auto;
 
-  @include responsive(medium) {
-    flex-direction: column;
+  @include responsive(large) {
+    // flex-direction: column;
+    padding: 4rem 2rem;
+    margin: 2.5rem auto;
   }
 
   .product-detail {
@@ -29,6 +32,15 @@
         width: 100%;
         height: 100%;
 
+        @include responsive(small) {
+          width: 50%;
+          margin: 0 auto;
+        }
+
+        @include responsive(xsmall) {
+          width: 100%;
+        }
+
         img {
           object-fit: contain;
           width: 100%;
@@ -40,9 +52,17 @@
       width: 50%;
       @include flex-layout($direction: column, $align: flex-start);
 
+      @include responsive(small) {
+        width: 100%;
+      }
+
       .product__heading {
         font-size: var(--md-600);
         margin-bottom: 1.5rem;
+
+        @include responsive(medium) {
+          font-size: var(--md-500);
+        }
       }
 
       .product__price {

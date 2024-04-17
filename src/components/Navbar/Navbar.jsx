@@ -1,34 +1,29 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../ui/Logo/Logo";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import HamburgerIcon from "../ui/HamburgerIcon/HamburgerIcon";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
 import CartSideModal from "../../pages/Cart/CartSideModal/CartSideModal";
 
-const BACKGROUND_WHITE_IN = ["allproducts", "login", "cart", "mugs", "tshirts"];
+// const BACKGROUND_WHITE_NOT_IN = ["home", "about", "contact"];
 
 const Navbar = () => {
   const [isHamburgerMenuExpanded, setIsHamburgerMenuExpanded] = useState(false);
-  // const [isHamburgerMenuDropdownExpanded, setIsHamburgerMenuDropdownExpanded] =
-  //   useState(false);
 
-  const pathname = useCurrentLocation();
-  const [demo, setDemo] = useState(false);
+  const pathname = useCurrentLocation() || "home";
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
     if (pathname === "cart") {
-      setDemo(false);
+      // setIsModalOpen(false);
       return;
     }
 
-    setDemo((prev) => !prev);
+    setIsModalOpen((prev) => !prev);
   };
-
-  // const { pathname } = useLocation();
 
   useEffect(() => {
     setIsHamburgerMenuExpanded(false);
-    // alert(pathname);
 
     return () => {};
   }, [pathname]);
@@ -36,18 +31,17 @@ const Navbar = () => {
   function toggleIsHamburgerMenuExpanded() {
     setIsHamburgerMenuExpanded((prev) => !prev);
   }
-  // console.log({ isHamburgerMenuExpanded });
 
-  const style =
-    BACKGROUND_WHITE_IN.indexOf(pathname) !== -1
-      ? { background: "white" }
-      : { background: "transparent" };
+  // const style =
+  //   BACKGROUND_WHITE_NOT_IN.indexOf(pathname) !== -1
+  //     ? { background: "none" }
+  //     : { background: "white" };
 
   // console.log({ style }, { pathname });
 
   return (
     <>
-      <div className="navbar" style={style}>
+      <div className="navbar" style={{ background: "white" }}>
         <div className="navbar__header">
           <div className="logo-container">
             <Logo />
@@ -92,7 +86,6 @@ const Navbar = () => {
               to="/"
               className={"navbar__link"}
               onClick={() => {
-                console.log({ demo });
                 toggleModal();
               }}
             >
@@ -160,7 +153,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <CartSideModal toggleModal={toggleModal} isModalOpen={demo} />
+      <CartSideModal toggleModal={toggleModal} isModalOpen={isModalOpen} />
     </>
   );
 };

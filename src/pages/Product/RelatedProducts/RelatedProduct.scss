@@ -1,0 +1,22 @@
+.related-products-section {
+  &__heading {
+    font-size: var(--md-600);
+    font-weight: 700;
+    text-transform: capitalize;
+    margin-bottom: 2rem;
+  }
+
+  .related-products__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+
+    @include responsive(large) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include responsive(small) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

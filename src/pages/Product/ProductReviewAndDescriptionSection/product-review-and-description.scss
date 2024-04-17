@@ -1,0 +1,46 @@
+.product-review-and-description {
+  padding-top: 3rem;
+  margin-bottom: 6rem;
+  font-size: var(--sm-400);
+
+  .product-review-and-description__header {
+    @include flex-layout($justify: flex-start);
+    margin-bottom: 1.5rem;
+    position: relative;
+    font-weight: 700;
+
+    // border-top: 1px solid black;
+
+    &::before {
+      content: "   ";
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      height: 1px;
+      background-color: $border-color;
+    }
+
+    p {
+      font-size: var(--sm-400);
+      padding: 0.75rem 0.5rem;
+      margin-right: 1.5rem;
+      position: relative;
+    }
+
+    .active-label {
+      &::before {
+        content: " ";
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background-color: $color-tertiary;
+      }
+
+      // border-top: 3px solid $color-tertiary;
+      // }
+    }
+  }
+}

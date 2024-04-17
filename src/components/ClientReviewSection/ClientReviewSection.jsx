@@ -43,9 +43,6 @@ const ClientReviewSection = () => {
           <ClientReviewCard key={review.id} {...review} />
         ))}
       </div>
-      {/* <ClientReviewCard />
-      <ClientReviewCard />
-      <ClientReviewCard /> */}
     </div>
   );
 };

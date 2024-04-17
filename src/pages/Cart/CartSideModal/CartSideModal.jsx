@@ -45,7 +45,6 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
         </div>
 
         <div className="cart-side-modal__body">
-          {/* <div className="cart-side-modal__row"> */}
           <CartSideModalProduct
             photo={photo}
             twoDigitAfterDecimal={twoDigitAfterDecimal}
@@ -54,7 +53,6 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
             photo={photo3}
             twoDigitAfterDecimal={twoDigitAfterDecimal}
           />
-          {/* </div> */}
         </div>
 
         <div className="cart-side-modal__footer">

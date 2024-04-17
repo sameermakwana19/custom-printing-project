@@ -8,7 +8,6 @@ import Button from "../../components/ui/Button/Button";
 const Contact = () => {
   return (
     <div className="contact">
-      {/* <div className="backdrop"></div> */}
       <Backdrop />
       <div className="contact__left">
         <Heading>say hello.</Heading>

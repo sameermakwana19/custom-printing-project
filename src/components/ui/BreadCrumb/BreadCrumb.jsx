@@ -7,14 +7,11 @@ const BreadCrumb = () => {
   const initialStr = "home";
 
   const array = pathname.split("/");
-  // console.log({ array }, { pathname });
 
   const breadCrumbStr = array.reduce(
     (acc, curr) => (curr === "" ? acc : `${acc} / ${curr}`),
     initialStr
   );
-
-  // console.log({ breadCrumbStr });
 
   return (
     <>

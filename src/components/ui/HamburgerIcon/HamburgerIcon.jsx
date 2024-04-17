@@ -4,7 +4,6 @@ const HamburgerIcon = ({
   isHamburgerMenuExpanded,
   toggleIsHamburgerMenuExpanded,
 }) => {
-  // alert(isHamburgerMenuExpanded);
   return (
     <div
       className="hamburger-icon"

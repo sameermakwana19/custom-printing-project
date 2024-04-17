@@ -51,9 +51,6 @@ const FeaturesSection = () => {
         {fetauresProductDetails.map((product) => (
           <ProductCard key={product.id} {...product} />
         ))}
-        {/* <ProductCard key={crypto.randomUUID()} />
-        <ProductCard key={crypto.randomUUID()} />
-        <ProductCard key={crypto.randomUUID()} /> */}
       </div>
     </div>
   );
