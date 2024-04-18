@@ -1,15 +1,22 @@
 import "./App.css";
 import "./styles/main.scss";
 
-import Banner from "./components/Banner/Banner";
-
-import banner1 from "./assets/MainBannerPhoto.png";
-import banner2 from "./assets/MainBannerPhoto@2x.png";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import Router from "./Routes/Router";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools/production";
 
 function App() {
-  return <Router />;
+  const queryClient = new QueryClient();
+
+  return (
+    <>
+      <QueryClientProvider client={queryClient}>
+        <Router />
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </>
+  );
 }
 
 export default App;

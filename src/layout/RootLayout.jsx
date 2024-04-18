@@ -2,6 +2,8 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
+import { ErrorBoundary } from "react-error-boundary";
+import NotFound from "../pages/NotFound/NotFound";
 
 const RootLayout = () => {
   return (
@@ -10,7 +12,9 @@ const RootLayout = () => {
         <Navbar />
       </header>
       <main>
-        <Outlet />
+        <ErrorBoundary FallbackComponent={NotFound}>
+          <Outlet />
+        </ErrorBoundary>
       </main>
       <footer>
         <Footer />

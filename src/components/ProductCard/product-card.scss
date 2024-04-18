@@ -1,12 +1,12 @@
 .product-card {
   width: 100%;
-  height: fit-content;
+  height: 100%;
   max-width: 28.5rem;
-  // margin: 0 auto;
+
   position: relative;
 
   margin-bottom: 38px;
-  @include flex-layout($direction: column);
+  @include flex-layout($direction: column, $justify: flex-start);
 
   @include responsive(small) {
     max-width: 35rem;
@@ -14,6 +14,7 @@
 
   @include responsive(xsmall) {
     max-width: 30rem;
+    margin: 0 auto;
   }
 
   .sale-label {
@@ -33,8 +34,10 @@
 
   .product__image-container {
     width: 100%;
-    height: 100%;
+    height: 70%;
+    margin-bottom: auto;
     img {
+      object-fit: cover;
       width: 100%;
       height: 100%;
     }
