@@ -6,8 +6,16 @@ import photo3 from "../../../assets/mostLovedProducts3.jpg";
 import { twoDigitAfterDecimal } from "../../../utlis/helper";
 import useCurrentLocation from "../../../hooks/useCurrentLocation";
 import { Navigate } from "react-router-dom";
+import { query } from "firebase/firestore";
+import { useQuery } from "@tanstack/react-query";
+import { getAllCartProductsFromFirestore } from "../../../queries/CartQueries";
 
 const CartSideModal = ({ toggleModal, isModalOpen }) => {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["cart"],
+    queryFn: getAllCartProductsFromFirestore,
+  });
+
   const pathname = useCurrentLocation();
 
   useEffect(() => {
@@ -19,6 +27,16 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
       document.body.style.paddingRight = "0px";
     }
   }, [isModalOpen]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error...</div>;
+  }
+
+  const total = data.reduce((acc, product) => acc + product.price, 0);
 
   return createPortal(
     <div
@@ -45,20 +63,15 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
         </div>
 
         <div className="cart-side-modal__body">
-          <CartSideModalProduct
-            photo={photo}
-            twoDigitAfterDecimal={twoDigitAfterDecimal}
-          />
-          <CartSideModalProduct
-            photo={photo3}
-            twoDigitAfterDecimal={twoDigitAfterDecimal}
-          />
+          {data.map((product) => (
+            <CartSideModalProduct {...product} key={product.id} />
+          ))}
         </div>
 
         <div className="cart-side-modal__footer">
           <div className="subtotal">
             <p className="label">Subtotal</p>
-            <p className="value">${twoDigitAfterDecimal(69)}</p>
+            <p className="value">${twoDigitAfterDecimal(total)}</p>
           </div>
           <Button
             variant={"large"}
@@ -83,21 +96,23 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
 
 export default CartSideModal;
 
-function CartSideModalProduct({ photo, twoDigitAfterDecimal }) {
+function CartSideModalProduct({ imageUrl, name, price, quantity }) {
   return (
     <div className="cart-side-modal__product">
       <div className="image-container">
-        <img src={photo} alt="" />
+        <img src={imageUrl} alt="" />
       </div>
       <div className="cart-side-modal__product-details">
-        <p className="product-name">Black printed Coffee Mug</p>
+        <p className="product-name">{name}</p>
         <div className="cart-side-modal__product-quantity">
-          <span className="cart-side-modal__product-quantity-value">2</span>
+          <span className="cart-side-modal__product-quantity-value">
+            {quantity}
+          </span>
           <span className="multiply-icon">
             <i className="fa-solid fa-x"></i>{" "}
           </span>
           <span className="cart-side-modal__product--price">
-            ${twoDigitAfterDecimal(39)}
+            ${twoDigitAfterDecimal(price)}
           </span>
         </div>
       </div>

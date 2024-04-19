@@ -6,6 +6,10 @@ import mvp1 from "../../assets/mostLovedProducts1.jpg";
 import mvp2 from "../../assets/mostLovedProducts2.jpg";
 import mvp3 from "../../assets/mostLovedProducts3.jpg";
 import mvp4 from "../../assets/mostLovedProducts4.jpg";
+import { useQuery } from "@tanstack/react-query";
+import { getAll } from "firebase/remote-config";
+import { getAllTshirtsFromFirestore } from "../../queries/getAllProducts";
+import { Link } from "react-router-dom";
 
 const mostLovedProducts = [
   {
@@ -47,13 +51,22 @@ const mostLovedProducts = [
 ];
 
 const MostLovedProduct = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["tshirts"],
+    queryFn: getAllTshirtsFromFirestore,
+  });
   return (
     <div className="most-loved-products-container">
       <Heading variant={"h2"}>Most Loved Product</Heading>
       <DividerLine />
       <div className="product-container">
-        {mostLovedProducts.map((product) => (
-          <ProductCard key={product.id} {...product} />
+        {data?.slice(0, 4).map((product) => (
+          <Link
+            key={product.id}
+            to={`/${product.category.toLowerCase()}/${product.id}`}
+          >
+            <ProductCard key={product.id} {...product} />
+          </Link>
         ))}
       </div>
     </div>

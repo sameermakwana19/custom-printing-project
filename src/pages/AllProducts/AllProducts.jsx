@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import BreadCrumb from "../../components/ui/BreadCrumb/BreadCrumb";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
@@ -12,7 +12,7 @@ import {
   getAllTshirtsFromFirestore,
 } from "../../queries/getAllProducts";
 import NotFound from "../NotFound/NotFound";
-import { set } from "firebase/database";
+import { FilterContext } from "../../context/products/FilterProvider";
 
 const PRODUCT_PER_PAGE = 9;
 
@@ -22,20 +22,7 @@ const QUERY_FUNCTIONS_OBJECT = {
   tshirts: getAllTshirtsFromFirestore,
 };
 
-// function reducer(state, action) {
-//   console.log("demo");
-//   const test = [...state];
-//   switch (action.type) {
-//     case "price-asc":
-//       test.sort((a, b) => a.price - b.price);
-//       break;
-//     case "price-desc":
-//       test.sort((a, b) => b.price - a.price);
-//   }
-
-//   return test;
-// }
-// const [sortBy, dispatchSortBy] = useReducer(reducer, null);
+const AVAILABLE_ENDPOINTS = ["allproducts", "mugs", "tshirts"];
 
 const AllProducts = () => {
   const [page, setPage] = useState(1);
@@ -43,22 +30,28 @@ const AllProducts = () => {
   const [sortBy, setSortBy] = useState(null);
   const [products, setProducts] = useState(null);
 
+  const { filterValue } = useContext(FilterContext);
+
   const endpoint = useCurrentLocation();
 
-  // TODO: use Query starting
+  if (AVAILABLE_ENDPOINTS.indexOf(endpoint) === -1) {
+    throw new Error("Invalid endpoint");
+  }
 
   const { data, isLoading, error } = useQuery({
-    queryKey: [endpoint, page],
+    queryKey: [endpoint],
     queryFn: QUERY_FUNCTIONS_OBJECT[endpoint],
   });
 
-  console.log(data);
-  // TODO: use Query ending
-  // console.log(data);
-
-  if (error) {
-    return <NotFound />;
-  }
+  useEffect(() => {
+    if (filterValue) {
+      const filteredProducts = data.filter(
+        (product) => product.price < filterValue
+      );
+      setTotalProducts(filteredProducts.length);
+      setProducts(filteredProducts);
+    }
+  }, [filterValue]);
 
   useEffect(() => {
     if (data) {
@@ -77,9 +70,9 @@ const AllProducts = () => {
       } else if (sortBy === "price-desc") {
         sortedProducts.sort((a, b) => b.price - a.price);
         setProducts(sortedProducts);
+      } else {
+        setProducts(data);
       }
-    } else {
-      setProducts(data);
     }
   }, [sortBy]);
 
@@ -94,7 +87,15 @@ const AllProducts = () => {
     setPage(nextPage);
   };
 
-  console.log({ products });
+  // console.log({ products });
+
+  if (error) {
+    return <NotFound />;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -104,17 +105,22 @@ const AllProducts = () => {
           <div className="heading">
             <p>{endpoint}</p>
           </div>
-          <SearchInput />
+          <SearchInput data={data} setProducts={setProducts} />
         </header>
-        <main>
-          <ContentDetails setSortBy={setSortBy} />
-          <ProductsContainer products={products} page={page} />
-        </main>
-        <PageNumbersButtons
-          page={page}
-          changePage={changePage}
-          pageNumbersArray={pageNumbersArray}
-        />
+        {products?.length !== 0 ? (
+          <main>
+            <ContentDetails setSortBy={setSortBy} />
+            <ProductsContainer products={products} page={page} />
+
+            <PageNumbersButtons
+              page={page}
+              changePage={changePage}
+              pageNumbersArray={pageNumbersArray}
+            />
+          </main>
+        ) : (
+          <div>No products found</div>
+        )}
       </div>
     </>
   );
@@ -128,10 +134,9 @@ function ContentDetails({ setSortBy }) {
       <div className="current-page">Showing 1-9 of 11 </div>
       <div className="sort-by">
         <select name="sortby" onChange={(e) => setSortBy(e.target.value)}>
-          <option value="">Default Sort</option>
+          <option value="default">Default Sort</option>
           <option value="price-asc">Sort by Price : low to high</option>
           <option value="price-desc">Sort by Price : high to low</option>
-          {/* <option value="latest">Sort by latest</option> */}
         </select>
       </div>
     </div>
@@ -184,13 +189,15 @@ function ProductsContainer({ products, page }) {
   const initialProductNumber = (page - 1) * PRODUCT_PER_PAGE;
   const finalProductNumber = page * PRODUCT_PER_PAGE;
 
-  console.log({ products }, " product container");
   return (
     <div className="product-container">
       {products
         ?.slice(initialProductNumber, finalProductNumber)
         .map((product, index) => (
-          <Link to={`/product/${index + 1}`} key={product.id}>
+          <Link
+            to={`/${product.category.toLowerCase()}/${product.id}`}
+            key={product.id}
+          >
             <ProductCard {...product} />
           </Link>
         ))}

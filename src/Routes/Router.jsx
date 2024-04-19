@@ -30,10 +30,12 @@ const Router = () => {
           {/* <Route path="tshirts" element={<AllProducts />} />
           <Route path="mugs" element={<AllProducts />} /> */}
           <Route path=":category" element={<AllProducts />} />
+          {/* <Route path=":category/:id" element={<Product />} /> */}
           {/* <Route path=":id" element={<Product />} /> */}
         </Route>
 
-        <Route path="/product/:id" element={<Product />} />
+        <Route path="/mugs/:id" element={<Product />} />
+        <Route path="/t-shirts/:id" element={<Product />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     )

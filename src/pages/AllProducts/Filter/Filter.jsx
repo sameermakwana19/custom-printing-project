@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Heading from "../../../components/ui/Heading/Heading";
 import Button from "../../../components/ui/Button/Button";
 import { useSearchParams } from "react-router-dom";
+import { FilterContext } from "../../../context/products/FilterProvider";
 
-const Filter = ({ max, min }) => {
-  const [filterValue, setFilterValue] = useState(40);
-  const [searchParams, setSearchParams] = useSearchParams();
+// const Filter = ({ max, min }) => {
+// const [filterValue, setFilterValue] = useState(40);
+// const [searchParams, setSearchParams] = useSearchParams();
 
-  const applyFilterValue = () => {
-    setSearchParams({ price: filterValue });
-  };
+// const applyFilterValue = () => {
+//   setSearchParams({ price: filterValue });
+// };
+
+const Filter = () => {
+  const { applyFilterValue, min, max } = useContext(FilterContext);
+
+  const [inputValue, setInputValue] = useState(max);
 
   return (
     <div className="filter">
@@ -19,29 +25,34 @@ const Filter = ({ max, min }) => {
           type="range"
           min={min}
           max={max}
-          value={filterValue}
+          value={inputValue}
           onChange={(e) => {
-            // const value = Number(e.target.value);
-            setFilterValue(e.target.value);
+            // alert(e.target.value);
+            const value = Number(e.target.value);
+            setInputValue(value);
           }}
         />
         <div className="values">
           <p className="min-value">${min}</p>
-          <p className="current-value">${filterValue}</p>
+          <p className="current-value">
+            {/* {`${(inputValue !== 40, typeof inputValue)},`} */}
+            {inputValue !== 40 && `$${inputValue}`}
+          </p>
+          <p className="current-value">${max}</p>
         </div>
         <div className="buttons-container">
-          {filterValue !== max && (
+          {inputValue !== max && (
             <Button
               id="reset-btn"
               onClick={() => {
-                setFilterValue(max);
-                setSearchParams({});
+                setInputValue(max);
+                applyFilterValue(max);
               }}
             >
               Reset
             </Button>
           )}
-          <Button onClick={() => applyFilterValue()}>Apply</Button>
+          <Button onClick={() => applyFilterValue(inputValue)}>Apply</Button>
         </div>
       </div>
     </div>
