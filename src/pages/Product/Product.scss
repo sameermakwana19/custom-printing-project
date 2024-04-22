@@ -10,6 +10,23 @@
     margin: 2.5rem auto;
   }
 
+  .product-added-to-cart {
+    @include flex-layout($justify: space-between);
+    @include full-width-container;
+    border: 1px solid lightgreen;
+    padding: 1rem 5rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    background-color: $color-primary;
+    color: $color-tertiary;
+    p {
+      font-size: 1.5rem;
+    }
+    button {
+      margin: 0;
+    }
+  }
+
   .product-detail {
     width: 100%;
     // @include flex-layout($align: flex-start);
@@ -85,7 +102,7 @@
           font-size: var(--md-400);
           text-decoration: line-through;
           margin-right: 1rem;
-          display: none;
+          // display: none;
 
           @include responsive(small) {
             display: block;

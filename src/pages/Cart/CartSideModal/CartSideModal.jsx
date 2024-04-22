@@ -5,10 +5,13 @@ import photo from "../../../assets/mostLovedProducts4.jpg";
 import photo3 from "../../../assets/mostLovedProducts3.jpg";
 import { twoDigitAfterDecimal } from "../../../utlis/helper";
 import useCurrentLocation from "../../../hooks/useCurrentLocation";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { query } from "firebase/firestore";
-import { useQuery } from "@tanstack/react-query";
-import { getAllCartProductsFromFirestore } from "../../../queries/CartQueries";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  deleteProductFromCartInFirestore,
+  getAllCartProductsFromFirestore,
+} from "../../../queries/CartQueries";
 
 const CartSideModal = ({ toggleModal, isModalOpen }) => {
   const { data, isLoading, isError } = useQuery({
@@ -35,6 +38,8 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
   if (isError) {
     return <div>Error...</div>;
   }
+
+  console.log({ data });
 
   const total = data.reduce((acc, product) => acc + product.price, 0);
 
@@ -73,20 +78,24 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
             <p className="label">Subtotal</p>
             <p className="value">${twoDigitAfterDecimal(total)}</p>
           </div>
-          <Button
-            variant={"large"}
-            onClick={() => toggleModal()}
-            isIconPresent={false}
-          >
-            View Cart
-          </Button>
-          <Button
-            variant={"large"}
-            onClick={() => toggleModal()}
-            isIconPresent={false}
-          >
-            CheckOut
-          </Button>
+          <Link to={"/cart"}>
+            <Button
+              variant={"large"}
+              onClick={() => toggleModal()}
+              isIconPresent={false}
+            >
+              View Cart
+            </Button>
+          </Link>
+          <Link to={"/cart"}>
+            <Button
+              variant={"large"}
+              onClick={() => toggleModal()}
+              isIconPresent={false}
+            >
+              CheckOut
+            </Button>
+          </Link>
         </div>
       </div>
     </div>,
@@ -96,7 +105,26 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
 
 export default CartSideModal;
 
-function CartSideModalProduct({ imageUrl, name, price, quantity }) {
+function CartSideModalProduct({ id, imageUrl, name, price, quantity }) {
+  const queryClient = useQueryClient();
+
+  const { mutate, isError, isLoading } = useMutation({
+    mutationFn: deleteProductFromCartInFirestore,
+    onSuccess: (data) => {
+      // console.log("success", data);
+      queryClient.invalidateQueries(["cart"]);
+    },
+  });
+
+  // const { mutate, isError, isLoading } = useMutation({
+  //   mutationFn: deleteProductFromCartInFirestore,
+  //   onSuccess: (data) => {
+  //     console.log("success", data);
+  //     // setTimeout(() => {
+  //     queryClient.invalidateQueries(["cart"]);
+  //     // }, 3000);
+  //   },
+  // });
   return (
     <div className="cart-side-modal__product">
       <div className="image-container">
@@ -116,7 +144,7 @@ function CartSideModalProduct({ imageUrl, name, price, quantity }) {
           </span>
         </div>
       </div>
-      <div className="remove-btn">
+      <div className="remove-btn" onClick={() => mutate(id)}>
         <i className="fa-solid fa-x"></i>{" "}
       </div>
     </div>

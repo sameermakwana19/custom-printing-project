@@ -112,6 +112,12 @@
         padding: 0.5rem;
       }
     }
+
+    .product_old-price {
+      text-decoration: line-through;
+      font-size: 1.4rem;
+      color: lighten($color-secondary, 20%);
+    }
   }
 
   .product-table__footer {

@@ -31,6 +31,8 @@ const AllProducts = () => {
   const [products, setProducts] = useState(null);
 
   const { filterValue } = useContext(FilterContext);
+  console.log({ filterValue });
+  console.log({ products });
 
   const endpoint = useCurrentLocation();
 
@@ -44,22 +46,25 @@ const AllProducts = () => {
   });
 
   useEffect(() => {
-    if (filterValue) {
+    if (filterValue && data) {
       const filteredProducts = data.filter(
         (product) => product.price < filterValue
       );
+      console.log({ filteredProducts });
       setTotalProducts(filteredProducts.length);
       setProducts(filteredProducts);
     }
-  }, [filterValue]);
+  }, [filterValue, data]);
+
+  console.log({ totalProducts });
 
   useEffect(() => {
     if (data) {
       setPage(1);
       setTotalProducts(data.length);
-      setProducts(data);
+      filterValue === 0 && setProducts(data);
     }
-  }, [endpoint, data]);
+  }, [endpoint]);
 
   useEffect(() => {
     if (sortBy) {
@@ -188,6 +193,7 @@ function PageNumbersButtons({ page, changePage, pageNumbersArray }) {
 function ProductsContainer({ products, page }) {
   const initialProductNumber = (page - 1) * PRODUCT_PER_PAGE;
   const finalProductNumber = page * PRODUCT_PER_PAGE;
+  console.log(products);
 
   return (
     <div className="product-container">
@@ -195,7 +201,7 @@ function ProductsContainer({ products, page }) {
         ?.slice(initialProductNumber, finalProductNumber)
         .map((product, index) => (
           <Link
-            to={`/${product.category.toLowerCase()}/${product.id}`}
+            to={`/${product.category.toLowerCase()}/${product?.id}`}
             key={product.id}
           >
             <ProductCard {...product} />

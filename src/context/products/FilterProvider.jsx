@@ -8,8 +8,10 @@ const MIN_PRICE = 10;
 const MAX_PRICE = 40;
 
 const FilterProvider = ({ children }) => {
-  const [filterValue, setFilterValue] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [filterValue, setFilterValue] = useState(
+    searchParams.get("price") || MAX_PRICE
+  );
 
   const applyFilterValue = (value) => {
     if (value === MAX_PRICE) {

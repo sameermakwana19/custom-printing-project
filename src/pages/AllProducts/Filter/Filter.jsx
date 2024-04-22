@@ -13,9 +13,9 @@ import { FilterContext } from "../../../context/products/FilterProvider";
 // };
 
 const Filter = () => {
-  const { applyFilterValue, min, max } = useContext(FilterContext);
+  const { applyFilterValue, min, max, filterValue } = useContext(FilterContext);
 
-  const [inputValue, setInputValue] = useState(max);
+  const [inputValue, setInputValue] = useState(filterValue);
 
   return (
     <div className="filter">

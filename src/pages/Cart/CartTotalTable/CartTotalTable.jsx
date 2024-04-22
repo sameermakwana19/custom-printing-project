@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { twoDigitAfterDecimal } from "../../../utlis/helper";
 import Button from "../../../components/ui/Button/Button";
 import { query } from "firebase/firestore";
-import { getAllCartProductsFromFirestore } from "../../../queries/CartQueries";
+import {
+  getAllCartProductsFromFirestore,
+  getCartTotalAndNoOfItems,
+} from "../../../queries/CartQueries";
 import { useQuery } from "@tanstack/react-query";
+import { TotalAmountContext } from "../../../context/TotalAmount/TotalAmountProvider";
 
 const CartTotalTable = () => {
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["cart"],
-    queryFn: getAllCartProductsFromFirestore,
+    queryKey: ["cart", "totalPrice"],
+    queryFn: getCartTotalAndNoOfItems,
   });
 
   if (isLoading) {
@@ -18,19 +22,33 @@ const CartTotalTable = () => {
     return <div>Error...</div>;
   }
 
-  const total = data.reduce((acc, product) => acc + product.price, 0);
+  if (data.noOfItems === 0) {
+    return;
+  }
+
+  const { total } = useContext(TotalAmountContext);
+
+  const { isDiscountApplied } = useContext(TotalAmountContext);
 
   return (
     <div className="cart-total-table">
       <div className="cart-total__heading">Cart totals</div>
       <div className="cart-total__row">
         <span className="label">Subtotal</span>
-        <span className="label">${twoDigitAfterDecimal(total)}</span>
+        <span className="label">${twoDigitAfterDecimal(data.total)}</span>
       </div>
       <div className="cart-total__row">
-        <span className="label">Total</span>
-        <span className="label">${twoDigitAfterDecimal(total)}</span>
+        <span className="label">
+          {isDiscountApplied ? "Payable Amount" : "Total"}
+        </span>
+        <span className="label">${twoDigitAfterDecimal(data.total)}</span>
       </div>
+      {isDiscountApplied && (
+        <div className="cart-total__row">
+          <span className="label">Payable Amount</span>
+          <span className="label">${twoDigitAfterDecimal(total)}</span>
+        </div>
+      )}
       <Button variant="large" isIconPresent={false}>
         proceed to checkout
       </Button>

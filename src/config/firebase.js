@@ -20,7 +20,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 17.11,
 //     isOnSale: false,
-//     oldPrice: 12.99,
+//     oldPrice: 18.99,
 //   },
 //   {
 //     imageUrl:
@@ -30,7 +30,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 12.99,
 //     isOnSale: false,
-//     oldPrice: 9.99,
+//     oldPrice: 11.49,
 //   },
 //   {
 //     imageUrl:
@@ -40,7 +40,7 @@ export default firebaseConfig;
 //     rating: 5,
 //     price: 19.99,
 //     isOnSale: true,
-//     oldPrice: 15.49,
+//     oldPrice: 21.49,
 //   },
 //   {
 //     imageUrl:
@@ -50,7 +50,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 24.99,
 //     isOnSale: false,
-//     oldPrice: 19.99,
+//     oldPrice: 26.99,
 //   },
 //   {
 //     imageUrl:
@@ -60,7 +60,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 14.99,
 //     isOnSale: true,
-//     oldPrice: 11.99,
+//     oldPrice: 16.49,
 //   },
 //   {
 //     imageUrl:
@@ -70,7 +70,7 @@ export default firebaseConfig;
 //     rating: 3,
 //     price: 18.99,
 //     isOnSale: false,
-//     oldPrice: 14.75,
+//     oldPrice: 20.75,
 //   },
 //   {
 //     imageUrl:
@@ -80,7 +80,7 @@ export default firebaseConfig;
 //     rating: 5,
 //     price: 16.99,
 //     isOnSale: true,
-//     oldPrice: 13.49,
+//     oldPrice: 18.49,
 //   },
 //   {
 //     imageUrl:
@@ -90,7 +90,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 13.99,
 //     isOnSale: false,
-//     oldPrice: 10.99,
+//     oldPrice: 15.99,
 //   },
 //   {
 //     imageUrl:
@@ -100,7 +100,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 21.99,
 //     isOnSale: true,
-//     oldPrice: 17.49,
+//     oldPrice: 23.49,
 //   },
 //   {
 //     imageUrl:
@@ -110,9 +110,10 @@ export default firebaseConfig;
 //     rating: 5,
 //     price: 22.99,
 //     isOnSale: false,
-//     oldPrice: 18.49,
+//     oldPrice: 24.49,
 //   },
 // ];
+
 // const tShirtData = [
 //   {
 //     imageUrl:
@@ -122,7 +123,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 29.99,
 //     isOnSale: false,
-//     oldPrice: 24.99,
+//     oldPrice: 31.99,
 //   },
 //   {
 //     imageUrl:
@@ -132,7 +133,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 19.99,
 //     isOnSale: false,
-//     oldPrice: 15.99,
+//     oldPrice: 21.99,
 //   },
 //   {
 //     imageUrl:
@@ -142,7 +143,7 @@ export default firebaseConfig;
 //     rating: 3,
 //     price: 14.99,
 //     isOnSale: true,
-//     oldPrice: 11.99,
+//     oldPrice: 16.99,
 //   },
 //   {
 //     imageUrl:
@@ -152,7 +153,7 @@ export default firebaseConfig;
 //     rating: 5,
 //     price: 24.99,
 //     isOnSale: false,
-//     oldPrice: 19.99,
+//     oldPrice: 26.99,
 //   },
 //   {
 //     imageUrl:
@@ -162,7 +163,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 34.99,
 //     isOnSale: false,
-//     oldPrice: 29.99,
+//     oldPrice: 36.99,
 //   },
 //   {
 //     imageUrl:
@@ -172,7 +173,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 22.99,
 //     isOnSale: true,
-//     oldPrice: 18.49,
+//     oldPrice: 24.49,
 //   },
 //   {
 //     imageUrl:
@@ -182,7 +183,7 @@ export default firebaseConfig;
 //     rating: 5,
 //     price: 27.99,
 //     isOnSale: false,
-//     oldPrice: 22.49,
+//     oldPrice: 29.99,
 //   },
 //   {
 //     imageUrl:
@@ -192,7 +193,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 19.99,
 //     isOnSale: true,
-//     oldPrice: 15.99,
+//     oldPrice: 21.99,
 //   },
 //   {
 //     imageUrl:
@@ -202,7 +203,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 28.99,
 //     isOnSale: false,
-//     oldPrice: 23.49,
+//     oldPrice: 30.99,
 //   },
 //   {
 //     imageUrl:
@@ -212,7 +213,7 @@ export default firebaseConfig;
 //     rating: 3,
 //     price: 21.99,
 //     isOnSale: true,
-//     oldPrice: 17.49,
+//     oldPrice: 23.49,
 //   },
 // ];
 
@@ -225,7 +226,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 29.99,
 //     isOnSale: false,
-//     oldPrice: 24.99,
+//     oldPrice: 31.99,
 //   },
 //   {
 //     imageUrl:
@@ -235,7 +236,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 12.99,
 //     isOnSale: false,
-//     oldPrice: 9.99,
+//     oldPrice: 14.99,
 //   },
 //   {
 //     imageUrl:
@@ -245,7 +246,7 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 19.99,
 //     isOnSale: false,
-//     oldPrice: 15.99,
+//     oldPrice: 21.99,
 //   },
 //   {
 //     imageUrl:
@@ -255,9 +256,8 @@ export default firebaseConfig;
 //     rating: 4,
 //     price: 17.11,
 //     isOnSale: false,
-//     oldPrice: 12.99,
+//     oldPrice: 18.99,
 //   },
-
 //   {
 //     imageUrl:
 //       "https://images.pexels.com/photos/1868566/pexels-photo-1868566.jpeg?auto=compress&cs=tinysrgb&w=400",
@@ -266,7 +266,7 @@ export default firebaseConfig;
 //     rating: 3,
 //     price: 14.99,
 //     isOnSale: true,
-//     oldPrice: 11.99,
+//     oldPrice: 16.99,
 //   },
 // ];
 
@@ -297,10 +297,10 @@ export default firebaseConfig;
 // addTshirtsData();
 
 // addMugsData();
-// //
+// // //
 
 // addAllProducts();
 
-// // alert("Hottest Deals Products added to Firestore");
+// // // alert("Hottest Deals Products added to Firestore");
 
 // addHottestDealsProducts();

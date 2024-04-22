@@ -26,7 +26,7 @@ const ProductCard = ({
       </div>
       <p className="product__price">
         {" "}
-        {oldPrice && <span className="old-price">${oldPrice.toFixed(2)}</span>}
+        {isOnSale && <span className="old-price">${oldPrice.toFixed(2)}</span>}
         <span>${price.toFixed(2)}</span>
       </p>
     </div>
