@@ -41,14 +41,19 @@ const CartTotalTable = () => {
         <span className="label">
           {isDiscountApplied ? "Payable Amount" : "Total"}
         </span>
-        <span className="label">${twoDigitAfterDecimal(data.total)}</span>
+        <span className={`label ${isDiscountApplied && "old_price"}`}>
+          ${twoDigitAfterDecimal(data.total)}
+        </span>
+        {isDiscountApplied && (
+          <span className="label">${twoDigitAfterDecimal(total)}</span>
+        )}
       </div>
-      {isDiscountApplied && (
+      {/* {isDiscountApplied && (
         <div className="cart-total__row">
           <span className="label">Payable Amount</span>
           <span className="label">${twoDigitAfterDecimal(total)}</span>
         </div>
-      )}
+      )} */}
       <Button variant="large" isIconPresent={false}>
         proceed to checkout
       </Button>

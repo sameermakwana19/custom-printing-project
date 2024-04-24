@@ -54,6 +54,14 @@ const AllProducts = () => {
   });
 
   useEffect(() => {
+    if (searchParams.get("sortby") !== null) {
+      setSortBy(searchParams.get("sortby"));
+    } else {
+      setSortBy("default");
+    }
+  }, [searchParams.get("sortby")]);
+
+  useEffect(() => {
     if (data) {
       const filteredProducts = data.filter(
         (product) => product.price < filterValue

@@ -19,7 +19,6 @@ const Button = ({
     console.error(`Variant ${variant} is not supported`);
     variant = "default";
   }
-  // console.log(delegated);
 
   return (
     <button className={VARIANTS[variant]} {...delegated}>

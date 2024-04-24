@@ -22,6 +22,14 @@ const FilterProvider = ({ children }) => {
   const endpoint = useCurrentLocation();
 
   useEffect(() => {
+    if (searchParams.get("price") !== null) {
+      setFilterValue(searchParams.get("price"));
+    } else {
+      setFilterValue(MAX_PRICE);
+    }
+  }, [searchParams.get("price")]);
+
+  useEffect(() => {
     if (lastEndpoint) {
       setFilterValue(MAX_PRICE);
     }
