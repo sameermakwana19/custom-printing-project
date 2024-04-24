@@ -7,6 +7,7 @@ import Router from "./Routes/Router";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools/production";
 import TotalAmountProvider from "./context/TotalAmount/TotalAmountProvider";
 import UserContextProvider from "./context/User/UserContext";
+// import SearchParamsProvider from "./context/SearchParamsProvider";
 
 function App() {
   const queryClient = new QueryClient();
@@ -16,7 +17,9 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <UserContextProvider>
           <TotalAmountProvider>
+            {/* <SearchParamsProvider> */}
             <Router />
+            {/* </SearchParamsProvider> */}
           </TotalAmountProvider>
         </UserContextProvider>
         <ReactQueryDevtools zoom={2} />

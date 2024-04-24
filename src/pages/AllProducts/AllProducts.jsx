@@ -1,10 +1,16 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
+} from "react";
 import BreadCrumb from "../../components/ui/BreadCrumb/BreadCrumb";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
 import SearchInput from "../../components/SearchInput/SearchInput";
-import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { Link, useSearchParams } from "react-router-dom";
+import { Query, useQuery } from "@tanstack/react-query";
 
 import {
   getAllMugsFromFirestore,
@@ -13,6 +19,8 @@ import {
 } from "../../queries/getAllProducts";
 import NotFound from "../NotFound/NotFound";
 import { FilterContext } from "../../context/products/FilterProvider";
+import { set } from "firebase/database";
+import { getQueryParams, sortProducts } from "../../utlis/helper";
 
 const PRODUCT_PER_PAGE = 9;
 
@@ -27,12 +35,12 @@ const AVAILABLE_ENDPOINTS = ["allproducts", "mugs", "tshirts"];
 const AllProducts = () => {
   const [page, setPage] = useState(1);
   const [totalProducts, setTotalProducts] = useState(20);
-  const [sortBy, setSortBy] = useState(null);
   const [products, setProducts] = useState(null);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [sortBy, setSortBy] = useState(searchParams.get("sortby") || "default");
   const { filterValue } = useContext(FilterContext);
-  console.log({ filterValue });
-  console.log({ products });
 
   const endpoint = useCurrentLocation();
 
@@ -46,44 +54,62 @@ const AllProducts = () => {
   });
 
   useEffect(() => {
-    if (filterValue && data) {
+    if (data) {
       const filteredProducts = data.filter(
         (product) => product.price < filterValue
       );
-      console.log({ filteredProducts });
-      setTotalProducts(filteredProducts.length);
-      setProducts(filteredProducts);
-    }
-  }, [filterValue, data]);
 
-  console.log({ totalProducts });
+      const sortedProducts = sortProducts(filteredProducts, sortBy);
+      setProducts(sortedProducts);
+      setTotalProducts(filteredProducts.length);
+    }
+
+    return () => {};
+  }, [data]);
 
   useEffect(() => {
     if (data) {
       setPage(1);
       setTotalProducts(data.length);
-      filterValue === 0 && setProducts(data);
+      setProducts(data);
+      setSortBy("default");
     }
   }, [endpoint]);
 
   useEffect(() => {
-    if (sortBy) {
+    if (data) {
+      const filteredProducts = data.filter(
+        (product) => product.price < filterValue
+      );
+
+      const sortedProducts =
+        sortBy !== "default"
+          ? sortProducts(filteredProducts, sortBy)
+          : filteredProducts;
+      setProducts(sortedProducts);
+
+      setTotalProducts(filteredProducts.length);
+    }
+  }, [filterValue, sortBy]);
+
+  useEffect(() => {
+    if (sortBy && products) {
       const sortedProducts = [...products];
-      if (sortBy === "price-asc") {
-        sortedProducts.sort((a, b) => a.price - b.price);
-        setProducts(sortedProducts);
-      } else if (sortBy === "price-desc") {
-        sortedProducts.sort((a, b) => b.price - a.price);
-        setProducts(sortedProducts);
-      } else {
-        setProducts(data);
+      if (sortBy === "default") {
+        return;
       }
+      const newSortedProducts = sortProducts(sortedProducts, sortBy);
+      setProducts(newSortedProducts);
     }
   }, [sortBy]);
 
-  let pageNumbersArray = Array(Math.ceil(totalProducts / PRODUCT_PER_PAGE))
-    .fill(0)
-    .map((_, index) => index + 1);
+  let pageNumbersArray = useMemo(
+    () =>
+      Array(Math.ceil(totalProducts / PRODUCT_PER_PAGE))
+        .fill(0)
+        .map((_, index) => index + 1),
+    [totalProducts]
+  );
 
   const changePage = (nextPage) => {
     if (nextPage <= 0 || nextPage > pageNumbersArray.length) {
@@ -91,8 +117,6 @@ const AllProducts = () => {
     }
     setPage(nextPage);
   };
-
-  // console.log({ products });
 
   if (error) {
     return <NotFound />;
@@ -114,7 +138,7 @@ const AllProducts = () => {
         </header>
         {products?.length !== 0 ? (
           <main>
-            <ContentDetails setSortBy={setSortBy} />
+            <ContentDetails setSortBy={setSortBy} sortBy={sortBy} />
             <ProductsContainer products={products} page={page} />
 
             <PageNumbersButtons
@@ -133,12 +157,26 @@ const AllProducts = () => {
 
 export default AllProducts;
 
-function ContentDetails({ setSortBy }) {
+function ContentDetails({ setSortBy, sortBy }) {
+  const [searchParams, setSearchParams] = useSearchParams();
   return (
     <div className="content-details">
       <div className="current-page">Showing 1-9 of 11 </div>
       <div className="sort-by">
-        <select name="sortby" onChange={(e) => setSortBy(e.target.value)}>
+        <select
+          name="sortby"
+          onChange={(e) => {
+            setSearchParams((searchParams) => {
+              const QueryParams = getQueryParams();
+              e.target.value === "default"
+                ? delete QueryParams["sortby"]
+                : (QueryParams["sortby"] = e.target.value);
+              return QueryParams;
+            });
+            setSortBy(e.target.value);
+          }}
+          value={sortBy}
+        >
           <option value="default">Default Sort</option>
           <option value="price-asc">Sort by Price : low to high</option>
           <option value="price-desc">Sort by Price : high to low</option>
@@ -193,7 +231,6 @@ function PageNumbersButtons({ page, changePage, pageNumbersArray }) {
 function ProductsContainer({ products, page }) {
   const initialProductNumber = (page - 1) * PRODUCT_PER_PAGE;
   const finalProductNumber = page * PRODUCT_PER_PAGE;
-  console.log(products);
 
   return (
     <div className="product-container">
@@ -212,4 +249,3 @@ function ProductsContainer({ products, page }) {
 }
 
 // const skip = page * PRODUCT_PER_PAGE - PRODUCT_PER_PAGE;
-// console.log({ data });

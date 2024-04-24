@@ -15,15 +15,12 @@ import { TotalAmountContext } from "../context/TotalAmount/TotalAmountProvider";
 export const updateQuantityInCartInFirestore = async ({ id, quantity }) => {
   const querySnapshot = await getDocs(cartColRef);
 
-  // console.log({ id, quantity });
-
   await Promise.all(
     querySnapshot.docs.map(async (doc) => {
       if (doc.data().id === id) {
         await updateDoc(doc.ref, {
           quantity,
         });
-        // console.log("updated");
       }
     })
   );
@@ -60,17 +57,20 @@ export const getAllCartProductsFromFirestore = async () => {
 
 export const isPresentInCartInFirestore = async (id) => {
   const querySnapshot = await getDocs(cartColRef);
-  return querySnapshot.docs.some((doc) => doc.data().id === id);
+  let test = querySnapshot.docs.some((doc) => doc.data().productId === id);
+  console.log({ test, id });
+  return test;
+};
+export const quantityPresentInCartInFirestore = async (id) => {
+  const querySnapshot = await getDocs(cartColRef);
+  const product = querySnapshot.docs.find((doc) => doc.data().productId === id);
+  // console.log({ product });
+  // console.log(product?.data().quantity);
+  return product?.data()?.quantity || null;
 };
 
 export const deleteProductFromCartInFirestore = async (id) => {
   const querySnapshot = await getDocs(cartColRef);
-  // querySnapshot.forEach(async (doc) => {
-  //   if (doc.data().id === id) {
-  //     console.log("doc.id", doc.id);
-  //     return deleteDoc(doc.ref);
-  //   }
-  // });
 
   await Promise.all(
     querySnapshot.docs.map(async (doc) => {
@@ -96,14 +96,11 @@ export const increaseQuantityInCartInFirestore = async (id) => {
 };
 
 export const addProductToCartInFirestore = async (product) => {
-  console.log("product", product);
-
   const querySnapshot = await getDocs(cartColRef);
 
   const isProductAlreadyInCart = querySnapshot.docs.some(
     (doc) => doc.data().productId === product.productId
   );
-  // console.log({ isProductAlreadyInCart });
 
   if (isProductAlreadyInCart) {
     await Promise.all(

@@ -10,7 +10,6 @@ import {
 export const getAllMugsFromFirestore = async () => {
   const mugs = [];
   const querySnapshot = await getDocs(mugsColRef);
-  console.log({ querySnapshot });
   querySnapshot.forEach((doc) => {
     mugs.push({ ...doc.data() });
   });
@@ -34,7 +33,6 @@ export const getAllProductsFromFirestore = async () => {
     products.push({ ...doc.data() });
   });
 
-  // console.log({ products });
   return products;
 };
 
@@ -46,10 +44,3 @@ export const getAllHottestDealsFromFirestore = async () => {
   });
   return hottestDeals;
 };
-
-// getAllTshirtsFromFirestore();
-
-// getAllMugsFromFirestore();
-// console.log({ mugs: await getAllMugsFromFirestore() });
-// console.log({ tshirt: await getAllTshirtsFromFirestore() });
-// console.log({ products: await getAllProductsFromFirestore() });

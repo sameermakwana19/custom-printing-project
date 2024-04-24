@@ -16,10 +16,35 @@ export const checkCouponCode = (couponCode) => {
     return { isValidCouponCode: false, discount: false };
   }
 
-  // const payableAmount = calculateDiscount(
-  //   total,
-  //   DISCOUNT_PERCENTAGE[couponCode]
-  // );
-
   return { isValidCouponCode: true, discount: DISCOUNT_PERCENTAGE[couponCode] };
+};
+
+export const getQueryParams = (keys = []) => {
+  const newSearchParams = {};
+
+  let params = new URLSearchParams(document.location.search);
+  params.forEach((value, key) => {
+    if (keys.length && keys.includes(key)) {
+      newSearchParams[key] = value;
+      return;
+    }
+
+    if (!keys.length) {
+      newSearchParams[key] = value;
+    }
+  });
+
+  return newSearchParams;
+};
+
+export const sortProducts = (products, sortBy) => {
+  if (sortBy === "price-asc") {
+    return products.sort((a, b) => a.price - b.price);
+  }
+
+  if (sortBy === "price-desc") {
+    return products.sort((a, b) => b.price - a.price);
+  }
+
+  return products;
 };

@@ -24,7 +24,6 @@ const Login = () => {
             onSubmit={async (e) => {
               e.preventDefault();
               e.target.reset();
-              console.log(email, password);
 
               signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {

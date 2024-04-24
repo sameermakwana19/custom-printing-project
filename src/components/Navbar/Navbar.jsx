@@ -46,12 +46,6 @@ const Navbar = () => {
     setIsHamburgerMenuExpanded((prev) => !prev);
   }
 
-  // const style =
-  //   BACKGROUND_WHITE_NOT_IN.indexOf(pathname) !== -1
-  //     ? { background: "none" }
-  //     : { background: "white" };
-
-  // console.log({ style }, { pathname });
   if (isLoading) {
     return <div>Loading...</div>;
   }

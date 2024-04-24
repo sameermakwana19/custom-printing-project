@@ -18,8 +18,6 @@ export const CATEGORY_QUERY_FUNCTIONS = {
 const RelatedProducts = ({ category, id }) => {
   const appliedCategory = category === "t-shirts" ? "tshirts" : category;
 
-  // console.log({ appliedCategory });
-
   const { data, isLoading, isError } = useQuery({
     queryKey: [appliedCategory],
     queryFn: CATEGORY_QUERY_FUNCTIONS[appliedCategory],
@@ -29,7 +27,6 @@ const RelatedProducts = ({ category, id }) => {
     return <div>Loading...</div>;
   }
 
-  // console.log({ data });
   const newData = data.filter((product) => product.id !== id).slice(0, 4);
   return (
     <div className="related-products-section">

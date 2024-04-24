@@ -13,13 +13,10 @@ export const getSingleProductFromFirestore = async ({ category, id }) => {
 
   const appliedCategory = category === "t-shirts" ? "tshirts" : category;
 
-  console.log({ appliedCategory, id, category });
-
   const q = query(collection(db, appliedCategory), where("id", "==", id));
 
   const docSnap = await getDocs(q);
   const product = { ...docSnap.docs[0].data() };
-  // console.log({ product });
 
   return product;
 };

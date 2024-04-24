@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Heading from "../../../components/ui/Heading/Heading";
 import Button from "../../../components/ui/Button/Button";
 import { useSearchParams } from "react-router-dom";
 import { FilterContext } from "../../../context/products/FilterProvider";
+import { getQueryParams } from "../../../utlis/helper";
 
 // const Filter = ({ max, min }) => {
 // const [filterValue, setFilterValue] = useState(40);
@@ -16,6 +17,10 @@ const Filter = () => {
   const { applyFilterValue, min, max, filterValue } = useContext(FilterContext);
 
   const [inputValue, setInputValue] = useState(filterValue);
+
+  useEffect(() => {
+    setInputValue(filterValue);
+  }, [filterValue]);
 
   return (
     <div className="filter">
@@ -36,7 +41,7 @@ const Filter = () => {
           <p className="min-value">${min}</p>
           <p className="current-value">
             {/* {`${(inputValue !== 40, typeof inputValue)},`} */}
-            {inputValue !== 40 && `$${inputValue}`}
+            {inputValue !== max && `$${inputValue}`}
           </p>
           <p className="current-value">${max}</p>
         </div>
@@ -46,6 +51,9 @@ const Filter = () => {
               id="reset-btn"
               onClick={() => {
                 setInputValue(max);
+                const QueryParams = getQueryParams();
+                delete QueryParams["price"];
+
                 applyFilterValue(max);
               }}
             >

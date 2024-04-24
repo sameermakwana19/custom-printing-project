@@ -39,8 +39,6 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
     return <div>Error...</div>;
   }
 
-  console.log({ data });
-
   const total = data.reduce((acc, product) => acc + product.price, 0);
 
   return createPortal(
@@ -111,20 +109,10 @@ function CartSideModalProduct({ id, imageUrl, name, price, quantity }) {
   const { mutate, isError, isLoading } = useMutation({
     mutationFn: deleteProductFromCartInFirestore,
     onSuccess: (data) => {
-      // console.log("success", data);
       queryClient.invalidateQueries(["cart"]);
     },
   });
 
-  // const { mutate, isError, isLoading } = useMutation({
-  //   mutationFn: deleteProductFromCartInFirestore,
-  //   onSuccess: (data) => {
-  //     console.log("success", data);
-  //     // setTimeout(() => {
-  //     queryClient.invalidateQueries(["cart"]);
-  //     // }, 3000);
-  //   },
-  // });
   return (
     <div className="cart-side-modal__product">
       <div className="image-container">

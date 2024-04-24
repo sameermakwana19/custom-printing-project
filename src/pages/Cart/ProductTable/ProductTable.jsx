@@ -40,8 +40,6 @@ const ProductTable = () => {
     return <div>Error...</div>;
   }
 
-  console.log({ data });
-
   if (data.length === 0) {
     return <Heading>No items in the cart</Heading>;
   }
@@ -151,7 +149,6 @@ function CartProductDetail({
     queryKey: ["cart", "total-final"],
     queryFn: getCartTotalAndNoOfItems,
   });
-  console.log({ data });
 
   const { mutate, isError } = useMutation({
     mutationFn: deleteProductFromCartInFirestore,
@@ -210,7 +207,6 @@ function CartProductDetail({
           defaultValue={quantity}
           disabled={isDiscountApplied}
           onChange={(e) => {
-            console.log({ value: e.target.value });
             updateQuantity({ id, quantity: +e.target.value });
           }}
         />

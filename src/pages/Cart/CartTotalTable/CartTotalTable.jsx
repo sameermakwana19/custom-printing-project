@@ -15,6 +15,10 @@ const CartTotalTable = () => {
     queryFn: getCartTotalAndNoOfItems,
   });
 
+  const { total } = useContext(TotalAmountContext);
+
+  const { isDiscountApplied } = useContext(TotalAmountContext);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -25,10 +29,6 @@ const CartTotalTable = () => {
   if (data.noOfItems === 0) {
     return;
   }
-
-  const { total } = useContext(TotalAmountContext);
-
-  const { isDiscountApplied } = useContext(TotalAmountContext);
 
   return (
     <div className="cart-total-table">

@@ -2,12 +2,21 @@
   @include full-width-container;
   background-color: white;
   padding: 8rem 10rem;
-  margin: 5rem auto;
+  margin: 0 auto 5rem auto;
+  position: relative;
 
   @include responsive(large) {
     // flex-direction: column;
     padding: 4rem 2rem;
     margin: 2.5rem auto;
+  }
+
+  .already-present-text {
+    position: absolute;
+    top: 0;
+    font-size: var(--md-400);
+    color: $color-tertiary;
+    text-align: right;
   }
 
   .product-added-to-cart {
