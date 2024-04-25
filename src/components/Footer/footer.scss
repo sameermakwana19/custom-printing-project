@@ -1,8 +1,8 @@
 .footer {
   width: 100%;
 
-  background-color: $color-secondary;
-  color: $color-primary;
+  background-color: var(--background-secondary-color);
+  color: white;
 
   .footer__content {
     @include full-width-container;
@@ -29,7 +29,7 @@
     }
 
     .link:hover {
-      color: $color-tertiary;
+      color: var(--color-tertiary);
     }
 
     .heading {

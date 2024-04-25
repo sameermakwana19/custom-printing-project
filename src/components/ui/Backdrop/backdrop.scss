@@ -2,13 +2,19 @@
   @include full-width-container($max: 100%);
   width: 100%;
   position: absolute;
-  background-color: $color-primary;
+  background-color: var(--background-color);
   background-image: url("/src/assets/hero11-free-img.png");
   z-index: -1;
   height: 170%;
   transform: translate(0, -20%);
-  filter: grayscale(200%) brightness(1);
+  filter: brightness(100%) grayscale(90%);
   background-size: cover;
   background-position: center;
   // background-repeat: no-repeat;
+}
+
+#dark-mode .backdrop {
+  background-color: var(--background-color);
+  color: black;
+  filter: brightness(10%) grayscale(0%);
 }

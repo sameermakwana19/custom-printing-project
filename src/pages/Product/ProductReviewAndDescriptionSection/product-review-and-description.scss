@@ -18,7 +18,7 @@
       top: 0;
       left: 0;
       height: 1px;
-      background-color: $border-color;
+      background-color: var(--border-color);
     }
 
     p {
@@ -36,11 +36,8 @@
         top: 0;
         left: 0;
         height: 3px;
-        background-color: $color-tertiary;
+        background-color: var(--color-tertiary);
       }
-
-      // border-top: 3px solid $color-tertiary;
-      // }
     }
   }
 }

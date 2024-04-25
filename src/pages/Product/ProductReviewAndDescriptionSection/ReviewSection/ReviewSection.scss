@@ -6,7 +6,7 @@
 
   .review-form {
     padding: 2.5rem;
-    border: 1px solid $border-color;
+    border: 1px solid var(--border-color);
 
     &__heading {
       font-size: 2rem;
@@ -41,7 +41,7 @@
       textarea {
         padding: 1rem;
         width: 100%;
-        border: 1px solid $border-color;
+        border: 1px solid var(--border-color);
       }
     }
 

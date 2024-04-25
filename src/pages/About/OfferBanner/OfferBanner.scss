@@ -1,8 +1,8 @@
 .offer-banner {
   width: 100%;
   padding: 3.5rem 1rem;
-  background-color: $color-tertiary;
-  color: $color-primary;
+  background-color: var(--color-tertiary);
+  color: white;
 
   @include responsive(large) {
     padding: 0 3rem;

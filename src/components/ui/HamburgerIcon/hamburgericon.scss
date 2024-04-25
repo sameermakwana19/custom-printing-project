@@ -5,8 +5,8 @@
   padding: 0.5rem 1rem;
   border-radius: 5px;
   font-size: 2rem;
-  color: $color-primary;
-  background-color: $color-tertiary;
+  color: var(--color-primary);
+  background-color: var(--color-tertiary);
   margin: 0rem 1rem 0 3rem;
   @include responsive(medium) {
     @include flex-layout;

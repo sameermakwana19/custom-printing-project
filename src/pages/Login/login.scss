@@ -1,6 +1,7 @@
 .login-container {
   width: 100%;
-  background-color: $background-color;
+  filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.1));
+  background-color: var(--background-color);
 }
 
 .login {
@@ -44,7 +45,7 @@
     }
 
     .asterisk {
-      color: $color-tertiary;
+      color: var(--color-tertiary);
     }
 
     input {
@@ -63,7 +64,7 @@
     .lost-your-password {
       display: block;
       font-size: var(--sm-400);
-      color: $color-tertiary;
+      color: var(--color-tertiary);
       margin: 1.5rem 0 2rem 0;
     }
   }

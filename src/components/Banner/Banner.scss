@@ -3,6 +3,15 @@ header {
   background-image: linear-gradient(140deg, #ffffff00 0%, #ebedefde 100%);
 }
 
+#dark-mode header {
+  background-color: transparent;
+  background-image: linear-gradient(
+    140deg,
+    var(--background-color) 0%,
+    var(--background-secondary-color) 100%
+  );
+}
+
 .banner {
   padding-top: 4rem;
   width: 100%;
@@ -48,12 +57,12 @@ header {
     font-size: var(--sm-600);
     font-weight: 600;
     margin: 3rem 0 2rem;
-    color: $color-secondary;
+    color: var(--color-secondary);
   }
   &__heading {
     font-size: var(--lg-600);
     font-weight: 600;
-    color: $color-secondary;
+    color: var(--color-secondary);
 
     @include responsive(medium) {
       font-size: calc(var(--lg-600) / 2);
@@ -62,7 +71,7 @@ header {
 
   &__sub-heading {
     font-size: var(--sm-400);
-    color: $color-secondary;
+    color: var(--color-secondary);
     font-weight: 400;
     margin: 2rem 0 4rem;
     line-height: 2;

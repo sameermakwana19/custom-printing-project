@@ -1,9 +1,9 @@
 .navbar {
-  color: $color-primary;
-  background-color: $background-color;
+  color: var(--color-primary);
+  background-color: var(--background-color);
 
   .active {
-    color: $color-tertiary;
+    color: var(--color-tertiary);
   }
 
   .navbar__header {
@@ -13,7 +13,7 @@
     width: 100%;
     min-height: 70px;
     @include responsive(medium) {
-      border-bottom: 1px solid lighten($color-secondary, 60%);
+      border-bottom: 1px solid var(--border-color);
       padding-left: 1.2rem;
       padding-right: 1.2rem;
     }
@@ -35,7 +35,7 @@
 
     .navbar__link {
       display: block;
-      color: $color-secondary;
+      color: var(--color-secondary);
 
       font-size: var(--xs-600);
       text-transform: uppercase;
@@ -44,11 +44,11 @@
       transition: all 0.3s ease-in-out;
 
       &:hover {
-        color: $color-tertiary;
+        color: var(--color-tertiary);
       }
     }
     .active {
-      color: $color-tertiary;
+      color: var(--color-tertiary);
     }
 
     .accounts-dropdown {
@@ -73,16 +73,17 @@
       width: 24rem;
       top: 100%;
       left: -5%;
-      background-color: $background-color;
+      background-color: var(--background-color);
       transition: all 0.3s linear;
       overflow: hidden;
+      border: 1px solid var(--border-color);
       box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.1);
 
       .navbar__link {
         padding: 1rem 1.5rem;
       }
       .active {
-        color: $color-tertiary;
+        color: var(--color-tertiary);
       }
     }
 
@@ -93,7 +94,7 @@
     .cart-icon-container {
       @include flex-layout;
       gap: 2rem;
-      color: $color-tertiary;
+      color: var(--color-tertiary);
       font-weight: 600;
 
       .cart-icon {
@@ -110,7 +111,7 @@
           height: 18px;
           border-radius: 50%;
           @include flex-layout;
-          background-color: $color-tertiary;
+          background-color: var(--color-tertiary);
           color: black;
         }
       }
@@ -124,7 +125,7 @@
   .navbar__body--active {
     display: none;
     width: 100%;
-    border-top: 1px solid lighten($color-secondary, 60%);
+    border-top: 1px solid var(--border-color);
 
     @include responsive(medium) {
       display: block;
@@ -141,12 +142,12 @@
     li {
       width: 100%;
       height: 100%;
-      border-bottom: 1px solid lighten($color-secondary, 50%);
+      border-bottom: 1px solid var(--border-color);
     }
     .navbar__link {
       text-transform: uppercase;
       padding: 1rem 0rem 1rem 2rem;
-      color: $color-secondary;
+      color: var(--color-secondary);
 
       display: block;
       width: 100%;
@@ -155,11 +156,11 @@
       transition: all 0.3s ease-in-out;
 
       &:hover {
-        color: $color-tertiary;
+        color: var(--color-tertiary);
       }
     }
     .active {
-      color: $color-tertiary;
+      color: var(--color-tertiary);
     }
 
     .account-dropdown {
@@ -175,7 +176,7 @@
     }
 
     .accounts-dropdown-body--expanded {
-      background-color: $background-color;
+      background-color: var(--background-color);
       opacity: 1;
       display: block;
       max-height: 50vh;

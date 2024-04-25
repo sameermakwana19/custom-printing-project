@@ -4,9 +4,9 @@
   max-width: 37rem;
   margin: 1.5rem;
   padding: 3rem;
-  background-color: $background-color;
+  background-color: var(--background-color);
   border-radius: 2rem;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.07);
+  border: 1px solid var(--border-color);
 
   @include responsive(medium) {
     min-height: 34.5rem;
@@ -31,7 +31,7 @@
 
   .rating-container {
     margin: 1.5rem 0;
-    color: $color-tertiary;
+    color: var(--color-tertiary);
   }
 
   .user-detail {
@@ -55,4 +55,7 @@
       padding: 0 1.5rem;
     }
   }
+}
+
+#dark-mode .client-review-card {
 }

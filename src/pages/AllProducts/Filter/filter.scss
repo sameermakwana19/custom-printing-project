@@ -3,7 +3,7 @@
   height: auto;
   padding: 0 0.5rem 0;
   input {
-    accent-color: $color-tertiary;
+    accent-color: var(--color-tertiary);
     width: 100%;
     color: white;
     border-radius: 30px;

@@ -17,13 +17,16 @@
 
   .banner__tagline {
     font-size: var(--md-500);
+    color: var(--background-secondary-color);
   }
 
   .banner__heading {
     font-size: var(--md-600);
+    color: var(--background-secondary-color);
   }
   .banner__sub-heading {
     font-size: var(--sm-600);
+    color: var(--background-secondary-color);
     font-weight: 600;
   }
 }

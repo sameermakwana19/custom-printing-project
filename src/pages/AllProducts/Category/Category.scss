@@ -15,7 +15,7 @@
     }
 
     a {
-      color: $color-tertiary;
+      color: var(--color-tertiary);
       line-height: 2;
     }
   }

@@ -22,7 +22,7 @@
     right: 0;
     top: 0;
     transform: translate(20%, -20%);
-    background: $color-tertiary;
+    background: var(--color-tertiary);
     width: 3.6rem;
     height: 3.6rem;
     font-weight: 500;
@@ -46,7 +46,7 @@
   .product__category {
     text-transform: capitalize;
     font-size: var(--xs-600);
-    color: lighten($color-secondary, 25%);
+    color: var(--color-secondary);
     margin: 1rem 0 0.5rem;
   }
 
@@ -68,7 +68,7 @@
 
     .old-price {
       margin: 0 0.5rem;
-      color: lighten($color: $color-secondary, $amount: 20%);
+      color: gray;
       text-decoration: line-through;
     }
   }

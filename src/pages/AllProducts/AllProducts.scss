@@ -44,12 +44,12 @@
       padding: 2rem 0;
     }
 
-    header {
-      background: transparent;
+    .header {
+      background: none;
     }
 
     .heading {
-      color: $color-tertiary;
+      color: var(--color-tertiary);
       margin-bottom: 6rem;
       font-size: var(--lg-600);
       font-weight: 400;
@@ -68,7 +68,8 @@
       }
 
       select {
-        color: $color-secondary;
+        color: var(--color-secondary);
+        background-color: var(--background-color);
         padding: 0.75rem;
         font-size: var(--sm-500);
         border: 0;
@@ -115,7 +116,7 @@
       @include flex-layout($justify: flex-start);
 
       .active {
-        background-color: $color-tertiary;
+        background-color: var(--color-tertiary);
         color: white;
       }
 
@@ -127,7 +128,7 @@
         font-weight: 500;
         padding: 1.2rem;
         margin: 0.5rem;
-        border: 1px solid $color-tertiary;
+        border: 1px solid var(--color-tertiary);
         transition: all 0.2s ease-in-out;
 
         @include responsive(medium) {
@@ -137,7 +138,7 @@
         }
 
         &:hover {
-          background-color: $color-tertiary;
+          background-color: var(--color-tertiary);
           color: white;
         }
       }

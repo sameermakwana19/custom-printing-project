@@ -137,13 +137,13 @@ const AllProducts = () => {
   return (
     <>
       <div className="all-products__right">
-        <header>
+        <div className="header">
           <BreadCrumb />
           <div className="heading">
             <p>{endpoint}</p>
           </div>
           <SearchInput data={data} setProducts={setProducts} />
-        </header>
+        </div>
         {products?.length !== 0 ? (
           <main>
             <ContentDetails setSortBy={setSortBy} sortBy={sortBy} />

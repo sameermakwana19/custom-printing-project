@@ -1,6 +1,6 @@
 %btn-layout {
-  color: $color-primary;
-  background-color: $color-tertiary;
+  color: white;
+  background-color: var(--button-color);
   padding: 1rem 4rem;
   margin: 2.5rem 0;
   font-size: var(--xs-600);
@@ -22,7 +22,8 @@
   }
 
   &:hover {
-    background-color: darken($color-tertiary, 10%);
+    // background-color: darken(var(--color-tertiary), 10%);
+    filter: contrast(1.9);
   }
 }
 
@@ -49,11 +50,11 @@
   @extend %btn-layout;
   width: fit-content;
   background: transparent;
-  color: $color-primary;
-  border: 2px solid $color-primary;
+  color: white;
+  border: 2px solid white;
 
   &:hover {
-    background-color: $color-primary;
-    color: $color-tertiary;
+    background-color: var(--color-primary);
+    color: var(--color-tertiary);
   }
 }

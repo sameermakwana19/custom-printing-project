@@ -6,7 +6,7 @@
   @include flex-layout($direction: column);
 
   a {
-    color: $color-tertiary;
+    color: var(--color-tertiary);
     text-decoration: none;
     margin: 0.5rem 0;
   }

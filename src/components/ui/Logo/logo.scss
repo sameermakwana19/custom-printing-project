@@ -6,3 +6,7 @@
     height: 100%;
   }
 }
+
+#dark-mode .logo-container img {
+  filter: invert(1) hue-rotate(180deg);
+}

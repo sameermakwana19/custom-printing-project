@@ -1,0 +1,26 @@
+.dark-mode-toggle {
+  // padding: 40px;
+  background-color: black;
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  font-size: 2rem;
+  color: white;
+  // color: black;
+
+  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  i {
+    position: relative;
+    right: 2%;
+  }
+  @include flex-layout;
+}
+
+#dark-mode .dark-mode-toggle {
+  background-color: var(--color-secondary);
+  color: black;
+}

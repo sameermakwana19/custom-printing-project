@@ -44,7 +44,7 @@
     }
 
     .product__name {
-      color: $color-tertiary;
+      color: var(--color-tertiary);
       font-weight: 400;
       font-size: 1.2rem;
     }
@@ -60,7 +60,7 @@
   }
 
   .sale-label {
-    background-color: $background-color;
+    background-color: white;
     transform: translate(-15%, -15%);
     border: 1px solid black;
   }

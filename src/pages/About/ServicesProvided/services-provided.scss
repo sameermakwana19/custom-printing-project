@@ -36,3 +36,9 @@
     box-shadow: 0 5px 30px 5px rgba(0, 0, 0, 0.06);
   }
 }
+
+#dark-mode .services-provided {
+  &__right {
+    border: 1px solid var(--border-color);
+  }
+}

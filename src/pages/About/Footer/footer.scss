@@ -1,5 +1,5 @@
 .about-footer {
-  background-color: lighten($color-secondary, 61%);
+  background-color: var(--border-color);
   width: 100%;
   .card-container {
     @include full-width-container;
@@ -42,6 +42,18 @@
       .benefit-card__content {
         width: 80%;
       }
+    }
+  }
+}
+
+#dark-mode .about-footer {
+  background-color: var(--background-color);
+  .benefit-card {
+    // background-color: var(--border-color);
+    color: white;
+
+    img {
+      filter: invert(1);
     }
   }
 }

@@ -4,7 +4,7 @@
   width: 100%;
   font-size: 1.5rem;
   margin-bottom: 5rem;
-  border: 1px solid $border-color;
+  border: 1px solid var(--border-color);
 
   @include responsive(medium) {
     display: none;
@@ -14,7 +14,7 @@
     width: 100%;
 
     .product-table__row {
-      background-color: $color-primary;
+      background-color: var(--border-color);
       font-weight: 700;
       text-transform: capitalize;
       height: 4.5rem;
@@ -49,12 +49,12 @@
     width: 100%;
     @include flex-layout($justify: space-between);
     padding: 0.5rem;
-    color: $color-secondary;
-    border-bottom: 1px solid $border-color;
+    color: var(--color-secondary);
+    border-bottom: 1px solid var(--border-color);
 
     .product-name {
       width: 40%;
-      color: $color-secondary;
+      color: var(--color-secondary);
     }
   }
 
@@ -92,7 +92,7 @@
 
     .product-name {
       text-align: left;
-      color: $color-tertiary;
+      color: var(--color-tertiary);
     }
     .product-quantity {
       input {
@@ -105,7 +105,7 @@
     .product_old-price {
       text-decoration: line-through;
       font-size: 1.4rem;
-      color: lighten($color-secondary, 20%);
+      color: gray;
     }
   }
 
@@ -122,7 +122,7 @@
         width: 20rem;
         line-height: 0;
         padding: 0.75rem 1.12rem;
-        border: 1px solid $border-color;
+        border: 1px solid var(--border-color);
         outline: none;
         font-size: 1.5rem;
       }

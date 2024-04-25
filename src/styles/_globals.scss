@@ -7,8 +7,10 @@
 
 html {
   font-size: 62.5%;
-  color: $color-secondary;
-  background-color: $background-color;
+
+  background-color: var(--background-color);
+  color: var(--color-primary);
+
   font-family: "Poppins";
   width: 100%;
   height: auto;
@@ -16,10 +18,7 @@ html {
   padding: 0;
   margin: 0;
 
-  --background-color: $background-color;
-  --color-primary: $color-primary;
-  --color-secondary: $color-secondary;
-  --color-tertiary: $color-tertiary;
+  transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
 body {
@@ -32,10 +31,16 @@ a {
   margin: 0;
   padding: 0;
   text-decoration: none;
-  color: $color-secondary;
+  color: var(--color-primary);
 }
 
 :root {
+  // --background-color: #{$background-color};
+  // --color-primary: #{$color-primary};
+  // --color-secondary: #{$color-secondary};
+  // --color-tertiary: #{$color-tertiary};
+  // --border-color: #{$border-color};
+
   @each $size, $weights in $font-size {
     @each $weight, $value in $weights {
       --#{$size}-#{$weight}: #{$value};
