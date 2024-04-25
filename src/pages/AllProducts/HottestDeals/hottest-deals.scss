@@ -58,12 +58,9 @@
       max-width: 30rem;
     }
   }
-  // span {
-  //   display: block;
-  // }
 
   .sale-label {
-    background-color: white;
+    background-color: $background-color;
     transform: translate(-15%, -15%);
     border: 1px solid black;
   }

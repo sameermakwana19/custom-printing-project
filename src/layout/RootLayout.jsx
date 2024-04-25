@@ -7,7 +7,7 @@ import NotFound from "../pages/NotFound/NotFound";
 
 const RootLayout = () => {
   return (
-    <>
+    <div className="custom-printing">
       <header>
         <Navbar />
       </header>
@@ -19,7 +19,7 @@ const RootLayout = () => {
       <footer>
         <Footer />
       </footer>
-    </>
+    </div>
   );
 };
 

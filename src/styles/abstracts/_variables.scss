@@ -1,16 +1,21 @@
-$color-primary: darken(#fff, 2%);
-// $color-primary: black;
-// $color-primary: #f4f5f6;
-// $color-primary: #f2f5f7;
-// $color-primary: #f4f5f6;
-// $color-primary: #dddddd;
+$background-color: white;
 
-$background-color: #f4f5f6;
+$color-primary: white;
 
 $color-secondary: #415161;
+
 $color-tertiary: #ff5151;
 
 $border-color: #dddddd;
+
+// TODO: Dark mode
+.dark-mode {
+  $background-color: #1a1a1a;
+
+  $color-tertiary: #ff5151;
+  $color-secondary: black;
+  $color-primary: white;
+}
 
 $font-size: (
   "xs": (

@@ -14,10 +14,10 @@
     width: 100%;
 
     .product-table__row {
+      background-color: $color-primary;
       font-weight: 700;
       text-transform: capitalize;
       height: 4.5rem;
-      background-color: white;
     }
   }
   .remove-btn {
@@ -26,17 +26,6 @@
   }
 
   .product-table__row {
-    // width: 100%;
-    // @include flex-layout($justify: space-between);
-    // padding: 0.5rem;
-    // color: $color-secondary;
-    // border-bottom: 1px solid $border-color;
-
-    // .product-name {
-    //   width: 40%;
-    //   color: $color-secondary;
-    // }
-
     height: 10rem;
   }
 

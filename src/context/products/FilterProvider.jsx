@@ -1,10 +1,8 @@
-import { set } from "firebase/database";
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { createContext } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
 import { getQueryParams } from "../../utlis/helper";
-// import { SearchParamsContext } from "../SearchParamsProvider";
 
 export const FilterContext = createContext();
 

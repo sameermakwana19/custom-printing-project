@@ -56,7 +56,8 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar" style={{ background: "white" }}>
+      {/* <div className="navbar" style={{ background: "white" }}> */}
+      <div className="navbar">
         <div className="navbar__header">
           <div className="logo-container">
             <Logo />

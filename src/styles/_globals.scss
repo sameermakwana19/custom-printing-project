@@ -7,9 +7,8 @@
 
 html {
   font-size: 62.5%;
-  // background-color: lighten(#eeeeee, 2%);
-  // background-color: #f4f5f6;
   color: $color-secondary;
+  background-color: $background-color;
   font-family: "Poppins";
   width: 100%;
   height: auto;
@@ -17,13 +16,10 @@ html {
   padding: 0;
   margin: 0;
 
-  // @include responsive(medium) {
-  //   font-size: 56.25%;
-  // }
-
-  // @include responsive(xsmall) {
-  //   font-size: 50%;
-  // }
+  --background-color: $background-color;
+  --color-primary: $color-primary;
+  --color-secondary: $color-secondary;
+  --color-tertiary: $color-tertiary;
 }
 
 body {

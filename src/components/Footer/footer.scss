@@ -2,7 +2,7 @@
   width: 100%;
 
   background-color: $color-secondary;
-  color: white;
+  color: $color-primary;
 
   .footer__content {
     @include full-width-container;

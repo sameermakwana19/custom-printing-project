@@ -38,7 +38,7 @@
   width: 35%;
   height: 100vh;
   margin-left: auto;
-  background-color: white;
+  background-color: $background-color;
   transition: all 0.3s ease-in-out;
 
   @include flex-layout($direction: column);
