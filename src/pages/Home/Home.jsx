@@ -1,14 +1,19 @@
-import React from "react";
+import React, { lazy } from "react";
 import Banner from "../../components/Banner/Banner";
 import PopularSection from "../../components/PopularSection/PopularSection";
 import FeaturesSection from "../../components/FeaturesSection/FeaturesSection";
-import DealOfTheDay from "../../components/DealOfTheDay/DealOfTheDay";
 import MostLovedProduct from "../../components/MostLovedProducts/MostLovedProduct";
 import FlexibleBorder from "../../components/ui/FlexibleBorder/FlexibleBorder";
 import ClientReviewSection from "../../components/ClientReviewSection/ClientReviewSection";
 import FeaturedSection from "../../components/FeaturedSection/FeaturedSection";
 import banner1 from "../../assets/MainBannerPhoto.png";
 import banner2 from "../../assets/MainBannerPhoto@2x.png";
+
+import DealOfTheDay from "../../components/DealOfTheDay/DealOfTheDay";
+
+// const DealOfTheDay = lazy(() =>
+//   import("../../components/DealOfTheDay/DealOfTheDay")
+// );
 
 const Home = () => {
   return (

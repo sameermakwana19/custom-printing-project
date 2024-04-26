@@ -33,6 +33,7 @@ const Banner = ({
         <div className="banner__content__right">
           {images && (
             <img
+              loading="lazy"
               src={images[0]}
               alt="banner photo"
               srcSet={`${images[0]} 538w, ${images[1]} 263w`}

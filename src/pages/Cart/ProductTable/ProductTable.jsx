@@ -60,23 +60,6 @@ const ProductTable = () => {
         {data?.map((product) => (
           <CartProductDetail {...product} key={product.id} />
         ))}
-
-        {/* <div className="product-table__row">
-          <span className="remove-btn">
-            <div className="icon-container">
-              <i className="fa-solid fa-xmark"></i>
-            </div>
-          </span>
-          <span className="product-img">
-            <img src={photo} alt="" />
-          </span>
-          <span className="product-name">Black Printed Coffee Mug</span>
-          <span className="product-price">${twoDigitAfterDecimal(30)}</span>
-          <span className="product-quantity">
-            <input type="number" min={1} max={10} defaultValue={1} />
-          </span>
-          <span className="product-subtotal">${twoDigitAfterDecimal(30)}</span>
-        </div> */}
       </div>
       <div className="product-table__footer">
         <div className="coupon-container">

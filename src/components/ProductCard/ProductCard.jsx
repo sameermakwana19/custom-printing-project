@@ -17,7 +17,7 @@ const ProductCard = ({
     <div className="product-card">
       {isOnSale && <div className="sale-label">Sale!</div>}
       <div className="product__image-container">
-        <img src={imageUrl} alt="product image" />
+        <img loading="lazy" src={imageUrl} alt="product image" />
       </div>
       <p className="product__category">{category}</p>
       <p className="product__name">{name}</p>

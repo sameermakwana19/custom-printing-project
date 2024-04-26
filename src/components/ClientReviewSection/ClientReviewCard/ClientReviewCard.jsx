@@ -16,7 +16,7 @@ const ClientReviewCard = ({
       </div>
       <div className="user-detail">
         <div className="user-avatar">
-          <img src={avatar} alt="user-avatar" />
+          <img src={avatar} alt="user-avatar" loading="lazy" />
         </div>
         <p className="user-name">{name}</p>
       </div>

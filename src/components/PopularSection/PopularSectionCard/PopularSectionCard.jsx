@@ -9,7 +9,7 @@ const PopularSectionCard = ({
   return (
     <div className="popular-card">
       <div className="popular__image-container">
-        <img src={imageUrl} alt="popular product photo" />
+        <img loading="lazy" src={imageUrl} alt="popular product photo" />
       </div>
       <p className="popular__sub-heading">{subHeading}</p>
       <p className="popular__heading">{heading}</p>

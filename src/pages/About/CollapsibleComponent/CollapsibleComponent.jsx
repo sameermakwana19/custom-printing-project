@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 
 const CollapsibleComponent = ({
   collapisibleExpandedIndex,
@@ -9,16 +9,14 @@ const CollapsibleComponent = ({
 }) => {
   return (
     <div
-      className={`${
+      className={`collapsible  ${
         collapisibleExpandedIndex === currentIndex
           ? "collapsible--expanded"
-          : "collapsible"
+          : ""
       } `}
+      onClick={() => changeCollapsibleIndex(currentIndex)}
     >
-      <div
-        className="collapsible__header"
-        onClick={() => changeCollapsibleIndex(currentIndex)}
-      >
+      <div className="collapsible__header">
         {currentIndex === collapisibleExpandedIndex ? (
           <i className="fa-solid fa-chevron-down"></i>
         ) : (
@@ -26,7 +24,13 @@ const CollapsibleComponent = ({
         )}
         {heading ?? `Heading`}
       </div>
-      <div className={"collapsible__body"}>
+      <div
+        className={`collapsible__body ${
+          collapisibleExpandedIndex === currentIndex
+            ? "collapsible__body--expanded"
+            : ""
+        }`}
+      >
         <p>
           {content ??
             `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur,
@@ -38,4 +42,4 @@ const CollapsibleComponent = ({
   );
 };
 
-export default React.memo(CollapsibleComponent);
+export default CollapsibleComponent;

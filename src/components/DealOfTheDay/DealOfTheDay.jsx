@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import fixedBackground from "../../assets/full-bg-photo.jpg";
 import Banner from "../Banner/Banner";
 
@@ -18,3 +18,4 @@ const DealOfTheDay = () => {
 };
 
 export default DealOfTheDay;
+// export default lazy(() => import());

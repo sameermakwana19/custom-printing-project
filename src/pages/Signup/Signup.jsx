@@ -1,15 +1,21 @@
 import React, { useContext, useId, useState } from "react";
 import Heading from "../../components/ui/Heading/Heading";
 import Button from "../../components/ui/Button/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/ui/Input/Input";
 import { UserContext } from "../../context/User/UserContext";
-import { signInUser, signOutUser } from "../../queries/auth";
+import {
+  createUserInFirestore,
+  signInUser,
+  signOutUser,
+} from "../../queries/auth";
 
-const Login = () => {
+const Signup = () => {
   const id = useId();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -18,7 +24,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { user, error } = await signInUser(email, password);
+    const { user, error } = await createUserInFirestore(
+      email,
+      username,
+      password
+    );
     if (!user) {
       setError(error);
       return;
@@ -27,12 +37,14 @@ const Login = () => {
     setPassword("");
     setError("");
     setUser(user);
+
+    navigate("/myaccount");
   };
 
   return (
     <div className="login-container">
       <div className="login">
-        <Heading>Login</Heading>
+        <Heading>Signup</Heading>
         {error && (
           <Heading variant={"h1"} className="error">
             {error}
@@ -41,29 +53,31 @@ const Login = () => {
         <div className="form-container">
           <form onSubmit={handleSubmit}>
             <Input
-              label="Username or email address"
+              label="email address"
               id={`${id}-text`}
               value={email}
               onChange={(e) => setEmail(e.target.value.trim())}
             />
             <Input
+              label="Username"
+              id={`${id}-text`}
+              value={username}
+              onChange={(e) => setUsername(e.target.value.trim())}
+            />
+            <Input
               label="Password"
               id={`${id}-password`}
-              type="password"
+              type="text"
+              minLength={6}
               value={password}
               onChange={(e) => setPassword(e.target.value.trim())}
             />
-            <Input
-              label={"remember me"}
-              id={`${id}-remember-me`}
-              type="checkbox"
-              isMandatory={false}
-            />
-            <Button isIconPresent={false}> Log In</Button>
+
+            <Button isIconPresent={false}>Sign Up</Button>
           </form>
 
-          <Link to="/signup" className="lost-your-password">
-            Don't have an account?
+          <Link to="/login" className="lost-your-password">
+            Already have an account?
           </Link>
         </div>
       </div>
@@ -71,4 +85,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

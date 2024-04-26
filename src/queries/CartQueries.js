@@ -42,12 +42,12 @@ export const getCartTotalAndNoOfItems = async () => {
   return { noOfItems, total };
 };
 
-// getCartTotalAndNoOfItems();
-
 export const getAllCartProductsFromFirestore = async () => {
   const cartProducts = [];
 
   const querySnapshot = await getDocs(cartColRef);
+
+  if (!querySnapshot.docs.length) return new Error("No products in cart");
   querySnapshot.docs.forEach((doc) => {
     cartProducts.push({ ...doc.data() });
   });
@@ -64,8 +64,6 @@ export const isPresentInCartInFirestore = async (id) => {
 export const quantityPresentInCartInFirestore = async (id) => {
   const querySnapshot = await getDocs(cartColRef);
   const product = querySnapshot.docs.find((doc) => doc.data().productId === id);
-  // console.log({ product });
-  // console.log(product?.data().quantity);
   return product?.data()?.quantity || null;
 };
 

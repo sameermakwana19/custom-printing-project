@@ -1,0 +1,29 @@
+.my-account {
+  @include full-width-container($max: 800px);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  @include flex-layout($direction: column);
+  margin: 5rem auto;
+
+  .profile-photo {
+    @include flex-layout($direction: column);
+    margin-top: 2rem;
+
+    img {
+      object-fit: cover;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .label-group {
+    margin: 1rem;
+    span {
+      font-size: var(--md-400);
+      font-weight: 500;
+      margin: 0.5rem;
+    }
+  }
+}

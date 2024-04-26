@@ -6,6 +6,7 @@
   background-image: url("/src/assets/hero11-free-img.png");
   z-index: -1;
   height: 170%;
+  max-height: 100svh;
   transform: translate(0, -20%);
   filter: brightness(100%) grayscale(90%);
   background-size: cover;

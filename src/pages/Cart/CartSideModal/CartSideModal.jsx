@@ -116,7 +116,7 @@ function CartSideModalProduct({ id, imageUrl, name, price, quantity }) {
   return (
     <div className="cart-side-modal__product">
       <div className="image-container">
-        <img src={imageUrl} alt="" />
+        <img loading="lazy" src={imageUrl} alt="" />
       </div>
       <div className="cart-side-modal__product-details">
         <p className="product-name">{name}</p>

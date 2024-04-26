@@ -148,7 +148,7 @@ function ProductOverview({
       <div className="product-detail">
         <div className="product-detail__left">
           <div className="image-container">
-            <img src={imageUrl} alt="" />
+            <img loading="lazy" src={imageUrl} alt="" />
           </div>
         </div>
         <div className="product-detail__right">

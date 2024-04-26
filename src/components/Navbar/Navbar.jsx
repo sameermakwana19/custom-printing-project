@@ -4,11 +4,13 @@ import { NavLink } from "react-router-dom";
 import HamburgerIcon from "../ui/HamburgerIcon/HamburgerIcon";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
 import CartSideModal from "../../pages/Cart/CartSideModal/CartSideModal";
-import { query } from "firebase/firestore";
+
 import { twoDigitAfterDecimal } from "../../utlis/helper";
 import { useQuery } from "@tanstack/react-query";
 import { getCartTotalAndNoOfItems } from "../../queries/CartQueries";
 import { TotalAmountContext } from "../../context/TotalAmount/TotalAmountProvider";
+import { UserContext } from "../../context/User/UserContext";
+
 // import { getCartTotalAndNoOfItems } from "../../queries/CartQueries";
 
 // const BACKGROUND_WHITE_NOT_IN = ["home", "about", "contact"];
@@ -20,6 +22,7 @@ const Navbar = () => {
   });
 
   const { total } = useContext(TotalAmountContext);
+  const { user } = useContext(UserContext);
 
   const [isHamburgerMenuExpanded, setIsHamburgerMenuExpanded] = useState(false);
 
@@ -84,19 +87,27 @@ const Navbar = () => {
                   Contact
                 </NavLink>
               </li>
-              <li className="accounts-dropdown">
-                <div className="accounts-dropdown-header navbar__link">
-                  Account <i className="fa-solid fa-chevron-down"></i>
-                </div>
-                <div className="accounts-dropdown-body">
+              {user ? (
+                <li className="accounts-dropdown">
+                  <div className="accounts-dropdown-header navbar__link">
+                    Account <i className="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div className="accounts-dropdown-body">
+                    <NavLink to="/myaccount" className="navbar__link">
+                      My Account
+                    </NavLink>
+                    <NavLink to="/cart" className="navbar__link">
+                      Cart
+                    </NavLink>
+                  </div>
+                </li>
+              ) : (
+                <li>
                   <NavLink to="/login" className="navbar__link">
-                    My Account
+                    Login
                   </NavLink>
-                  <NavLink to="/cart" className="navbar__link">
-                    Cart
-                  </NavLink>
-                </div>
-              </li>
+                </li>
+              )}
             </ul>
             <div
               to="/"

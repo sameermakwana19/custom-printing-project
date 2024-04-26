@@ -12,7 +12,7 @@ const BenefitCard = ({
       {!imageUrl && <div className="benefit-card__icon">{AppliedIcon}</div>}
       {imageUrl && (
         <div className="image-container">
-          <img src={imageUrl} />
+          <img loading="lazy" src={imageUrl} />
         </div>
       )}
       <p className="benefit-card__heading">{heading}</p>

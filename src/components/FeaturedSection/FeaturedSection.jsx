@@ -12,19 +12,19 @@ const FeaturedSection = () => {
       <Heading variant={"h4"}>featured in :</Heading>
       <div className="logos-container">
         <div className="logo-image-container">
-          <img src={logo1} alt="logo of company" />
+          <img loading="lazy" src={logo1} alt="logo of company" />
         </div>
         <div className="logo-image-container">
-          <img src={logo2} alt="logo of company" />
+          <img loading="lazy" src={logo2} alt="logo of company" />
         </div>
         <div className="logo-image-container">
-          <img src={logo3} alt="logo of company" />
+          <img loading="lazy" src={logo3} alt="logo of company" />
         </div>
         <div className="logo-image-container">
-          <img src={logo4} alt="logo of company" />
+          <img loading="lazy" src={logo4} alt="logo of company" />
         </div>
         <div className="logo-image-container">
-          <img src={logo5} alt="logo of company" />
+          <img loading="lazy" src={logo5} alt="logo of company" />
         </div>
       </div>
     </div>

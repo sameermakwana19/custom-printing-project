@@ -12,7 +12,7 @@ const ProductTableMobileView = () => {
           </div>
         </div>
         <div className="product-img">
-          <img src={photo} alt="" />
+          <img loading="lazy" src={photo} alt="" />
         </div>
         <div className="product-name">
           <span className="label">product</span>
@@ -41,7 +41,7 @@ const ProductTableMobileView = () => {
           </div>
         </div>
         <div className="product-img">
-          <img src={photo} alt="" />
+          <img loading="lazy" src={photo} alt="" />
         </div>
         <div className="product-name">
           <span className="label">product</span>

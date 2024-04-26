@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
@@ -44,7 +44,9 @@ const RootLayout = () => {
       </header>
       <main>
         <ErrorBoundary FallbackComponent={NotFound}>
-          <Outlet />
+          <Suspense fallback={<h2>Loading...</h2>}>
+            <Outlet />
+          </Suspense>
         </ErrorBoundary>
       </main>
       <footer>

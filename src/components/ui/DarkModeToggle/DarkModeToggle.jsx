@@ -7,9 +7,9 @@ const DarkModeToggle = () => {
   return (
     <div className="dark-mode-toggle" onClick={() => toggleDarkMode()}>
       {isDarkMode ? (
-        <i class="fa-solid fa-sun"></i>
+        <i className="fa-solid fa-sun"></i>
       ) : (
-        <i class="fa-solid fa-moon"></i>
+        <i className="fa-solid fa-moon"></i>
       )}
     </div>
   );

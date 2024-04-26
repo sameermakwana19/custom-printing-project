@@ -69,3 +69,15 @@
     }
   }
 }
+
+#dark-mode input {
+  background-color: rgb(32, 32, 32);
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  outline: none;
+
+  &::placeholder {
+    color: white;
+  }
+}

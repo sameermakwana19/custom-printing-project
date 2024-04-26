@@ -8,12 +8,18 @@ import {
 } from "../../../queries/CartQueries";
 import { useQuery } from "@tanstack/react-query";
 import { TotalAmountContext } from "../../../context/TotalAmount/TotalAmountProvider";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../context/User/UserContext";
 
 const CartTotalTable = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["cart", "totalPrice"],
     queryFn: getCartTotalAndNoOfItems,
   });
+
+  const { user } = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   const { total } = useContext(TotalAmountContext);
 
@@ -29,6 +35,14 @@ const CartTotalTable = () => {
   if (data.noOfItems === 0) {
     return;
   }
+
+  const proceedToCheckOut = () => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+    console.log("proceed to checkout");
+  };
 
   return (
     <div className="cart-total-table">
@@ -54,7 +68,11 @@ const CartTotalTable = () => {
           <span className="label">${twoDigitAfterDecimal(total)}</span>
         </div>
       )} */}
-      <Button variant="large" isIconPresent={false}>
+      <Button
+        variant="large"
+        isIconPresent={false}
+        onClick={() => proceedToCheckOut()}
+      >
         proceed to checkout
       </Button>
     </div>
