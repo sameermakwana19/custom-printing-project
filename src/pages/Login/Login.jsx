@@ -41,7 +41,7 @@ const Login = () => {
 
   return (
     <>
-      {loading && <Backdrop />}
+      {loading && <Backdrop message="Logging in" />}
       <div className="login-container">
         <div className="login">
           <Heading>Login</Heading>

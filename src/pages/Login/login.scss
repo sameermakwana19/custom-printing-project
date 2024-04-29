@@ -9,6 +9,10 @@
   @include full-width-container;
   padding: 6rem 2rem;
 
+  .error {
+    color: red;
+  }
+
   .heading {
     font-size: var(--md-600);
     margin-bottom: 1rem;

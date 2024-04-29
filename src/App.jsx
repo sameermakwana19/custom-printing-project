@@ -16,13 +16,13 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <UserContextProvider>
-          <TotalAmountProvider>
-            <ThemeContextProvider>
+        <ThemeContextProvider>
+          <UserContextProvider>
+            <TotalAmountProvider>
               <Router />
-            </ThemeContextProvider>
-          </TotalAmountProvider>
-        </UserContextProvider>
+            </TotalAmountProvider>
+          </UserContextProvider>
+        </ThemeContextProvider>
         <ReactQueryDevtools zoom={2} />
       </QueryClientProvider>
     </>

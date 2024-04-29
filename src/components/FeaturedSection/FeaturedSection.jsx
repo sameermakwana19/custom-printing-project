@@ -9,7 +9,9 @@ import logo5 from "../../assets/logo-5.png";
 const FeaturedSection = () => {
   return (
     <div className="featured-section">
-      <Heading variant={"h4"}>featured in :</Heading>
+      <Heading className="heading" variant={"h2"}>
+        Featured in :
+      </Heading>
       <div className="logos-container">
         <div className="logo-image-container">
           <img loading="lazy" src={logo1} alt="logo of company" />

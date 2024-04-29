@@ -120,6 +120,11 @@ function ProductOverview({
   setItemAddedToCart,
 }) {
   const [quantity, setQuantity] = useState(1);
+  const {
+    user: { uid },
+  } = useContext(UserContext);
+
+  console.log({ uid });
 
   const queryClient = useQueryClient();
   const { mutate, isError, error } = useMutation({
@@ -142,8 +147,6 @@ function ProductOverview({
   if (isError) {
     return <div>Error...{error.message}</div>;
   }
-
-  console.log({ quantity });
 
   return (
     <>
@@ -200,6 +203,7 @@ function ProductOverview({
                   quantity,
                   isOnSale,
                   id: crypto.randomUUID(),
+                  uid,
                 });
 
                 setIsDiscountApplied(false);

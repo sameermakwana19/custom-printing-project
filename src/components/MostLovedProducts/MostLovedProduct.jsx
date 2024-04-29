@@ -57,7 +57,7 @@ const MostLovedProduct = () => {
   });
   return (
     <div className="most-loved-products-container">
-      <Heading variant={"h2"}>Most Loved Product</Heading>
+      <Heading>Most Loved Product</Heading>
       <DividerLine />
       <div className="product-container">
         {data?.slice(0, 4).map((product) => (

@@ -1,8 +1,8 @@
 import React, {
-  Fragment,
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -14,11 +14,23 @@ export const useThemeContext = () => {
 };
 
 const ThemeContextProvider = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const localData = JSON.parse(
+      localStorage.getItem("custom-printing-isDarkMode")
+    );
+    return localData ?? true;
+  });
 
   const toggleDarkMode = useCallback(() => {
     setIsDarkMode((prev) => !prev);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "custom-printing-isDarkMode",
+      JSON.stringify(isDarkMode)
+    );
+  }, [isDarkMode]);
 
   const value = useMemo(() => {
     return {

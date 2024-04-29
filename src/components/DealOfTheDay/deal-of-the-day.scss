@@ -30,3 +30,17 @@
     font-weight: 600;
   }
 }
+
+#dark-mode {
+  .deal-of-the-day-container {
+    .banner__tagline {
+      color: var(--color-primary);
+    }
+    .banner__heading {
+      color: var(--color-primary);
+    }
+    .banner__sub-heading {
+      color: var(--color-primary);
+    }
+  }
+}

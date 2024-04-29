@@ -1,7 +1,7 @@
 import React from "react";
 
-const Backdrop = () => {
-  return <div className="auth-backdrop">Loading ... </div>;
+const Backdrop = ({ message = "Loading" }) => {
+  return <div className="auth-backdrop">{message} ... </div>;
 };
 
 export default Backdrop;

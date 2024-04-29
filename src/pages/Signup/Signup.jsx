@@ -53,7 +53,7 @@ const Signup = () => {
 
   return (
     <>
-      {creatingUser && <Backdrop />}
+      {creatingUser && <Backdrop message="Signing in " />}
       <div className="login-container">
         <div className="login">
           <Heading>Signup</Heading>
@@ -74,7 +74,7 @@ const Signup = () => {
                 label="Username"
                 id={`${id}-username`}
                 value={username}
-                onChange={(e) => setUsername(e.target.value.trim())}
+                onChange={(e) => setUsername(e.target.value)}
               />
               <Input
                 label="Password"

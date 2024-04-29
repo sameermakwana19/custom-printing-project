@@ -21,11 +21,12 @@
   .product-added-to-cart {
     @include flex-layout($justify: space-between);
     @include full-width-container;
-    border: 1px solid lightgreen;
+    border: 1px solid var(--border-color);
     padding: 1rem 5rem;
     border-radius: 5px;
     margin-bottom: 1rem;
-    background-color: var(--color-primary);
+    background-color: var(--background-color);
+
     color: var(--color-tertiary);
     p {
       font-size: 1.5rem;
