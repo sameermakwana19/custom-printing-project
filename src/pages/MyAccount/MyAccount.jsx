@@ -7,8 +7,6 @@ import photo from "../../assets/userprofilepic.webp";
 
 const MyAccount = () => {
   const { user, setUser } = useContext(UserContext);
-  console.log({ user });
-  console.log(user.displayName);
 
   return (
     <div className="my-account">
@@ -27,7 +25,7 @@ const MyAccount = () => {
         isIconPresent={false}
         onClick={async (e) => {
           const res = await signOutUser();
-          console.log({ res });
+          // console.log({ res });
           setUser(null);
         }}
       >

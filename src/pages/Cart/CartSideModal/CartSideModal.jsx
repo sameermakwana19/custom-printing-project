@@ -1,16 +1,13 @@
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import Button from "../../../components/ui/Button/Button";
-import photo from "../../../assets/mostLovedProducts4.jpg";
-import photo3 from "../../../assets/mostLovedProducts3.jpg";
 import { twoDigitAfterDecimal } from "../../../utlis/helper";
-import useCurrentLocation from "../../../hooks/useCurrentLocation";
-import { Link, Navigate } from "react-router-dom";
-import { query } from "firebase/firestore";
+import { Link } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   deleteProductFromCartInFirestore,
   getAllCartProductsFromFirestore,
+  getCartTotalAndNoOfItems,
 } from "../../../queries/CartQueries";
 
 const CartSideModal = ({ toggleModal, isModalOpen }) => {
@@ -19,7 +16,14 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
     queryFn: getAllCartProductsFromFirestore,
   });
 
-  const pathname = useCurrentLocation();
+  const {
+    data: totalData,
+    isLoading: totalIsLoading,
+    isError: totalIsError,
+  } = useQuery({
+    queryKey: ["cart", "total"],
+    queryFn: getCartTotalAndNoOfItems,
+  });
 
   useEffect(() => {
     if (isModalOpen) {
@@ -39,7 +43,8 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
     return <div>Error...</div>;
   }
 
-  const total = data.reduce((acc, product) => acc + product.price, 0);
+  // console.log({ data, length: data.length });
+  // console.log({ totalData });
 
   return createPortal(
     <div
@@ -66,7 +71,7 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
         </div>
 
         <div className="cart-side-modal__body">
-          {data.map((product) => (
+          {data?.map((product) => (
             <CartSideModalProduct {...product} key={product.id} />
           ))}
         </div>
@@ -74,7 +79,7 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
         <div className="cart-side-modal__footer">
           <div className="subtotal">
             <p className="label">Subtotal</p>
-            <p className="value">${twoDigitAfterDecimal(total)}</p>
+            <p className="value">${twoDigitAfterDecimal(totalData.total)}</p>
           </div>
           <Link to={"/cart"}>
             <Button

@@ -4,7 +4,7 @@ import { twoDigitAfterDecimal } from "../../utlis/helper";
 import Button from "../../components/ui/Button/Button";
 import ProductReviewAndDescription from "./ProductReviewAndDescriptionSection/ProductReviewAndDescription";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getSingleProductFromFirestore } from "../../queries/getSingleProduct";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
@@ -14,6 +14,7 @@ import {
   quantityPresentInCartInFirestore,
 } from "../../queries/CartQueries";
 import { TotalAmountContext } from "../../context/TotalAmount/TotalAmountProvider";
+import { UserContext } from "../../context/User/UserContext";
 
 const Product = () => {
   const category = useLocation().pathname.split("/").at(-2);
@@ -53,16 +54,12 @@ const Product = () => {
   const [itemAddedToCart, setItemAddedToCart] = useState(false);
 
   useEffect(() => {
-    console.log({ itemAddedToCart }, "useEffect");
     if (itemAddedToCart) {
-      console.log("runing");
       const timeout = setTimeout(() => {
         setItemAddedToCart(false);
-        console.log("set timeout");
       }, 5000);
 
       return () => {
-        console.log("clear timeout");
         clearTimeout(timeout);
       };
     }
@@ -132,6 +129,9 @@ function ProductOverview({
       setItemAddedToCart(true);
     },
   });
+  const navigate = useNavigate();
+
+  const { user } = useContext(UserContext);
 
   const { setIsDiscountApplied } = useContext(TotalAmountContext);
 
@@ -181,6 +181,10 @@ function ProductOverview({
             </div>
             <Button
               onClick={(e) => {
+                if (!user) {
+                  navigate("/login");
+                  return;
+                }
                 mutate({
                   imageUrl,
                   oldPrice,

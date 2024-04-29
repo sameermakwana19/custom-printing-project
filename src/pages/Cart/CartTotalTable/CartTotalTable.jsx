@@ -41,7 +41,7 @@ const CartTotalTable = () => {
       navigate("/login");
       return;
     }
-    console.log("proceed to checkout");
+    // console.log("proceed to checkout");
   };
 
   return (

@@ -1,10 +1,12 @@
-import React, { useId } from "react";
+import React, { useContext, useId } from "react";
 import Button from "../../../../components/ui/Button/Button";
 import Input from "../../../../components/ui/Input/Input";
 import Rating from "../../../../components/ui/Rating/Rating";
+import { UserContext } from "../../../../context/User/UserContext";
 
 const ReviewSection = () => {
   const id = useId();
+  const { user } = useContext(UserContext);
 
   return (
     <div className="review-section">

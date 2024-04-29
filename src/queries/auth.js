@@ -14,8 +14,10 @@ export const signInUser = async (email, password) => {
 
     return { user: user, error: null };
   } catch (error) {
-    console.log(error);
-    return { user: null, error: error.message };
+    console.log(error.message);
+    const message = error.message.split(" ").splice(1).join(" ");
+    console.log(message);
+    return { user: null, error: message };
   }
 };
 
@@ -25,7 +27,8 @@ export const signOutUser = async () => {
     console.log({ user: user });
     return { user: user, error: null };
   } catch (error) {
-    console.log(error);
+    // console.log(error);
+
     return { user: null, error: error.message };
   }
 };
