@@ -21,7 +21,7 @@ const Navbar = () => {
     queryFn: getCartTotalAndNoOfItems,
   });
 
-  const { total } = useContext(TotalAmountContext);
+  // const { total } = useContext(TotalAmountContext);
   const { user } = useContext(UserContext);
 
   const [isHamburgerMenuExpanded, setIsHamburgerMenuExpanded] = useState(false);
@@ -56,6 +56,8 @@ const Navbar = () => {
   if (isError) {
     return <div>Error...</div>;
   }
+
+  const { total, noOfItems } = data;
 
   return (
     <>
@@ -116,16 +118,13 @@ const Navbar = () => {
                 toggleModal();
               }}
             >
-              <div className={"cart-icon-container"}>
-                <p className={"cart-total"}>
-                  {/* ${twoDigitAfterDecimal(data.total)} */} $
-                  {twoDigitAfterDecimal(total)}
-                </p>
-                <span className={"cart-icon"}>
-                  <i className="fa-solid fa-cart-shopping"></i>
-                  <p className={"cart-item-count"}>{data.noOfItems}</p>
-                </span>
-              </div>
+              {user && (
+                <CartIcon
+                  twoDigitAfterDecimal={twoDigitAfterDecimal}
+                  total={total}
+                  noOfItems={noOfItems}
+                />
+              )}
             </div>
 
             <div className="mobile-hamburger-icon-container">
@@ -199,3 +198,18 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+function CartIcon({ twoDigitAfterDecimal, total, noOfItems }) {
+  return (
+    <div className={"cart-icon-container"}>
+      <p className={"cart-total"}>
+        {/* ${twoDigitAfterDecimal(data.total)} */} $
+        {twoDigitAfterDecimal(total)}
+      </p>
+      <span className={"cart-icon"}>
+        <i className="fa-solid fa-cart-shopping"></i>
+        <p className={"cart-item-count"}>{noOfItems}</p>
+      </span>
+    </div>
+  );
+}

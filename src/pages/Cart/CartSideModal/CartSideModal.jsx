@@ -9,6 +9,7 @@ import {
   getAllCartProductsFromFirestore,
   getCartTotalAndNoOfItems,
 } from "../../../queries/CartQueries";
+import withAuth from "../../../hoc/withAuth";
 
 const CartSideModal = ({ toggleModal, isModalOpen }) => {
   const { data, isLoading, isError } = useQuery({
@@ -42,9 +43,6 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
   if (isError) {
     return <div>Error...</div>;
   }
-
-  // console.log({ data, length: data.length });
-  // console.log({ totalData });
 
   return createPortal(
     <div
@@ -106,7 +104,7 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
   );
 };
 
-export default CartSideModal;
+export default withAuth(CartSideModal);
 
 function CartSideModalProduct({ id, imageUrl, name, price, quantity }) {
   const queryClient = useQueryClient();
