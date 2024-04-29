@@ -9,18 +9,13 @@ import { twoDigitAfterDecimal } from "../../utlis/helper";
 import { useQuery } from "@tanstack/react-query";
 import { getCartTotalAndNoOfItems } from "../../queries/CartQueries";
 import { TotalAmountContext } from "../../context/TotalAmount/TotalAmountProvider";
-import { UserContext } from "../../context/User/UserContext";
+import { UserContext, useUserContext } from "../../context/User/UserContext";
 
 // import { getCartTotalAndNoOfItems } from "../../queries/CartQueries";
 
 // const BACKGROUND_WHITE_NOT_IN = ["home", "about", "contact"];
 
 const Navbar = () => {
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["cart", "details"],
-    queryFn: getCartTotalAndNoOfItems,
-  });
-
   // const { total } = useContext(TotalAmountContext);
   const { user } = useContext(UserContext);
 
@@ -48,16 +43,6 @@ const Navbar = () => {
   function toggleIsHamburgerMenuExpanded() {
     setIsHamburgerMenuExpanded((prev) => !prev);
   }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error...</div>;
-  }
-
-  const { total, noOfItems } = data;
 
   return (
     <>
@@ -118,13 +103,7 @@ const Navbar = () => {
                 toggleModal();
               }}
             >
-              {user && (
-                <CartIcon
-                  twoDigitAfterDecimal={twoDigitAfterDecimal}
-                  total={total}
-                  noOfItems={noOfItems}
-                />
-              )}
+              {user && <CartIcon />}
             </div>
 
             <div className="mobile-hamburger-icon-container">
@@ -199,7 +178,23 @@ const Navbar = () => {
 
 export default Navbar;
 
-function CartIcon({ twoDigitAfterDecimal, total, noOfItems }) {
+function CartIcon() {
+  const {
+    user: { uid },
+  } = useUserContext();
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["cart", "details"],
+    queryFn: () => getCartTotalAndNoOfItems(uid),
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return <div>Error...</div>;
+  }
+
+  const { total, noOfItems } = data;
   return (
     <div className={"cart-icon-container"}>
       <p className={"cart-total"}>

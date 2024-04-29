@@ -15,21 +15,26 @@ import {
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Heading from "../../../components/ui/Heading/Heading";
 import { TotalAmountContext } from "../../../context/TotalAmount/TotalAmountProvider";
+import { UserContext } from "../../../context/User/UserContext";
 
 const ProductTable = () => {
   const [couponCode, setCouponCode] = useState("");
   const [isWrongCoupon, setIsWrongCoupon] = useState(false);
   const { setTotal, isDiscountApplied, setIsDiscountApplied } =
     useContext(TotalAmountContext);
+  const {
+    user: { uid },
+  } = useContext(UserContext);
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["cart"],
-    queryFn: getAllCartProductsFromFirestore,
+    queryFn: () => getAllCartProductsFromFirestore(uid),
+    keepPreviousData: true,
   });
 
   const { data: OriginalCartData } = useQuery({
     queryKey: ["cart", "details"],
-    queryFn: getCartTotalAndNoOfItems,
+    queryFn: () => getCartTotalAndNoOfItems(uid),
   });
 
   if (isLoading) {
@@ -128,11 +133,9 @@ function CartProductDetail({
   isOnSale,
 }) {
   const queryClient = useQueryClient();
-
-  const { data, isLoading } = useQuery({
-    queryKey: ["cart", "total-final"],
-    queryFn: getCartTotalAndNoOfItems,
-  });
+  const {
+    user: { uid },
+  } = useContext(UserContext);
 
   const { mutate, isError } = useMutation({
     mutationFn: deleteProductFromCartInFirestore,
@@ -141,7 +144,11 @@ function CartProductDetail({
     },
   });
 
-  const { mutate: updateQuantity, isError: updateQuantityError } = useMutation({
+  const {
+    mutate: updateQuantity,
+    isLoading,
+    isError: updateQuantityError,
+  } = useMutation({
     mutationFn: updateQuantityInCartInFirestore,
     onSuccess: (data) => {
       queryClient.invalidateQueries(["cart"]);
@@ -163,7 +170,7 @@ function CartProductDetail({
         <div
           className="icon-container"
           onClick={() => {
-            mutate(id);
+            mutate({ id, uid });
           }}
         >
           <i className="fa-solid fa-xmark"></i>
@@ -191,7 +198,7 @@ function CartProductDetail({
           defaultValue={quantity}
           disabled={isDiscountApplied}
           onChange={(e) => {
-            updateQuantity({ id, quantity: +e.target.value });
+            updateQuantity({ id, quantity: +e.target.value, uid });
           }}
         />
       </span>

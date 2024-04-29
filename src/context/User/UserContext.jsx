@@ -1,7 +1,11 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { getUserFromLocalStorage } from "../../queries/auth";
 
 export const UserContext = createContext();
+
+export const useUserContext = () => {
+  return useContext(UserContext);
+};
 
 const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(() => {

@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import { query } from "firebase/firestore";
 import React, { createContext, useEffect, useState } from "react";
 import { getCartTotalAndNoOfItems } from "../../queries/CartQueries";
+import { useUserContext } from "../User/UserContext";
 
 export const TotalAmountContext = createContext();
 
 const TotalAmountProvider = ({ children }) => {
+  const { user } = useUserContext();
   const { data, isLoading, isError } = useQuery({
+    enabled: !!user,
     queryKey: ["cart", "totalAmount"],
     queryFn: getCartTotalAndNoOfItems,
   });
@@ -16,17 +18,17 @@ const TotalAmountProvider = ({ children }) => {
 
   useEffect(() => {
     if (data) {
-      setTotal(data.total);
+      setTotal(data?.total);
     }
   }, [data]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
-  if (isError) {
-    return <div>Error...</div>;
-  }
+  // if (isError) {
+  //   return <div>Error...</div>;
+  // }
 
   return (
     <TotalAmountContext.Provider

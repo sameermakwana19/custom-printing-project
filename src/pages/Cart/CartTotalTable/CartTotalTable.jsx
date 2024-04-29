@@ -9,12 +9,17 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { TotalAmountContext } from "../../../context/TotalAmount/TotalAmountProvider";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../../context/User/UserContext";
+import { UserContext, useUserContext } from "../../../context/User/UserContext";
 
 const CartTotalTable = () => {
+  const {
+    user: { uid },
+  } = useUserContext();
+
   const { data, isLoading, isError } = useQuery({
     queryKey: ["cart", "totalPrice"],
-    queryFn: getCartTotalAndNoOfItems,
+    queryFn: () => getCartTotalAndNoOfItems(uid),
+    keepPreviousData: true,
   });
 
   const { user } = useContext(UserContext);

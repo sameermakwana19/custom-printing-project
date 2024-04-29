@@ -10,11 +10,16 @@ import {
   getCartTotalAndNoOfItems,
 } from "../../../queries/CartQueries";
 import withAuth from "../../../hoc/withAuth";
+import { useUserContext } from "../../../context/User/UserContext";
 
 const CartSideModal = ({ toggleModal, isModalOpen }) => {
+  const {
+    user: { uid },
+  } = useUserContext();
+
   const { data, isLoading, isError } = useQuery({
     queryKey: ["cart"],
-    queryFn: getAllCartProductsFromFirestore,
+    queryFn: () => getAllCartProductsFromFirestore(uid),
   });
 
   const {
@@ -22,8 +27,8 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
     isLoading: totalIsLoading,
     isError: totalIsError,
   } = useQuery({
-    queryKey: ["cart", "total"],
-    queryFn: getCartTotalAndNoOfItems,
+    queryKey: ["cart", "details"],
+    queryFn: () => getCartTotalAndNoOfItems(uid),
   });
 
   useEffect(() => {

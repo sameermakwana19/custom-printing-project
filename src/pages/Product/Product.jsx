@@ -14,11 +14,14 @@ import {
   quantityPresentInCartInFirestore,
 } from "../../queries/CartQueries";
 import { TotalAmountContext } from "../../context/TotalAmount/TotalAmountProvider";
-import { UserContext } from "../../context/User/UserContext";
+import { UserContext, useUserContext } from "../../context/User/UserContext";
 
 const Product = () => {
   const category = useLocation().pathname.split("/").at(-2);
   const id = useCurrentLocation();
+  const {
+    user: { uid },
+  } = useUserContext();
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [category, id],
@@ -37,7 +40,7 @@ const Product = () => {
   } = useQuery({
     enabled: !!data,
     queryKey: ["cart", "isPresent", id],
-    queryFn: () => isPresentInCartInFirestore(data?.id),
+    queryFn: () => isPresentInCartInFirestore({ id: data?.id, uid }),
   });
 
   const {
@@ -47,7 +50,7 @@ const Product = () => {
     error: quantityErrorObj,
   } = useQuery({
     queryKey: ["cart", "quantity", id],
-    queryFn: () => quantityPresentInCartInFirestore(data?.id),
+    queryFn: () => quantityPresentInCartInFirestore({ id: data?.id, uid }),
     enabled: !!isPresentInCart && !!data,
   });
 
@@ -79,6 +82,7 @@ const Product = () => {
     );
   }
 
+  console.log({ isPresentInCart, quantityPresentInCart });
   return (
     <div className="product-page">
       {isPresentInCart && (
