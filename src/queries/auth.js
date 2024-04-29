@@ -10,13 +10,13 @@ export const signInUser = async (email, password) => {
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
 
-    console.log({ user: user, displayName: user.email });
+    // console.log({ user: user, displayName: user.email });
 
     return { user: user, error: null };
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     const message = error.message.split(" ").splice(1).join(" ");
-    console.log(message);
+    // console.log(message);
     return { user: null, error: message };
   }
 };
@@ -24,7 +24,7 @@ export const signInUser = async (email, password) => {
 export const signOutUser = async () => {
   try {
     const user = await signOut(auth);
-    console.log({ user: user });
+    // console.log({ user: user });
     return { user: user, error: null };
   } catch (error) {
     // console.log(error);
@@ -45,10 +45,21 @@ export const createUserInFirestore = async (email, username, password) => {
         displayName: username,
       });
     }
-    console.log({ user: user });
     return { user: user, error: null };
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return { user: null, error: error.message };
   }
+};
+
+export const saveUserToLocalStorage = (user) => {
+  localStorage.setItem("user", JSON.stringify(user));
+};
+
+export const deleteUserFromLocalStorage = () => {
+  localStorage.removeItem("user");
+};
+
+export const getUserFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem("user"));
 };

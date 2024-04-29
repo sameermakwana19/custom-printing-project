@@ -30,8 +30,6 @@ const RootLayout = () => {
       isDarkMode ? "gray" : "#415161"
     );
     rootStyle.setProperty("--border-color", isDarkMode ? "gray" : "#dddddd");
-
-    // console.log(document.documentElement.style);
   }, [isDarkMode]);
 
   return (

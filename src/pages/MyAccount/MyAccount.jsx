@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import withAuth from "../../hoc/withAuth";
 import Button from "../../components/ui/Button/Button";
-import { signOutUser } from "../../queries/auth";
+import { deleteUserFromLocalStorage, signOutUser } from "../../queries/auth";
 import { UserContext } from "../../context/User/UserContext";
 import photo from "../../assets/userprofilepic.webp";
 
@@ -26,7 +26,9 @@ const MyAccount = () => {
         onClick={async (e) => {
           const res = await signOutUser();
           // console.log({ res });
+
           setUser(null);
+          deleteUserFromLocalStorage();
         }}
       >
         {" "}

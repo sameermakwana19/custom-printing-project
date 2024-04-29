@@ -6,6 +6,7 @@ import Input from "../../components/ui/Input/Input";
 import { UserContext } from "../../context/User/UserContext";
 import {
   createUserInFirestore,
+  saveUserToLocalStorage,
   signInUser,
   signOutUser,
 } from "../../queries/auth";
@@ -45,6 +46,7 @@ const Signup = () => {
     setPassword("");
     setError("");
     setUser(user);
+    saveUserToLocalStorage(user);
 
     navigate("/myaccount");
   };

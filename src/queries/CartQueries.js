@@ -31,7 +31,7 @@ export const getCartTotalAndNoOfItems = async () => {
     0
   );
 
-  console.log({ noOfItems, total });
+  // console.log({ noOfItems, total });
   return { noOfItems, total };
 };
 

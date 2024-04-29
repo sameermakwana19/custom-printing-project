@@ -4,7 +4,7 @@ import Button from "../../components/ui/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/ui/Input/Input";
 import { UserContext } from "../../context/User/UserContext";
-import { signInUser } from "../../queries/auth";
+import { saveUserToLocalStorage, signInUser } from "../../queries/auth";
 import Backdrop from "../../components/Backdrop/Backdrop";
 
 const Login = () => {
@@ -30,10 +30,12 @@ const Login = () => {
       setError(error);
       return;
     }
+
     setEmail("");
     setPassword("");
     setError("");
     setUser(user);
+    saveUserToLocalStorage(user);
     navigate("/");
   };
 
