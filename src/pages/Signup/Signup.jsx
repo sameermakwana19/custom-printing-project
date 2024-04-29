@@ -9,6 +9,8 @@ import {
   signInUser,
   signOutUser,
 } from "../../queries/auth";
+import { set } from "firebase/database";
+import Backdrop from "../../components/Backdrop/Backdrop";
 
 const Signup = () => {
   const id = useId();
@@ -19,16 +21,22 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const [creatingUser, setCreatingUser] = useState(false);
+
   const { setUser } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setCreatingUser(true);
 
     const { user, error } = await createUserInFirestore(
       email,
       username,
       password
     );
+
+    setCreatingUser(false);
+
     if (!user) {
       setError(error);
       return;
@@ -42,46 +50,51 @@ const Signup = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login">
-        <Heading>Signup</Heading>
-        {error && (
-          <Heading variant={"h1"} className="error">
-            {error}
-          </Heading>
-        )}
-        <div className="form-container">
-          <form onSubmit={handleSubmit}>
-            <Input
-              label="email address"
-              id={`${id}-text`}
-              value={email}
-              onChange={(e) => setEmail(e.target.value.trim())}
-            />
-            <Input
-              label="Username"
-              id={`${id}-text`}
-              value={username}
-              onChange={(e) => setUsername(e.target.value.trim())}
-            />
-            <Input
-              label="Password"
-              id={`${id}-password`}
-              type="text"
-              minLength={6}
-              value={password}
-              onChange={(e) => setPassword(e.target.value.trim())}
-            />
+    <>
+      {creatingUser && <Backdrop />}
+      <div className="login-container">
+        <div className="login">
+          <Heading>Signup</Heading>
+          {error && (
+            <Heading variant={"h1"} className="error">
+              {error}
+            </Heading>
+          )}
+          <div className="form-container">
+            <form onSubmit={handleSubmit}>
+              <Input
+                label="email address"
+                id={`${id}-email`}
+                value={email}
+                onChange={(e) => setEmail(e.target.value.trim())}
+              />
+              <Input
+                label="Username"
+                id={`${id}-username`}
+                value={username}
+                onChange={(e) => setUsername(e.target.value.trim())}
+              />
+              <Input
+                label="Password"
+                id={`${id}-password`}
+                type="text"
+                minLength={6}
+                value={password}
+                onChange={(e) => setPassword(e.target.value.trim())}
+              />
 
-            <Button isIconPresent={false}>Sign Up</Button>
-          </form>
+              <Button isIconPresent={false} disabled={creatingUser && true}>
+                Sign Up
+              </Button>
+            </form>
 
-          <Link to="/login" className="lost-your-password">
-            Already have an account?
-          </Link>
+            <Link to="/login" className="lost-your-password">
+              Already have an account?
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

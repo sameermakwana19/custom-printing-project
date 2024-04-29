@@ -1,12 +1,4 @@
-import {
-  addDoc,
-  deleteDoc,
-  doc,
-  getDocs,
-  onSnapshot,
-  query,
-  updateDoc,
-} from "firebase/firestore";
+import { addDoc, deleteDoc, getDocs, updateDoc } from "firebase/firestore";
 import { cartColRef } from "../firebase";
 import { update } from "firebase/database";
 import { useContext } from "react";
@@ -39,20 +31,29 @@ export const getCartTotalAndNoOfItems = async () => {
     0
   );
 
+  console.log({ noOfItems, total });
   return { noOfItems, total };
 };
 
 export const getAllCartProductsFromFirestore = async () => {
   const cartProducts = [];
 
+  // try {
   const querySnapshot = await getDocs(cartColRef);
 
-  if (!querySnapshot.docs.length) return new Error("No products in cart");
+  // if (!querySnapshot.docs.length) return new Error("No products in cart");
   querySnapshot.docs.forEach((doc) => {
     cartProducts.push({ ...doc.data() });
   });
 
   return cartProducts;
+
+  //   console.log({ cartProducts });
+  //   return { data: cartProducts, error: null };
+  // } catch (error) {
+  //   console.log({ error: error });
+  //   return { data: null, error: error.message };
+  // }
 };
 
 export const isPresentInCartInFirestore = async (id) => {
