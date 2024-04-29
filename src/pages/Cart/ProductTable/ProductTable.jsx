@@ -84,7 +84,7 @@ const ProductTable = () => {
                   setTotal((prev) => prev - calculateDiscount(prev, discount));
                   setIsDiscountApplied(true);
                   setIsWrongCoupon(false);
-                  setCouponCode("");
+
                   return;
                 }
 
@@ -99,6 +99,7 @@ const ProductTable = () => {
               onClick={() => {
                 setTotal(OriginalCartData.total);
                 setIsDiscountApplied(false);
+                setCouponCode("");
               }}
             >
               Remove Coupon

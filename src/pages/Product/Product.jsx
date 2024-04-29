@@ -143,6 +143,8 @@ function ProductOverview({
     return <div>Error...{error.message}</div>;
   }
 
+  console.log({ quantity });
+
   return (
     <>
       <div className="product-detail">
@@ -181,6 +183,9 @@ function ProductOverview({
             </div>
             <Button
               onClick={(e) => {
+                e.preventDefault();
+                console.log("after clicking");
+                console.log({ quantity });
                 if (!user) {
                   navigate("/login");
                   return;

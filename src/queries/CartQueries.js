@@ -106,7 +106,7 @@ export const addProductToCartInFirestore = async (product) => {
       querySnapshot.docs.map(async (doc) => {
         if (doc.data().productId === product.productId) {
           await updateDoc(doc.ref, {
-            quantity: doc.data().quantity + 1,
+            quantity: doc.data().quantity + product.quantity,
           });
         }
       })

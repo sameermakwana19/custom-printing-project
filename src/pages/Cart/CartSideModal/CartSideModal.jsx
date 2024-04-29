@@ -36,11 +36,11 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
     }
   }, [isModalOpen]);
 
-  if (isLoading) {
+  if (isLoading || totalIsLoading) {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
+  if (isError || totalIsError) {
     return <div>Error...</div>;
   }
 
