@@ -25,7 +25,6 @@ const MyAccount = () => {
         isIconPresent={false}
         onClick={async (e) => {
           const res = await signOutUser();
-          // console.log({ res });
 
           setUser(null);
           deleteUserFromLocalStorage();

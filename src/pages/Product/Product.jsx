@@ -85,7 +85,6 @@ const Product = () => {
     );
   }
 
-  console.log({ isPresentInCart, quantityPresentInCart });
   return (
     <div className="product-page">
       {isPresentInCart && (
@@ -134,8 +133,6 @@ function ProductOverview({
   const { user } = useContext(UserContext);
   const uid = user ? user.uid : null;
 
-  console.log({ uid });
-
   const queryClient = useQueryClient();
   const { mutate, isError, error } = useMutation({
     mutationFn: addProductToCartInFirestore,
@@ -145,12 +142,6 @@ function ProductOverview({
     },
   });
   const navigate = useNavigate();
-
-  const { setIsDiscountApplied } = useContext(TotalAmountContext);
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
 
   if (isError) {
     return <div>Error...{error.message}</div>;
@@ -195,8 +186,7 @@ function ProductOverview({
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                console.log("after clicking");
-                console.log({ quantity });
+
                 if (!user) {
                   navigate("/login");
                   return;
@@ -213,8 +203,6 @@ function ProductOverview({
                   id: crypto.randomUUID(),
                   uid,
                 });
-
-                setIsDiscountApplied(false);
               }}
             >
               {" "}

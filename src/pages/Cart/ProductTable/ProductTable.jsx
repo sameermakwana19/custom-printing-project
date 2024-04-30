@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import photo from "../../../assets/mostLovedProducts1.jpg";
 import {
   calculateDiscount,
@@ -16,12 +16,18 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Heading from "../../../components/ui/Heading/Heading";
 import { TotalAmountContext } from "../../../context/TotalAmount/TotalAmountProvider";
 import { UserContext } from "../../../context/User/UserContext";
+import { set } from "firebase/database";
 
 const ProductTable = () => {
-  const [couponCode, setCouponCode] = useState("");
+  // const [couponCode, setCouponCode] = useState("");
   const [isWrongCoupon, setIsWrongCoupon] = useState(false);
-  const { setTotal, isDiscountApplied, setIsDiscountApplied } =
-    useContext(TotalAmountContext);
+  const {
+    setTotal,
+    isDiscountApplied,
+    setIsDiscountApplied,
+    couponCode,
+    setCouponCode,
+  } = useContext(TotalAmountContext);
   const {
     user: { uid },
   } = useContext(UserContext);
@@ -36,6 +42,18 @@ const ProductTable = () => {
     queryKey: ["cart", "details"],
     queryFn: () => getCartTotalAndNoOfItems(uid),
   });
+
+  useEffect(() => {
+    if (isDiscountApplied && data && OriginalCartData) {
+      const { discount } = checkCouponCode(couponCode);
+      setTotal(
+        OriginalCartData.total -
+          calculateDiscount(OriginalCartData.total, discount)
+      );
+    }
+
+    return () => {};
+  }, [data]);
 
   if (isLoading) {
     return <div>Loading...</div>;

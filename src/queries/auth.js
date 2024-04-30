@@ -42,8 +42,21 @@ export const createUserInFirestore = async (email, username, password) => {
   }
 };
 
-export const saveUserToLocalStorage = (user) => {
-  localStorage.setItem("user", JSON.stringify(user));
+export const saveUserToLocalStorage = ({
+  uid,
+  displayName,
+  email,
+  stsTokenManager,
+}) => {
+  localStorage.setItem(
+    "user",
+    JSON.stringify({
+      uid,
+      displayName,
+      email,
+      refreshToken: stsTokenManager.refreshToken,
+    })
+  );
 };
 
 export const deleteUserFromLocalStorage = () => {

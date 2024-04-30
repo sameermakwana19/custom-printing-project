@@ -218,10 +218,13 @@ function CartIcon() {
   const {
     user: { uid },
   } = useUserContext();
+
   const { data, isLoading, isError } = useQuery({
     queryKey: ["cart", "details"],
     queryFn: () => getCartTotalAndNoOfItems(uid),
   });
+
+  const { total } = useContext(TotalAmountContext);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -229,8 +232,8 @@ function CartIcon() {
   if (isError) {
     return <div>Error...</div>;
   }
+  const { noOfItems } = data;
 
-  const { total, noOfItems } = data;
   return (
     <div className={"cart-icon-container"}>
       <p className={"cart-total"}>

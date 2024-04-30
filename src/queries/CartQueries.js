@@ -70,7 +70,6 @@ export const isPresentInCartInFirestore = async ({ id, uid }) => {
   );
 
   let test = querySnapshot.docs.some((doc) => doc.data().productId === id);
-  console.log({ test });
   return test;
 };
 export const quantityPresentInCartInFirestore = async ({ id, uid }) => {

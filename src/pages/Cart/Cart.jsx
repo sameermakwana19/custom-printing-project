@@ -4,6 +4,7 @@ import ProductTable from "./ProductTable/ProductTable";
 import CartTotalTable from "./CartTotalTable/CartTotalTable";
 import ProductTableMobileView from "./ProductTableMoblieView/ProductTableMobileView";
 import CartSideModal from "./CartSideModal/CartSideModal";
+import withAuth from "../../hoc/withAuth";
 
 const Cart = () => {
   return (
@@ -17,7 +18,7 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default withAuth(Cart);
 
 // function ProductTable({ photo, twoDigitAfterDecimal }) {
 //   return (

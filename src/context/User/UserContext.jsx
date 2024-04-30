@@ -12,7 +12,6 @@ const UserContextProvider = ({ children }) => {
     return getUserFromLocalStorage() || null;
   });
 
-  // console.log({ user, userLocal: getUserFromLocalStorage() });
   return (
     <UserContext.Provider value={{ user, setUser }}>
       {children}
