@@ -113,6 +113,9 @@ export default withAuth(CartSideModal);
 
 function CartSideModalProduct({ id, imageUrl, name, price, quantity }) {
   const queryClient = useQueryClient();
+  const {
+    user: { uid },
+  } = useUserContext();
 
   const { mutate, isError, isLoading } = useMutation({
     mutationFn: deleteProductFromCartInFirestore,
@@ -140,7 +143,7 @@ function CartSideModalProduct({ id, imageUrl, name, price, quantity }) {
           </span>
         </div>
       </div>
-      <div className="remove-btn" onClick={() => mutate(id)}>
+      <div className="remove-btn" onClick={() => mutate({ id, uid })}>
         <i className="fa-solid fa-x"></i>{" "}
       </div>
     </div>

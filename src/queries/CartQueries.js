@@ -115,7 +115,11 @@ export const deleteProductFromCartInFirestore = async ({ id, uid }) => {
 // };
 
 export const addProductToCartInFirestore = async (product) => {
-  const querySnapshot = await getDocs(cartColRef);
+  // const querySnapshot = await getDocs(cartColRef);
+
+  const querySnapshot = await getDocs(
+    query(cartColRef, where("uid", "==", product.uid))
+  );
 
   const isProductAlreadyInCart = querySnapshot.docs.some(
     (doc) => doc.data().productId === product.productId

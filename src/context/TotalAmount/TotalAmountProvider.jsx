@@ -7,10 +7,11 @@ export const TotalAmountContext = createContext();
 
 const TotalAmountProvider = ({ children }) => {
   const { user } = useUserContext();
+
   const { data, isLoading, isError } = useQuery({
     enabled: !!user,
     queryKey: ["cart", "totalAmount"],
-    queryFn: getCartTotalAndNoOfItems,
+    queryFn: () => getCartTotalAndNoOfItems(user.uid),
   });
 
   const [total, setTotal] = useState(0);
@@ -21,15 +22,6 @@ const TotalAmountProvider = ({ children }) => {
       setTotal(data?.total);
     }
   }, [data]);
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (isError) {
-  //   return <div>Error...</div>;
-  // }
-
   return (
     <TotalAmountContext.Provider
       value={{ total, setTotal, isDiscountApplied, setIsDiscountApplied }}

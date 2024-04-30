@@ -19,9 +19,12 @@ import { UserContext, useUserContext } from "../../context/User/UserContext";
 const Product = () => {
   const category = useLocation().pathname.split("/").at(-2);
   const id = useCurrentLocation();
-  const {
-    user: { uid },
-  } = useUserContext();
+  // const {
+  //   user: { uid },
+  // } = useUserContext();
+
+  const { user } = useContext(UserContext);
+  const uid = user ? user.uid : null;
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [category, id],
@@ -124,9 +127,12 @@ function ProductOverview({
   setItemAddedToCart,
 }) {
   const [quantity, setQuantity] = useState(1);
-  const {
-    user: { uid },
-  } = useContext(UserContext);
+  // const {
+  //   user: { uid },
+  // } = useContext(UserContext);
+
+  const { user } = useContext(UserContext);
+  const uid = user ? user.uid : null;
 
   console.log({ uid });
 
@@ -139,8 +145,6 @@ function ProductOverview({
     },
   });
   const navigate = useNavigate();
-
-  const { user } = useContext(UserContext);
 
   const { setIsDiscountApplied } = useContext(TotalAmountContext);
 

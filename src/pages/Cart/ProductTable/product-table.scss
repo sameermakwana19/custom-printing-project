@@ -126,6 +126,11 @@
         outline: none;
         font-size: 1.5rem;
       }
+
+      .coupon-input:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
     }
     button {
       margin: 1rem;

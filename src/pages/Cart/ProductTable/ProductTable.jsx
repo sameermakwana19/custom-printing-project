@@ -73,6 +73,7 @@ const ProductTable = () => {
             className="coupon-input"
             placeholder="Coupon Code"
             value={couponCode}
+            disabled={isDiscountApplied}
             onChange={(e) => {
               setCouponCode(e.target.value.toUpperCase());
             }}
@@ -133,9 +134,8 @@ function CartProductDetail({
   isOnSale,
 }) {
   const queryClient = useQueryClient();
-  const {
-    user: { uid },
-  } = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  const uid = user ? user.uid : null;
 
   const { mutate, isError } = useMutation({
     mutationFn: deleteProductFromCartInFirestore,
