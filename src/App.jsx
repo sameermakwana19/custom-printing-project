@@ -23,7 +23,7 @@ function App() {
             </TotalAmountProvider>
           </UserContextProvider>
         </ThemeContextProvider>
-        <ReactQueryDevtools zoom={2} />
+        {/* <ReactQueryDevtools zoom={10} /> */}
       </QueryClientProvider>
     </>
   );

@@ -159,7 +159,7 @@ const ReviewSection = () => {
           <Button isIconPresent={false}>submit</Button>
         </form>
       </div>
-      <DevTool control={control} />
+      {/* <DevTool control={control} /> */}
     </div>
   );
 };

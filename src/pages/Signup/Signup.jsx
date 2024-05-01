@@ -142,7 +142,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      <DevTool control={control} placement={"top-right"} />
+      {/* <DevTool control={control} placement={"top-right"} /> */}
     </>
   );
 };
