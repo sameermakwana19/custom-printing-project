@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Navigate, useSearchParams } from "react-router-dom";
 import Button from "../ui/Button/Button";
 
 const SearchInput = ({ setProducts, data }) => {

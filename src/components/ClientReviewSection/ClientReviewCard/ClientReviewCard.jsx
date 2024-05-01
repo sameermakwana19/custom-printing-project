@@ -12,7 +12,7 @@ const ClientReviewCard = ({
     <div className="client-review-card">
       <p className="review-text">{reviewText}</p>
       <div className="rating-container">
-        <Rating rating={rating} size={1.5} />
+        <Rating ratingValue={rating} size={1.5} />
       </div>
       <div className="user-detail">
         <div className="user-avatar">

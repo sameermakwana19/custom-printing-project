@@ -11,7 +11,7 @@ const TotalAmountProvider = ({ children }) => {
 
   const { data, isLoading, isError } = useQuery({
     enabled: !!user?.uid,
-    queryKey: ["cart", "totalAmount"],
+    queryKey: ["cart", "totalAmount", user?.uid],
     queryFn: () => getCartTotalAndNoOfItems(user?.uid),
   });
 

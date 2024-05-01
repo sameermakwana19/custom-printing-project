@@ -10,7 +10,9 @@
   padding: 6rem 2rem;
 
   .error {
-    color: red;
+    color: var(--color-tertiary);
+    font-weight: 500;
+    font-size: var(--sm-600);
   }
 
   .heading {

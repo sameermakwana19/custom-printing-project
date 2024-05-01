@@ -1,7 +1,7 @@
 import React, { useContext, useId, useState } from "react";
 import Heading from "../../components/ui/Heading/Heading";
 import Button from "../../components/ui/Button/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Input from "../../components/ui/Input/Input";
 import { UserContext } from "../../context/User/UserContext";
 import { saveUserToLocalStorage, signInUser } from "../../queries/auth";
@@ -19,20 +19,39 @@ const Login = () => {
     reset,
   } = useForm();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+
+  //   const { user, error } = await signInUser(email, password);
+
+  //   setLoading(false);
+  //   if (!user) {
+  //     setError(error);
+  //     return;
+  //   }
+
+  //   setEmail("");
+  //   setPassword("");
+  //   setError("");
+  //   setUser(user);
+  //   saveUserToLocalStorage(user);
+  //   navigate("/");
+  // };
+
+  const handleSubmit = async (data) => {
     setLoading(true);
 
-    const { user, error } = await signInUser(email, password);
+    const { user, error } = await signInUser(data.email, data.password);
 
     setLoading(false);
     if (!user) {
@@ -40,13 +59,18 @@ const Login = () => {
       return;
     }
 
-    setEmail("");
-    setPassword("");
-    setError("");
+    reset();
+    // setEmail("");
+    // setPassword("");
+    // setError("");
     setUser(user);
     saveUserToLocalStorage(user);
     navigate("/");
   };
+
+  if (user) {
+    return <Navigate to="/myaccount" replace />;
+  }
 
   return (
     <>
@@ -60,27 +84,34 @@ const Login = () => {
             </Heading>
           )}
           <div className="form-container">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmitHook(handleSubmit)} noValidate>
               <Input
                 label="Username or email address"
                 id={`${id}-text`}
-                value={email}
-                onChange={(e) => setEmail(e.target.value.trim())}
-                // {...register("email", { required: "Email is required" })}
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                    message: "Invalid email",
+                  },
+                })}
               />
+              <p className="error">{errors.email?.message}</p>
+
               <Input
                 label="Password"
                 id={`${id}-password`}
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value.trim())}
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Minimum length should be 6",
+                  },
+                })}
               />
-              {/* <Input
-                label={"remember me"}
-                id={`${id}-remember-me`}
-                type="checkbox"
-                isMandatory={false}
-              /> */}
+              <p className="error">{errors.password?.message}</p>
+
               <Button isIconPresent={false}> Log In</Button>
             </form>
 

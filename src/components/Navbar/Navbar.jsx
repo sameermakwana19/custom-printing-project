@@ -180,7 +180,9 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <CartSideModal toggleModal={toggleModal} isModalOpen={isModalOpen} />
+      {user && (
+        <CartSideModal toggleModal={toggleModal} isModalOpen={isModalOpen} />
+      )}
     </>
   );
 };
