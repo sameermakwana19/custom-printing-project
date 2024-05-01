@@ -34,13 +34,16 @@ const TotalAmountProvider = ({ children }) => {
   useEffect(() => {
     if (data) {
       const { discount } = checkCouponCode(couponCode);
-      // console.log({ data, isDiscountApplied, discount });
+      console.log({ data, isDiscountApplied, discount });
+      if (total === 0) {
+        setIsDiscountApplied(false);
+      }
 
       !isDiscountApplied
         ? setTotal(data.total)
         : setTotal(data.total - calculateDiscount(data.total, discount));
     }
-  }, [data]);
+  }, [data, isDiscountApplied]);
 
   if (isLoading) {
     return <div>Loading...</div>;

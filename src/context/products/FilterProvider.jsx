@@ -34,7 +34,7 @@ const FilterProvider = ({ children }) => {
       return QueryParams;
     });
 
-    setFilterValue(value);
+    // setFilterValue(value);
   };
 
   const FilterContextValue = useMemo(() => {

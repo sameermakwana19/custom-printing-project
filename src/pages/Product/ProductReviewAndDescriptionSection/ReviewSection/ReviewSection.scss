@@ -2,6 +2,19 @@
   .reviews {
     font-size: var(--sm-400);
     margin-bottom: 2.4rem;
+
+    .review {
+      border: 1px solid var(--border-color);
+      padding: 2rem;
+      margin: 1rem 0;
+
+      .user-details {
+        span {
+          font-size: var(--sm-500);
+          margin-right: 2rem;
+        }
+      }
+    }
   }
 
   .review-form {
@@ -14,6 +27,12 @@
 
     &__sub-heading {
       font-size: var(--sm-500);
+      margin: 0.2rem 0 0.6rem;
+    }
+
+    .error {
+      color: var(--color-tertiary);
+      font-size: var(--sm-400);
       margin: 0.2rem 0 0.6rem;
     }
 

@@ -141,33 +141,6 @@ const Navbar = () => {
                 Contact
               </NavLink>
             </li>
-            {/* <li className="account-dropdown">
-              <div
-                className="accounts-dropdown-header navbar__link"
-                onClick={() => setMobileAccountDropdown((prev) => !prev)}
-              >
-                <span>Account</span>{" "}
-                <i className="fa-solid fa-chevron-down"></i>
-              </div>
-              <div
-                className={`${
-                  mobileAccountDropdown
-                    ? "accounts-dropdown-body--expanded"
-                    : "accounts-dropdown-body"
-                }`}
-              >
-                <div>
-                  <NavLink to="/login" className="navbar__link">
-                    <i className="fa-solid fa-chevron-right"></i>My Account
-                  </NavLink>
-                </div>
-                <div>
-                  <NavLink to="/cart" className="navbar__link">
-                    <i className="fa-solid fa-chevron-right"></i>Cart
-                  </NavLink>
-                </div>
-              </div>
-            </li> */}
 
             {user ? (
               <li className="accounts-dropdown">

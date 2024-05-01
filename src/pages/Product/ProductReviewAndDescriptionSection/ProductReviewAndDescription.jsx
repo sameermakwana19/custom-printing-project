@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import ReviewSection from "./ReviewSection/ReviewSection";
+import useCurrentLocation from "../../../hooks/useCurrentLocation";
+import { getReviewsFromFirestore } from "../../../queries/reviews";
+import { useQuery } from "@tanstack/react-query";
 
 const ProductReviewAndDescription = () => {
   const [currentSection, setCurrentSection] = useState("description");
+  const id = useCurrentLocation();
+
+  const { data: reviews } = useQuery({
+    queryKey: [id, "reviews"],
+    queryFn: () => getReviewsFromFirestore(id),
+  });
 
   const handleSectionChange = (value) => {
     setCurrentSection(value);
@@ -25,7 +34,10 @@ const ProductReviewAndDescription = () => {
           }`}
           onClick={() => handleSectionChange("review")}
         >
-          Review <span className="no-of-reviews">({0})</span>
+          Review{" "}
+          <span className="no-of-reviews">
+            ({reviews?.length ?? "loading"})
+          </span>
         </p>
       </div>
 

@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 const ratingArray = [1, 2, 3, 4, 5];
 
-const Rating = ({ isRatingChangeable = false, rating, size = 1.2 }) => {
-  const [ratingValue, setRatingValue] = useState(rating);
+const Rating = ({
+  isRatingChangeable = false,
+  ratingValue,
+  setRatingValue,
+  size = 1.2,
+}) => {
   return (
     <div className="rating" style={{ fontSize: `${size}rem` }}>
+      <span className="rating-heading">Rating :</span>
       {ratingArray.map((number) => (
         <i
           key={number}

@@ -22,7 +22,7 @@ const ProductCard = ({
       <p className="product__category">{category}</p>
       <p className="product__name">{name}</p>
       <div className="product__rating">
-        <Rating rating={rating} />
+        <Rating ratingValue={rating} />
       </div>
       <p className="product__price">
         {" "}

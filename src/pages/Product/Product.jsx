@@ -15,6 +15,7 @@ import {
 } from "../../queries/CartQueries";
 import { TotalAmountContext } from "../../context/TotalAmount/TotalAmountProvider";
 import { UserContext, useUserContext } from "../../context/User/UserContext";
+import Rating from "../../components/ui/Rating/Rating";
 
 const Product = () => {
   const category = useLocation().pathname.split("/").at(-2);
@@ -167,6 +168,7 @@ function ProductOverview({
             <p className="product__new-price">${twoDigitAfterDecimal(price)}</p>
             <p className="product__free-shipping">+ Free Shipping</p>
           </div>
+          <Rating ratingValue={rating} />
           <p className="product__short-description">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
             repudiandae consequatur, ullam sed vel distinctio tenetur adipisci

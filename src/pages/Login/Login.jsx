@@ -6,9 +6,18 @@ import Input from "../../components/ui/Input/Input";
 import { UserContext } from "../../context/User/UserContext";
 import { saveUserToLocalStorage, signInUser } from "../../queries/auth";
 import Backdrop from "../../components/Backdrop/Backdrop";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 
 const Login = () => {
   const id = useId();
+  const {
+    register,
+    handleSubmit: handleSubmitHook,
+    formState: { errors },
+    control,
+    reset,
+  } = useForm();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -57,6 +66,7 @@ const Login = () => {
                 id={`${id}-text`}
                 value={email}
                 onChange={(e) => setEmail(e.target.value.trim())}
+                // {...register("email", { required: "Email is required" })}
               />
               <Input
                 label="Password"
@@ -65,12 +75,12 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value.trim())}
               />
-              <Input
+              {/* <Input
                 label={"remember me"}
                 id={`${id}-remember-me`}
                 type="checkbox"
                 isMandatory={false}
-              />
+              /> */}
               <Button isIconPresent={false}> Log In</Button>
             </form>
 
@@ -79,6 +89,7 @@ const Login = () => {
             </Link>
           </div>
         </div>
+        <DevTool control={control} />
       </div>
     </>
   );

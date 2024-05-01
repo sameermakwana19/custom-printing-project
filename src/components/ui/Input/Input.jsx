@@ -1,12 +1,9 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-const Input = ({
-  label,
-  id,
-  type = "text",
-  isMandatory = true,
-  ...delegated
-}) => {
+const Input = (
+  { label, id, type = "text", isMandatory = false, ...delegated },
+  ref
+) => {
   return (
     <div
       className={`${type === "checkbox" ? "checkbox-input-grp" : "input-grp"}`}
@@ -16,9 +13,9 @@ const Input = ({
           {label} {isMandatory && <span className="asterisk">*</span>}
         </label>
       )}
-      <input type={type} name="" id={id} {...delegated} />
+      <input ref={ref} type={type} name="" id={id} {...delegated} />
     </div>
   );
 };
 
-export default Input;
+export default forwardRef(Input);

@@ -1,6 +1,12 @@
 .rating {
   margin: 0.2rem 0 0.5rem 0;
+  @include flex-layout($justify: flex-start, $align: center);
   // @include flex-layout;
+  .rating-heading {
+    margin: 0 1rem 0 0;
+    font-size: var(--sm-600);
+    font-weight: 600;
+  }
   i {
     margin: 0 0.1rem;
   }
