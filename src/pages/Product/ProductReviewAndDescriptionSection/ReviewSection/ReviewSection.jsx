@@ -19,7 +19,6 @@ const ReviewSection = () => {
   const queryClient = useQueryClient();
 
   const { user } = useUserContext();
-  console.log({ user });
 
   const id = useId();
   // const form = useForm();
@@ -65,7 +64,6 @@ const ReviewSection = () => {
     }
 
     if (data["save-my-name"] && (!data["username"] || !data["email"])) {
-      console.log({ data });
       setAddReviewError(
         "Please enter the username and email or uncheck the checkbox"
       );

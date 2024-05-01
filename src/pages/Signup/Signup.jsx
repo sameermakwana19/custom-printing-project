@@ -80,7 +80,6 @@ const Signup = () => {
     saveUserToLocalStorage(user);
     navigate("/myaccount");
   };
-  console.log({ errors });
 
   return (
     <>
