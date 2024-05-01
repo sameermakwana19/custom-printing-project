@@ -120,7 +120,7 @@ const Login = () => {
             </Link>
           </div>
         </div>
-        <DevTool control={control} />
+        {/* <DevTool control={control} /> */}
       </div>
     </>
   );

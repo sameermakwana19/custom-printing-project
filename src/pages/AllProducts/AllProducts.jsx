@@ -19,7 +19,6 @@ import {
 } from "../../queries/getAllProducts";
 import NotFound from "../NotFound/NotFound";
 import { FilterContext } from "../../context/products/FilterProvider";
-import { set } from "firebase/database";
 import { getQueryParams, sortProducts } from "../../utlis/helper";
 
 const PRODUCT_PER_PAGE = 9;
