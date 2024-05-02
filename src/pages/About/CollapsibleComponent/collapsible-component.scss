@@ -28,18 +28,11 @@
   opacity: 0;
   overflow: hidden;
   max-height: 0vh;
-  transition: all 0.9s ease-out;
-  // transition: all 1s linear;
+  transition: max-height 1s cubic-bezier(1, 0, 0, 1);
 
   p {
     padding: 2.5rem 3rem;
   }
-}
-
-.collapsible__body--expanded {
-  opacity: 1;
-  max-height: 100%;
-  transition: all 1s ease-in;
 }
 
 .collapsible--expanded {
@@ -49,8 +42,8 @@
 
   .collapsible__body {
     opacity: 1;
-    max-height: 400px;
-    // transition: all 1s cubic-bezier(1, 0, 0, 1);
+    max-height: 100vh;
+    // transition: height 1s cubic-bezier(1, 0, 0, 1);
   }
 
   p {

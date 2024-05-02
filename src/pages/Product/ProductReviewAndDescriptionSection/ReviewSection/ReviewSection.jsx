@@ -11,6 +11,7 @@ import {
 import useCurrentLocation from "../../../../hooks/useCurrentLocation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useUserContext } from "../../../../context/User/UserContext";
+import Heading from "../../../../components/ui/Heading/Heading";
 
 const ReviewSection = () => {
   const [ratingValue, setRatingValue] = useState(4);
@@ -23,7 +24,22 @@ const ReviewSection = () => {
   const id = useId();
   // const form = useForm();
   // const { register, handleSubmit, control, formState } = form;
-  const { register, handleSubmit, control, formState, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState,
+    reset,
+    watch,
+    getValues,
+  } = useForm({
+    defaultValues: {
+      review: "",
+      username: user?.displayName || "",
+      email: user?.email || "",
+      "save-my-name": false,
+    },
+  });
   const { errors } = formState;
 
   const {
@@ -43,6 +59,7 @@ const ReviewSection = () => {
         setAddReviewError(error);
         return;
       }
+      queryClient.invalidateQueries([productId, "reviews"]);
       queryClient.setQueryData([productId, "reviews"], (oldData) => {
         return [...oldData, data];
       });
@@ -58,20 +75,11 @@ const ReviewSection = () => {
   }
 
   const submitHandler = (data) => {
-    if (!user) {
-      setAddReviewError("You need to login to review the product");
-      return;
-    }
-
-    if (data["save-my-name"] && (!data["username"] || !data["email"])) {
-      setAddReviewError(
-        "Please enter the username and email or uncheck the checkbox"
-      );
-      return;
-    }
-    if (data["save-my-name"] && data["username"] && data["email"]) {
+    if (data["save-my-name"]) {
       mutate({
-        ...data,
+        review: data["review"],
+        username: user.displayName,
+        email: user.email,
         productId: productId,
         rating: ratingValue,
         userId: user.uid,
@@ -81,13 +89,17 @@ const ReviewSection = () => {
 
     mutate({
       review: data["review"],
-      username: "anonymous",
+      username: "User" + crypto.randomUUID().split("-")[0],
       email: "anonymous",
       productId: productId,
       rating: ratingValue,
       userId: user.uid,
     });
+
+    setAddReviewError(null);
   };
+
+  console.log({ username: watch("username"), user });
   return (
     <div className="review-section">
       <div className="reviews">
@@ -100,64 +112,82 @@ const ReviewSection = () => {
           </div>
         ))}
       </div>
-      <div className="review-form">
-        <p className="review-form__heading">
-          {reviews.length === 0
-            ? "Be the first to review “Black Printed Coffee Mug"
-            : "Write a review about the product"}
-        </p>
-        <p className="review-form__sub-heading">
-          Your email address will not be published. Required fields are marked *
-        </p>
-        {addReviewerror && <p className="error">{`${addReviewerror}`}</p>}
-        <form onSubmit={handleSubmit(submitHandler)}>
-          <Rating
-            ratingValue={ratingValue}
-            setRatingValue={setRatingValue}
-            isRatingChangeable={true}
-          />
+      {user && (
+        <div className="review-form">
+          <p className="review-form__heading">
+            {reviews.length === 0
+              ? "Be the first to review “Black Printed Coffee Mug"
+              : "Write a review about the product"}
+          </p>
+          <p className="review-form__sub-heading">
+            Your email address will not be published. Required fields are marked
+            *
+          </p>
+          {addReviewerror && <p className="error">{`${addReviewerror}`}</p>}
+          <form onSubmit={handleSubmit(submitHandler)}>
+            <Rating
+              ratingValue={ratingValue}
+              setRatingValue={setRatingValue}
+              isRatingChangeable={true}
+            />
 
-          <Input
-            label="Your Review"
-            id={`${id}-review`}
-            isMandatory={true}
-            type="textarea"
-            {...register("review", {
-              required: "This field is required",
-              minLength: {
-                value: 10,
-                message: "Minimum length should be 10",
-              },
-              maxLength: {
-                value: 100,
-                message: "Maximum length should be 100",
-              },
-            })}
-          />
-          <p className="error">{errors["review"]?.message}</p>
+            <Input
+              label="Your Review"
+              id={`${id}-review`}
+              isMandatory={true}
+              type="textarea"
+              {...register("review", {
+                required: "This field is required",
+                minLength: {
+                  value: 10,
+                  message: "Minimum length should be 10",
+                },
+                maxLength: {
+                  value: 100,
+                  message: "Maximum length should be 100",
+                },
+              })}
+            />
+            <p className="error">{errors["review"]?.message}</p>
 
-          <Input label="Name" id={`${id}-name`} {...register("username")} />
+            {watch("save-my-name") && (
+              <>
+                <Input
+                  label="Name"
+                  isMandatory={true}
+                  id={`${id}-name`}
+                  {...register("username", {
+                    required: "Please enter your email",
+                    disabled: true,
+                  })}
+                />
+                <p className="error">{errors["name"]?.message}</p>
 
-          <Input
-            label="Email"
-            id={`${id}-email`}
-            type="email"
-            {...register("email")}
-          />
-          <p className="error">{errors["email"]?.message}</p>
+                <Input
+                  label="Email"
+                  id={`${id}-email`}
+                  isMandatory={true}
+                  type="email"
+                  {...register("email", {
+                    disabled: true,
+                  })}
+                />
+                <p className="error">{errors["email"]?.message}</p>
+              </>
+            )}
 
-          <Input
-            label="Show my username and email in reviews section"
-            id={`${id}-save-my-name`}
-            type="checkbox"
-            {...register("save-my-name")}
-          />
-          <p className="error">{errors["save-my-name"]?.message}</p>
+            <Input
+              label="Show my username and email in reviews section"
+              id={`${id}-save-my-name`}
+              type="checkbox"
+              {...register("save-my-name")}
+            />
 
-          <Button isIconPresent={false}>submit</Button>
-        </form>
-      </div>
-      {/* <DevTool control={control} /> */}
+            <Button isIconPresent={false}>submit</Button>
+          </form>
+        </div>
+      )}
+      <DevTool control={control} />
     </div>
   );
 };

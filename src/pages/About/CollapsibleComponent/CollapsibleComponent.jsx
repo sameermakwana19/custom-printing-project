@@ -24,13 +24,7 @@ const CollapsibleComponent = ({
         )}
         {heading ?? `Heading`}
       </div>
-      <div
-        className={`collapsible__body ${
-          collapisibleExpandedIndex === currentIndex
-            ? "collapsible__body--expanded"
-            : ""
-        }`}
-      >
+      <div className={`collapsible__body`}>
         <p>
           {content ??
             `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur,

@@ -44,7 +44,7 @@ const AllProducts = () => {
   const endpoint = useCurrentLocation();
 
   if (AVAILABLE_ENDPOINTS.indexOf(endpoint) === -1) {
-    throw new Error("Invalid endpoint");
+    return <NotFound />;
   }
 
   const { data, isLoading, error } = useQuery({
@@ -65,7 +65,6 @@ const AllProducts = () => {
       const filteredProducts = data.filter(
         (product) => product.price < filterValue
       );
-
       const sortedProducts = sortProducts(filteredProducts, sortBy);
       setProducts(sortedProducts);
       setTotalProducts(filteredProducts.length);
@@ -141,7 +140,11 @@ const AllProducts = () => {
           <div className="heading">
             <p>{endpoint}</p>
           </div>
-          <SearchInput data={data} setProducts={setProducts} />
+          <SearchInput
+            data={data}
+            setProducts={setProducts}
+            setTotalProducts={setTotalProducts}
+          />
         </div>
         {products?.length !== 0 ? (
           <main>
@@ -166,6 +169,7 @@ export default AllProducts;
 
 function ContentDetails({ setSortBy, sortBy }) {
   const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <div className="content-details">
       <div className="current-page">Showing 1-9 of 11 </div>
