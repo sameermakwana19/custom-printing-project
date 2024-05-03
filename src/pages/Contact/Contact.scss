@@ -73,12 +73,17 @@
     width: 100%;
   }
 
+  form {
+    width: 100%;
+  }
+
   input,
   textarea {
     width: 100%;
     outline: none;
     border: 1px solid rgba(122, 122, 122, 0.2);
     padding: 1.2rem;
+    margin-top: 2rem;
     font-size: var(--sm-400);
     font-family: "Poppins";
 
@@ -86,4 +91,19 @@
       border-color: green;
     }
   }
+}
+
+.toast {
+  z-index: 100000;
+  position: fixed;
+  padding: 2rem 4rem 2rem 6rem;
+  border-radius: 5px;
+  font-size: var(--sm-600);
+  font-weight: 500;
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--color-primary);
+  bottom: 10%;
+  right: 5%;
+  color: var(--background-color);
 }

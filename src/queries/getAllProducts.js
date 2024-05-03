@@ -1,4 +1,4 @@
-import { getDocs } from "firebase/firestore";
+import { getDocs, orderBy, where } from "firebase/firestore";
 
 import {
   hottestDealsColRef,
@@ -6,6 +6,7 @@ import {
   productColRef,
   tshirtColRef,
 } from "../firebase";
+import { query } from "firebase/database";
 
 export const getAllMugsFromFirestore = async () => {
   const mugs = [];
@@ -43,4 +44,46 @@ export const getAllHottestDealsFromFirestore = async () => {
     hottestDeals.push({ ...doc.data() });
   });
   return hottestDeals;
+};
+
+export const getFilteredAndSortedProducts = async ({
+  collection,
+  filterValue,
+  sortBy,
+}) => {
+  console.log({ collection, filterValue, sortBy });
+
+  const collections = {
+    mugs: mugsColRef,
+    tshirts: tshirtColRef,
+    allproducts: productColRef,
+  };
+
+  const queries = {
+    default: query(
+      collections[collection],
+      where("price", "<=", filterValue),
+      orderBy("rating", "desc")
+    ),
+    "price-asc": query(
+      collections[collection],
+      where("price", "<=", filterValue),
+      orderBy("price")
+    ),
+    "price-desc": query(
+      collections[collection],
+      where("price", "<=", filterValue),
+      orderBy("price", "desc")
+    ),
+  };
+
+  console.log({ demo: collections[collection] });
+  const products = [];
+  const querySnapshot = await getDocs(query(queries[sortBy]));
+  querySnapshot.docs.forEach((doc) => {
+    products.push({ ...doc.data() });
+  });
+
+  console.log({ products });
+  return products;
 };

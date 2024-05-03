@@ -16,18 +16,13 @@ import {
   getAllMugsFromFirestore,
   getAllProductsFromFirestore,
   getAllTshirtsFromFirestore,
+  getFilteredAndSortedProducts,
 } from "../../queries/getAllProducts";
 import NotFound from "../NotFound/NotFound";
 import { FilterContext } from "../../context/products/FilterProvider";
 import { getQueryParams, sortProducts } from "../../utlis/helper";
 
 const PRODUCT_PER_PAGE = 9;
-
-const QUERY_FUNCTIONS_OBJECT = {
-  allproducts: getAllProductsFromFirestore,
-  mugs: getAllMugsFromFirestore,
-  tshirts: getAllTshirtsFromFirestore,
-};
 
 const AVAILABLE_ENDPOINTS = ["allproducts", "mugs", "tshirts"];
 
@@ -36,7 +31,7 @@ const AllProducts = () => {
   const [totalProducts, setTotalProducts] = useState(20);
   const [products, setProducts] = useState(null);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const [sortBy, setSortBy] = useState(searchParams.get("sortby") || "default");
   const { filterValue } = useContext(FilterContext);
@@ -49,7 +44,12 @@ const AllProducts = () => {
 
   const { data, isLoading, error } = useQuery({
     queryKey: [endpoint],
-    queryFn: QUERY_FUNCTIONS_OBJECT[endpoint],
+    queryFn: () =>
+      getFilteredAndSortedProducts({
+        collection: endpoint,
+        filterValue,
+        sortBy,
+      }),
   });
 
   useEffect(() => {
@@ -62,19 +62,6 @@ const AllProducts = () => {
 
   useEffect(() => {
     if (data) {
-      const filteredProducts = data.filter(
-        (product) => product.price < filterValue
-      );
-      const sortedProducts = sortProducts(filteredProducts, sortBy);
-      setProducts(sortedProducts);
-      setTotalProducts(filteredProducts.length);
-    }
-
-    return () => {};
-  }, [data]);
-
-  useEffect(() => {
-    if (data) {
       setPage(1);
       setTotalProducts(data.length);
       setProducts(data);
@@ -83,31 +70,19 @@ const AllProducts = () => {
   }, [endpoint]);
 
   useEffect(() => {
-    if (data) {
-      const filteredProducts = data.filter(
-        (product) => product.price < filterValue
-      );
-
-      const sortedProducts =
-        sortBy !== "default"
-          ? sortProducts(filteredProducts, sortBy)
-          : filteredProducts;
-      setProducts(sortedProducts);
-
-      setTotalProducts(filteredProducts.length);
-    }
-  }, [filterValue, sortBy]);
-
-  useEffect(() => {
-    if (sortBy && products) {
-      const sortedProducts = [...products];
-      if (sortBy === "default") {
-        return;
+    (async () => {
+      if (data) {
+        console.log({ endpoint });
+        const res = await getFilteredAndSortedProducts({
+          collection: endpoint,
+          filterValue,
+          sortBy,
+        });
+        setProducts(res);
+        setTotalProducts(res.length);
       }
-      const newSortedProducts = sortProducts(sortedProducts, sortBy);
-      setProducts(newSortedProducts);
-    }
-  }, [sortBy]);
+    })();
+  }, [filterValue, sortBy, data]);
 
   let pageNumbersArray = useMemo(
     () =>
@@ -128,7 +103,7 @@ const AllProducts = () => {
     return <NotFound />;
   }
 
-  if (isLoading) {
+  if (isLoading || !products) {
     return <div>Loading...</div>;
   }
 
@@ -141,7 +116,9 @@ const AllProducts = () => {
             <p>{endpoint}</p>
           </div>
           <SearchInput
+            products={products}
             data={data}
+            sortBy={sortBy}
             setProducts={setProducts}
             setTotalProducts={setTotalProducts}
           />
@@ -247,7 +224,7 @@ function ProductsContainer({ products, page }) {
     <div className="product-container">
       {products
         ?.slice(initialProductNumber, finalProductNumber)
-        .map((product, index) => (
+        .map((product) => (
           <Link
             to={`/${product.category.toLowerCase()}/${product?.id}`}
             key={product.id}

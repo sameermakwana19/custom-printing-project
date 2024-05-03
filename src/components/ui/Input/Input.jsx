@@ -4,6 +4,7 @@ const Input = (
   { label, id, type = "text", isMandatory = false, ...delegated },
   ref
 ) => {
+  const Tag = type === "textarea" ? "textarea" : "input";
   return (
     <div
       className={`${type === "checkbox" ? "checkbox-input-grp" : "input-grp"}`}
@@ -13,7 +14,7 @@ const Input = (
           {label} {isMandatory && <span className="asterisk">*</span>}
         </label>
       )}
-      <input ref={ref} type={type} name="" id={id} {...delegated} />
+      <Tag ref={ref} type={type} name="" id={id} {...delegated} />
     </div>
   );
 };

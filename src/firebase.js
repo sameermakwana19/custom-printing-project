@@ -15,6 +15,7 @@ export const productColRef = collection(db, "products");
 export const hottestDealsColRef = collection(db, "hottest-deals");
 export const cartColRef = collection(db, "cart");
 export const reviewsColRef = collection(db, "reviews");
+export const queriesColRef = collection(db, "queries");
 
 // const mugsData = [
 //   {

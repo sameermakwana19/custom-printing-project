@@ -103,14 +103,18 @@ const ReviewSection = () => {
   return (
     <div className="review-section">
       <div className="reviews">
-        {reviews.map((review, index) => (
-          <div className="review" key={index}>
-            <p className="username">Username: {review.username}</p>
-            <p className="email">Email : {review.email}</p>
-            <Rating ratingValue={review.rating} isRatingChangeable={false} />
-            <p className="content">Review: {review.review}</p>
-          </div>
-        ))}
+        {reviews.length === 0 ? (
+          <Heading>No Reviews for the Products</Heading>
+        ) : (
+          reviews.map((review, index) => (
+            <div className="review" key={index}>
+              <p className="username">Username: {review.username}</p>
+              <p className="email">Email : {review.email}</p>
+              <Rating ratingValue={review.rating} isRatingChangeable={false} />
+              <p className="content">Review: {review.review}</p>
+            </div>
+          ))
+        )}
       </div>
       {user && (
         <div className="review-form">

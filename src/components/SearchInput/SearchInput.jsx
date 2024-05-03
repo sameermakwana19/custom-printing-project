@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "../ui/Button/Button";
 import { useSearchParams } from "react-router-dom";
 import { getQueryParams } from "../../utlis/helper";
-import { set } from "firebase/database";
+import { FilterContext } from "../../context/products/FilterProvider";
 
-const SearchInput = ({ setProducts, data, setTotalProducts }) => {
+const SearchInput = ({ setProducts, products, data, setTotalProducts }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [value, setValue] = useState(searchParams.get("q") || "");
   const originalProducts = [...data];
@@ -17,19 +17,21 @@ const SearchInput = ({ setProducts, data, setTotalProducts }) => {
   useEffect(() => {
     if (searchParams.get("q") === null) return;
 
-    const updatedProducts = originalProducts.filter(
+    const updatedProducts = products.filter(
       (product) =>
         product.name.toLowerCase().indexOf(searchParams.get("q")) !== -1
     );
-    console.log(updatedProducts);
+    console.log({ updatedProducts, products });
     setProducts(updatedProducts);
     setTotalProducts(updatedProducts.length);
-  }, [searchParams.get("q")]);
+  }, [`${searchParams.get("q")}-${products}`]);
 
   function updateSearch(value) {
     setValue(value ?? "");
     if (!value) {
       setProducts(originalProducts);
+      setTotalProducts(originalProducts.length);
+
       const params = getQueryParams();
       delete params.q;
       setSearchParams({ ...params });

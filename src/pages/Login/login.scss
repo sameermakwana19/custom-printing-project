@@ -4,16 +4,15 @@
   background-color: var(--background-color);
 }
 
+.error {
+  color: var(--color-tertiary);
+  font-weight: 500;
+  font-size: var(--sm-600);
+}
 .login {
   @include flex-layout($direction: column, $align: flex-start);
   @include full-width-container;
   padding: 6rem 2rem;
-
-  .error {
-    color: var(--color-tertiary);
-    font-weight: 500;
-    font-size: var(--sm-600);
-  }
 
   .heading {
     font-size: var(--md-600);
