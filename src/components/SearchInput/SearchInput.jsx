@@ -21,6 +21,7 @@ const SearchInput = ({ setProducts, data, setTotalProducts }) => {
       (product) =>
         product.name.toLowerCase().indexOf(searchParams.get("q")) !== -1
     );
+    console.log(updatedProducts);
     setProducts(updatedProducts);
     setTotalProducts(updatedProducts.length);
   }, [searchParams.get("q")]);
