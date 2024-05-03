@@ -10,7 +10,9 @@ import { registerQuery } from "../../queries/contact";
 import { set } from "firebase/database";
 
 const Contact = () => {
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit, formState } = useForm({
+    mode: "onChange",
+  });
   const [toast, setToast] = useState(null);
 
   const { errors, isSubmitting, isValid } = formState;
