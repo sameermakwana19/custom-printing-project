@@ -99,7 +99,6 @@ const ReviewSection = () => {
     setAddReviewError(null);
   };
 
-  console.log({ username: watch("username"), user });
   return (
     <div className="review-section">
       <div className="reviews">

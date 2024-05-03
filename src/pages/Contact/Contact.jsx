@@ -22,11 +22,9 @@ const Contact = () => {
     const { error, data: resData } = res;
 
     if (error) {
-      console.log("error", error);
       setToast(error);
     } else {
       setToast("Query submitted successfully");
-      console.log("data", resData);
     }
   };
 

@@ -72,7 +72,6 @@ const AllProducts = () => {
   useEffect(() => {
     (async () => {
       if (data) {
-        console.log({ endpoint });
         const res = await getFilteredAndSortedProducts({
           collection: endpoint,
           filterValue,

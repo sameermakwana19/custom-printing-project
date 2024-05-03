@@ -51,8 +51,6 @@ export const getFilteredAndSortedProducts = async ({
   filterValue,
   sortBy,
 }) => {
-  console.log({ collection, filterValue, sortBy });
-
   const collections = {
     mugs: mugsColRef,
     tshirts: tshirtColRef,
@@ -77,13 +75,11 @@ export const getFilteredAndSortedProducts = async ({
     ),
   };
 
-  console.log({ demo: collections[collection] });
   const products = [];
   const querySnapshot = await getDocs(query(queries[sortBy]));
   querySnapshot.docs.forEach((doc) => {
     products.push({ ...doc.data() });
   });
 
-  console.log({ products });
   return products;
 };
