@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import Button from "../ui/Button/Button";
 import { useSearchParams } from "react-router-dom";
 import { getQueryParams } from "../../utlis/helper";
-import { FilterContext } from "../../context/products/FilterProvider";
 
 const SearchInput = ({ setProducts, products, data, setTotalProducts }) => {
   const [searchParams, setSearchParams] = useSearchParams();

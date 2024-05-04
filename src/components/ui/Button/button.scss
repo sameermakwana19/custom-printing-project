@@ -13,6 +13,8 @@
   display: block;
   border-radius: 5px;
 
+  @include flex-layout($justify: flex-end, $align: center);
+
   @include flex-layout;
   transition: all 0.1s ease-in-out;
 
@@ -26,6 +28,27 @@
     color: var(--color-primary);
     cursor: not-allowed;
     opacity: 0.5;
+    position: relative;
+
+    &:hover .tooltip {
+      opacity: 1;
+    }
+
+    .tooltip {
+      position: absolute;
+      bottom: 00%;
+      border-radius: 5px;
+      font-size: var(--sm-400);
+      right: -100%;
+      font-weight: 500;
+      padding: 0.4rem;
+      color: black;
+      background-color: var(--color-primary);
+    }
+  }
+
+  .tooltip {
+    opacity: 0;
   }
 
   &:hover {
