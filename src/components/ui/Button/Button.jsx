@@ -13,6 +13,7 @@ const Button = ({
   variant = "default",
   isIconPresent = true,
   children,
+  toolTip,
   ...delegated
 }) => {
   if (!VARIANTS[variant]) {
@@ -21,10 +22,13 @@ const Button = ({
   }
 
   return (
-    <button className={VARIANTS[variant]} {...delegated}>
-      {children}
-      {isIconPresent && rightIcon}
-    </button>
+    <>
+      <button className={VARIANTS[variant]} {...delegated}>
+        {children}
+        {isIconPresent && rightIcon}
+        {toolTip && <p className="tooltip">{toolTip}</p>}
+      </button>
+    </>
   );
 };
 

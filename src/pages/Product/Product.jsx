@@ -186,13 +186,15 @@ function ProductOverview({
               />
             </div>
             <Button
+              toolTip={user ? "" : "Login to add to cart"}
+              disabled={!user}
               onClick={(e) => {
                 e.preventDefault();
 
-                if (!user) {
-                  navigate("/login");
-                  return;
-                }
+                // if (!user) {
+                //   navigate("/login");
+                //   return;
+                // }
                 mutate({
                   imageUrl,
                   oldPrice,

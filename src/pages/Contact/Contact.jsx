@@ -6,20 +6,41 @@ import Backdrop from "../../components/ui/Backdrop/Backdrop";
 import Button from "../../components/ui/Button/Button";
 import Input from "../../components/ui/Input/Input";
 import { useForm } from "react-hook-form";
-import { registerQuery } from "../../queries/contact";
-import { set } from "firebase/database";
+import { getQueries, registerQuery } from "../../queries/contact";
+import { useUserContext } from "../../context/User/UserContext";
+import { get } from "firebase/database";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+
+const WAIT_DURATION = 20;
 
 const Contact = () => {
+  const { user } = useUserContext();
+  const [waitTime, setWaitTime] = useState(null);
   const { register, handleSubmit, formState } = useForm({
+    defaultValues: {
+      email: user?.email,
+    },
     mode: "onChange",
   });
   const [toast, setToast] = useState(null);
 
   const { errors, isSubmitting, isValid } = formState;
+  const queryClient = useQueryClient();
+
+  const {
+    data: lastQueryTime,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["queries", user?.uid],
+    queryFn: () => getQueries(user?.uid),
+  });
 
   const onSubmitHandler = async (data) => {
-    const res = await registerQuery(data);
-    const { error, data: resData } = res;
+    const res = await registerQuery({ ...data, uid: user?.uid });
+    queryClient.invalidateQueries(["queries", user?.uid]);
+    const { error } = res;
 
     if (error) {
       setToast(error);
@@ -27,6 +48,28 @@ const Contact = () => {
       setToast("Query submitted successfully");
     }
   };
+
+  useEffect(() => {
+    if (lastQueryTime) {
+      const diff = Math.floor((Date.now() / 1000 - lastQueryTime) / 60);
+      if (diff <= 20) {
+        console.log({ diff });
+        setWaitTime(WAIT_DURATION - diff);
+      }
+    }
+  }, [lastQueryTime]);
+
+  useEffect(() => {
+    if (waitTime) {
+      const id = setTimeout(() => {
+        setWaitTime((prev) => prev - 1);
+      }, 1000 * 60);
+
+      return () => {
+        clearTimeout(id);
+      };
+    }
+  }, [waitTime]);
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -38,9 +81,19 @@ const Contact = () => {
     };
   }, [toast]);
 
+  if (isError) {
+    return <p>{error.message}</p>;
+  }
+
+  console.log({ lastQueryTime });
   return (
     <>
       {toast && <p className="toast">{toast}</p>}
+      {waitTime && (
+        <p className="wait-time-text">
+          You can send another query after {waitTime} minutes .
+        </p>
+      )}
       <Backdrop />
       <div className="contact">
         <div className="contact__left">
@@ -71,14 +124,9 @@ const Contact = () => {
           <form onSubmit={handleSubmit(onSubmitHandler)}>
             <Input
               type="text"
+              disabled={user}
               placeholder="Your Email"
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                  message: "Invalid email address",
-                },
-              })}
+              {...register("email")}
             />
             <p className="error">{errors.email?.message}</p>
             <Input
@@ -105,7 +153,13 @@ const Contact = () => {
               })}
             />
             <p className="error">{errors.message?.message}</p>
-            <Button disabled={!isValid || isSubmitting} isIconPresent={false}>
+            <Button
+              disabled={
+                !isValid || isSubmitting || !user || isLoading || waitTime
+              }
+              toolTip={!user ? "Login to send message" : ""}
+              isIconPresent={false}
+            >
               send message
             </Button>
           </form>
