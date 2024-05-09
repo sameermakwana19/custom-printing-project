@@ -1,26 +1,16 @@
-import React, {
-  useContext,
-  useEffect,
-  useMemo,
-  useReducer,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import BreadCrumb from "../../components/ui/BreadCrumb/BreadCrumb";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import { Link, useSearchParams } from "react-router-dom";
-import { Query, useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
-import {
-  getAllMugsFromFirestore,
-  getAllProductsFromFirestore,
-  getAllTshirtsFromFirestore,
-  getFilteredAndSortedProducts,
-} from "../../queries/getAllProducts";
+import { getFilteredAndSortedProducts } from "../../queries/getAllProducts";
 import NotFound from "../NotFound/NotFound";
 import { FilterContext } from "../../context/products/FilterProvider";
-import { getQueryParams, sortProducts } from "../../utlis/helper";
+import { getQueryParams } from "../../utlis/helper";
+import Heading from "../../components/ui/Heading/Heading";
 
 const PRODUCT_PER_PAGE = 9;
 
@@ -50,6 +40,7 @@ const AllProducts = () => {
         filterValue,
         sortBy,
       }),
+    placeholderData: keepPreviousData,
   });
 
   useEffect(() => {
@@ -82,6 +73,10 @@ const AllProducts = () => {
       }
     })();
   }, [filterValue, sortBy, data]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   let pageNumbersArray = useMemo(
     () =>
@@ -134,7 +129,7 @@ const AllProducts = () => {
             />
           </main>
         ) : (
-          <div>No products found</div>
+          <Heading>No products found</Heading>
         )}
       </div>
     </>
@@ -153,7 +148,7 @@ function ContentDetails({ setSortBy, sortBy }) {
         <select
           name="sortby"
           onChange={(e) => {
-            setSearchParams((searchParams) => {
+            setSearchParams(() => {
               const QueryParams = getQueryParams();
               e.target.value === "default"
                 ? delete QueryParams["sortby"]

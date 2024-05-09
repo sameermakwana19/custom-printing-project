@@ -142,7 +142,10 @@ function ProductOverview({
       setItemAddedToCart(true);
     },
   });
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   if (isError) {
     return <div>Error...{error.message}</div>;
@@ -190,11 +193,6 @@ function ProductOverview({
               disabled={!user}
               onClick={(e) => {
                 e.preventDefault();
-
-                // if (!user) {
-                //   navigate("/login");
-                //   return;
-                // }
                 mutate({
                   imageUrl,
                   oldPrice,

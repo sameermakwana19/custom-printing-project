@@ -12,7 +12,12 @@ import {
   getCartTotalAndNoOfItems,
   updateQuantityInCartInFirestore,
 } from "../../../queries/CartQueries";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import Heading from "../../../components/ui/Heading/Heading";
 import { TotalAmountContext } from "../../../context/TotalAmount/TotalAmountProvider";
 import { UserContext } from "../../../context/User/UserContext";
@@ -35,7 +40,7 @@ const ProductTable = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["cart"],
     queryFn: () => getAllCartProductsFromFirestore(uid),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   });
 
   const { data: OriginalCartData } = useQuery({
@@ -64,7 +69,7 @@ const ProductTable = () => {
   }
 
   if (data.length === 0) {
-    return <Heading>No items in the cart</Heading>;
+    return <Heading id="no-item-in-cart-text">No Products in the cart</Heading>;
   }
 
   return (
@@ -85,56 +90,58 @@ const ProductTable = () => {
         ))}
       </div>
       <div className="product-table__footer">
-        <div className="coupon-container">
-          <input
-            type="text"
-            className="coupon-input"
-            placeholder="Coupon Code"
-            value={couponCode}
-            disabled={isDiscountApplied}
-            onChange={(e) => {
-              setCouponCode(e.target.value.toUpperCase());
-            }}
-          />
-          {!isDiscountApplied ? (
-            <Button
-              isIconPresent={false}
-              id="apply-coupon-btn"
-              onClick={() => {
-                const { isValidCouponCode, discount } =
-                  checkCouponCode(couponCode);
-
-                if (isValidCouponCode) {
-                  setTotal((prev) => prev - calculateDiscount(prev, discount));
-                  setIsDiscountApplied(true);
-                  setIsWrongCoupon(false);
-
-                  return;
-                }
-
-                setIsWrongCoupon(true);
+        <form onSubmit={(e) => e.preventDefault()}>
+          <div className="coupon-container">
+            <input
+              type="text"
+              className="coupon-input"
+              placeholder="Coupon Code"
+              value={couponCode}
+              disabled={isDiscountApplied}
+              onChange={(e) => {
+                setCouponCode(e.target.value.toUpperCase());
               }}
-            >
-              Apply coupon
-            </Button>
-          ) : (
-            <Button
-              isIconPresent={false}
-              onClick={() => {
-                setTotal(OriginalCartData.total);
-                setIsDiscountApplied(false);
-                setCouponCode("");
-              }}
-            >
-              Remove Coupon
-            </Button>
-          )}
-          {isWrongCoupon && <p style={{ color: "red" }}>Invalid coupon code</p>}
-        </div>
+            />
+            {!isDiscountApplied ? (
+              <Button
+                isIconPresent={false}
+                id="apply-coupon-btn"
+                onClick={() => {
+                  const { isValidCouponCode, discount } =
+                    checkCouponCode(couponCode);
 
-        {/* <Button isIconPresent={false} variant="small">
-          Update Cart
-        </Button> */}
+                  if (isValidCouponCode) {
+                    setTotal(
+                      (prev) => prev - calculateDiscount(prev, discount)
+                    );
+                    setIsDiscountApplied(true);
+                    setIsWrongCoupon(false);
+
+                    return;
+                  }
+
+                  setIsWrongCoupon(true);
+                }}
+              >
+                Apply coupon
+              </Button>
+            ) : (
+              <Button
+                isIconPresent={false}
+                onClick={() => {
+                  setTotal(OriginalCartData.total);
+                  setIsDiscountApplied(false);
+                  setCouponCode("");
+                }}
+              >
+                Remove Coupon
+              </Button>
+            )}
+            {isWrongCoupon && (
+              <p style={{ color: "red" }}>Invalid coupon code</p>
+            )}
+          </div>
+        </form>
       </div>
     </div>
   );
@@ -152,12 +159,13 @@ function CartProductDetail({
   isOnSale,
 }) {
   const queryClient = useQueryClient();
-  const { user } = useContext(UserContext);
-  const uid = user ? user.uid : null;
+  const {
+    user: { uid },
+  } = useContext(UserContext);
 
   const { mutate, isError } = useMutation({
     mutationFn: deleteProductFromCartInFirestore,
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries(["cart"]);
     },
   });

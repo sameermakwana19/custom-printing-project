@@ -84,8 +84,6 @@ export const quantityPresentInCartInFirestore = async ({ id, uid }) => {
 };
 
 export const deleteProductFromCartInFirestore = async ({ id, uid }) => {
-  // const querySnapshot = await getDocs(cartColRef);
-
   const querySnapshot = await getDocs(
     query(cartColRef, where("uid", "==", uid))
   );

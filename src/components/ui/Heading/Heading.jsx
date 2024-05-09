@@ -7,7 +7,9 @@ const Heading = ({ children, variant, ...delegated }) => {
   return Tag !== "p" ? (
     <Tag {...delegated}>{children}</Tag>
   ) : (
-    <p className="heading">{children}</p>
+    <p className="heading" {...delegated}>
+      {children}
+    </p>
   );
 };
 

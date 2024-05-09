@@ -1,3 +1,9 @@
+#no-item-in-cart-text {
+  @include responsive(medium) {
+    display: none;
+  }
+}
+
 .product-table {
   @include flex-layout($direction: column);
   @include full-width-container($max: 1200px);
@@ -79,17 +85,6 @@
       }
     }
 
-    // .product-img {
-    //   height: 100%;
-
-    //   img {
-    //     max-width: 7rem;
-    //     object-fit: cover;
-    //     width: 100%;
-    //     height: 100%;
-    //   }
-    // }
-
     .product-name {
       text-align: left;
       color: var(--color-tertiary);
@@ -113,6 +108,9 @@
     width: 100%;
     padding: 0 2rem;
     @include flex-layout($justify: space-between);
+    form {
+      width: 100%;
+    }
     .coupon-container {
       width: 80%;
       @include flex-layout($justify: flex-start);

@@ -1,9 +1,11 @@
 import React from "react";
 import DividerLine from "../ui/DividerLine/DividerLine";
 import Button from "../ui/Button/Button";
+import { Link } from "react-router-dom";
 
 const Banner = ({
   images,
+  linkTo = "/allproducts",
   background,
   tagline,
   heading,
@@ -26,9 +28,11 @@ const Banner = ({
           <p className="banner__tagline">{tagline}</p>
           <p className="banner__heading">{heading}</p>
           <p className="banner__sub-heading">{subHeading}</p>
-          <Button icon={<i className="fa-solid fa-chevron-right fa-sm"></i>}>
-            {buttonText}
-          </Button>
+          <Link to={linkTo ?? ""}>
+            <Button icon={<i className="fa-solid fa-chevron-right fa-sm"></i>}>
+              {buttonText}
+            </Button>
+          </Link>
         </div>
         <div className="banner__content__right">
           {images && (

@@ -14,7 +14,10 @@ const SearchInput = ({ setProducts, products, data, setTotalProducts }) => {
   };
 
   useEffect(() => {
-    if (searchParams.get("q") === null) return;
+    if (searchParams.get("q") === null) {
+      setValue("");
+      return;
+    }
 
     const updatedProducts = products.filter(
       (product) =>
@@ -35,7 +38,6 @@ const SearchInput = ({ setProducts, products, data, setTotalProducts }) => {
       setSearchParams({ ...params });
     }
   }
-
   return (
     <>
       <form

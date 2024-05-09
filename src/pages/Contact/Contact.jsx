@@ -39,7 +39,7 @@ const Contact = () => {
 
   const onSubmitHandler = async (data) => {
     const res = await registerQuery({ ...data, uid: user?.uid });
-    queryClient.invalidateQueries(["queries", user?.uid]);
+    queryClient.invalidateQueries(["queries", user.uid]);
     const { error } = res;
 
     if (error) {
@@ -54,7 +54,6 @@ const Contact = () => {
     if (lastQueryTime) {
       const diff = Math.floor((Date.now() / 1000 - lastQueryTime) / 60);
       if (diff <= 20) {
-        console.log({ diff });
         setWaitTime(WAIT_DURATION - diff);
       }
     }

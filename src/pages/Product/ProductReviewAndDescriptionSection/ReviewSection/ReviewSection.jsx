@@ -190,7 +190,7 @@ const ReviewSection = () => {
           </form>
         </div>
       )}
-      <DevTool control={control} />
+      {/* <DevTool control={control} /> */}
     </div>
   );
 };
