@@ -25,6 +25,7 @@ const AllProducts = () => {
   const [totalProducts, setTotalProducts] = useState(20);
   const [products, setProducts] = useState(null);
   const [sortBy, setSortBy] = useState(searchParams.get("sortby") || "default");
+  console.log({ filterValue });
 
   const { data, isLoading, error } = useQuery({
     queryKey: [endpoint],
@@ -64,12 +65,20 @@ const AllProducts = () => {
           filterValue,
           sortBy,
         });
+        const params = getQueryParams();
+        if (params.q) {
+          res = res.filter((product) =>
+            product.name.toLowerCase().includes(params.q.toLowerCase())
+          );
+        }
+        console.log({ res });
         setProducts(res);
         setTotalProducts(res.length);
+        console.log("2");
       }
     })();
     // eslint-disable-next-line
-  }, [filterValue, sortBy, data]);
+  }, [filterValue, sortBy, data, searchParams.get("q")]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -121,7 +130,11 @@ const AllProducts = () => {
         </div>
         {products?.length !== 0 ? (
           <main>
-            <ContentDetails setSortBy={setSortBy} sortBy={sortBy} />
+            <ContentDetails
+              setSortBy={setSortBy}
+              sortBy={sortBy}
+              length={products?.length}
+            />
             <ProductsContainer products={products} page={page} />
 
             <PageNumbersButtons
@@ -140,13 +153,15 @@ const AllProducts = () => {
 
 export default AllProducts;
 
-function ContentDetails({ setSortBy, sortBy }) {
+function ContentDetails({ setSortBy, sortBy, length }) {
   // eslint-disable-next-line
   const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <div className="content-details">
-      <div className="current-page">Showing 1-9 of 11 </div>
+      <div className="current-page">
+        Showing {length <= 9 ? length : "1-9"} of {length}{" "}
+      </div>
       <div className="sort-by">
         <select
           name="sortby"
@@ -174,6 +189,7 @@ function ContentDetails({ setSortBy, sortBy }) {
 ContentDetails.propTypes = {
   setSortBy: PropTypes.func,
   sortBy: PropTypes.string,
+  length: PropTypes.number,
 };
 
 function PageNumbersButtons({ page, changePage, pageNumbersArray }) {

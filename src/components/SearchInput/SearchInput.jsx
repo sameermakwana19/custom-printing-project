@@ -1,40 +1,20 @@
-import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../ui/Button/Button";
 import { useSearchParams } from "react-router-dom";
 import { getQueryParams } from "../../utlis/helper";
 
-const SearchInput = ({ setProducts, products, data, setTotalProducts }) => {
+const SearchInput = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [value, setValue] = useState(searchParams.get("q") || "");
-  const originalProducts = [...data];
 
   const handleSearch = () => {
     const params = getQueryParams();
     setSearchParams({ ...params, q: value.toLowerCase() });
   };
 
-  useEffect(() => {
-    if (searchParams.get("q") === null) {
-      setValue("");
-      return;
-    }
-
-    const updatedProducts = products.filter(
-      (product) =>
-        product.name.toLowerCase().indexOf(searchParams.get("q")) !== -1
-    );
-    setProducts(updatedProducts);
-    setTotalProducts(updatedProducts.length);
-    // eslint-disable-next-line
-  }, [`${searchParams.get("q")}-${products}`]);
-
   function updateSearch(value) {
     setValue(value ?? "");
     if (!value) {
-      setProducts(originalProducts);
-      setTotalProducts(originalProducts.length);
-
       const params = getQueryParams();
       delete params.q;
       setSearchParams({ ...params });
@@ -69,10 +49,3 @@ const SearchInput = ({ setProducts, products, data, setTotalProducts }) => {
 };
 
 export default SearchInput;
-
-SearchInput.propTypes = {
-  setProducts: PropTypes.func,
-  products: PropTypes.array,
-  data: PropTypes.array,
-  setTotalProducts: PropTypes.func,
-};
