@@ -25,7 +25,6 @@ const AllProducts = () => {
   const [totalProducts, setTotalProducts] = useState(20);
   const [products, setProducts] = useState(null);
   const [sortBy, setSortBy] = useState(searchParams.get("sortby") || "default");
-  console.log({ filterValue });
 
   const { data, isLoading, error } = useQuery({
     queryKey: [endpoint],
@@ -71,10 +70,8 @@ const AllProducts = () => {
             product.name.toLowerCase().includes(params.q.toLowerCase())
           );
         }
-        console.log({ res });
         setProducts(res);
         setTotalProducts(res.length);
-        console.log("2");
       }
     })();
     // eslint-disable-next-line
@@ -111,7 +108,6 @@ const AllProducts = () => {
     return <div>Loading...</div>;
   }
 
-  console.log({ products, data });
   return (
     <>
       <div className="all-products__right">
