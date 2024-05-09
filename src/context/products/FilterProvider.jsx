@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createContext } from "react";
 import { useSearchParams } from "react-router-dom";
-import useCurrentLocation from "../../hooks/useCurrentLocation";
 import { getQueryParams } from "../../utlis/helper";
+import PropTypes from "prop-types";
 
 export const FilterContext = createContext();
 
@@ -21,6 +21,7 @@ const FilterProvider = ({ children }) => {
     } else {
       setFilterValue(MAX_PRICE);
     }
+    // eslint-disable-next-line
   }, [searchParams.get("price")]);
 
   const applyFilterValue = (value) => {
@@ -37,6 +38,7 @@ const FilterProvider = ({ children }) => {
 
   const FilterContextValue = useMemo(() => {
     return { filterValue, applyFilterValue, min: MIN_PRICE, max: MAX_PRICE };
+    // eslint-disable-next-line
   }, [filterValue]);
 
   return (
@@ -47,3 +49,7 @@ const FilterProvider = ({ children }) => {
 };
 
 export default FilterProvider;
+
+FilterProvider.propTypes = {
+  children: PropTypes.node,
+};

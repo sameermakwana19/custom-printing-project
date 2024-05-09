@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import Button from "../ui/Button/Button";
 import { useSearchParams } from "react-router-dom";
 import { getQueryParams } from "../../utlis/helper";
@@ -25,6 +26,7 @@ const SearchInput = ({ setProducts, products, data, setTotalProducts }) => {
     );
     setProducts(updatedProducts);
     setTotalProducts(updatedProducts.length);
+    // eslint-disable-next-line
   }, [`${searchParams.get("q")}-${products}`]);
 
   function updateSearch(value) {
@@ -67,3 +69,10 @@ const SearchInput = ({ setProducts, products, data, setTotalProducts }) => {
 };
 
 export default SearchInput;
+
+SearchInput.propTypes = {
+  setProducts: PropTypes.func,
+  products: PropTypes.array,
+  data: PropTypes.array,
+  setTotalProducts: PropTypes.func,
+};

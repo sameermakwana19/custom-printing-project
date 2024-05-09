@@ -1,28 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Logo from "../ui/Logo/Logo";
 import { NavLink } from "react-router-dom";
 import HamburgerIcon from "../ui/HamburgerIcon/HamburgerIcon";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
 import CartSideModal from "../../pages/Cart/CartSideModal/CartSideModal";
-
 import { twoDigitAfterDecimal } from "../../utlis/helper";
 import { useQuery } from "@tanstack/react-query";
 import { getCartTotalAndNoOfItems } from "../../queries/CartQueries";
 import { TotalAmountContext } from "../../context/TotalAmount/TotalAmountProvider";
 import { UserContext, useUserContext } from "../../context/User/UserContext";
 
-// import { getCartTotalAndNoOfItems } from "../../queries/CartQueries";
-
-// const BACKGROUND_WHITE_NOT_IN = ["home", "about", "contact"];
-
 const Navbar = () => {
-  // const { total } = useContext(TotalAmountContext);
   const { user } = useContext(UserContext);
-
   const [isHamburgerMenuExpanded, setIsHamburgerMenuExpanded] = useState(false);
-
   const [mobileAccountDropdown, setMobileAccountDropdown] = useState(false);
-
   const pathname = useCurrentLocation() || "home";
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -30,13 +21,11 @@ const Navbar = () => {
     if (pathname === "cart") {
       return;
     }
-
     setIsModalOpen((prev) => !prev);
   };
 
   useEffect(() => {
     setIsHamburgerMenuExpanded(false);
-
     return () => {};
   }, [pathname]);
 
@@ -46,7 +35,6 @@ const Navbar = () => {
 
   return (
     <>
-      {/* <div className="navbar" style={{ background: "white" }}> */}
       <div className="navbar">
         <div className="navbar__header">
           <div className="logo-container">

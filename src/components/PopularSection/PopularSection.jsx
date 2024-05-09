@@ -1,4 +1,3 @@
-import React from "react";
 import PopularSectionCard from "./PopularSectionCard/PopularSectionCard";
 import popular1 from "../../assets/popular-1.jpg";
 import popular2 from "../../assets/popular-2.jpg";

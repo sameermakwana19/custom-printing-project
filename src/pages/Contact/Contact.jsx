@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Heading from "../../components/ui/Heading/Heading";
 import DividerLine from "../../components/ui/DividerLine/DividerLine";
 import IconList from "../../components/IconList/IconList";
@@ -8,7 +8,6 @@ import Input from "../../components/ui/Input/Input";
 import { useForm } from "react-hook-form";
 import { getQueries, registerQuery } from "../../queries/contact";
 import { useUserContext } from "../../context/User/UserContext";
-import { get } from "firebase/database";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const WAIT_DURATION = 20;
@@ -85,7 +84,6 @@ const Contact = () => {
     return <p>{error.message}</p>;
   }
 
-  console.log({ lastQueryTime });
   return (
     <>
       {toast && <p className="toast">{toast}</p>}

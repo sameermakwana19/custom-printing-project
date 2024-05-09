@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import photo from "../../../assets/popular-1.jpg";
 
 const PopularSectionCard = ({
@@ -18,3 +18,9 @@ const PopularSectionCard = ({
 };
 
 export default PopularSectionCard;
+
+PopularSectionCard.propTypes = {
+  imageUrl: PropTypes.string,
+  subHeading: PropTypes.string,
+  heading: PropTypes.string,
+};

@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 const BenefitCard = ({
   imageUrl,
@@ -22,3 +22,10 @@ const BenefitCard = ({
 };
 
 export default BenefitCard;
+
+BenefitCard.propTypes = {
+  imageUrl: PropTypes.string,
+  icon: PropTypes.node,
+  heading: PropTypes.string,
+  content: PropTypes.string,
+};

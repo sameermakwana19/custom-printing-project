@@ -1,4 +1,4 @@
-import React, { useContext, useId, useState } from "react";
+import { useContext, useId, useState } from "react";
 import Heading from "../../components/ui/Heading/Heading";
 import Button from "../../components/ui/Button/Button";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -7,7 +7,6 @@ import { UserContext } from "../../context/User/UserContext";
 import { saveUserToLocalStorage, signInUser } from "../../queries/auth";
 import Backdrop from "../../components/Backdrop/Backdrop";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 
 const Login = () => {
   const id = useId();
@@ -15,7 +14,6 @@ const Login = () => {
     register,
     handleSubmit: handleSubmitHook,
     formState: { errors },
-    control,
     reset,
   } = useForm();
 
@@ -60,9 +58,6 @@ const Login = () => {
     }
 
     reset();
-    // setEmail("");
-    // setPassword("");
-    // setError("");
     setUser(user);
     saveUserToLocalStorage(user);
     navigate("/");
@@ -116,11 +111,10 @@ const Login = () => {
             </form>
 
             <Link to="/signup" className="lost-your-password">
-              Don't have an account?
+              Don&apos;t have an account?
             </Link>
           </div>
         </div>
-        {/* <DevTool control={control} /> */}
       </div>
     </>
   );

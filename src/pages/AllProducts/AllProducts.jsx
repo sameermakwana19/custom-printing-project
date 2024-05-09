@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import PropTypes from "prop-types";
+import { useContext, useEffect, useMemo, useState } from "react";
 import BreadCrumb from "../../components/ui/BreadCrumb/BreadCrumb";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import { Link, useSearchParams } from "react-router-dom";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-
 import { getFilteredAndSortedProducts } from "../../queries/getAllProducts";
 import NotFound from "../NotFound/NotFound";
 import { FilterContext } from "../../context/products/FilterProvider";
@@ -17,20 +17,14 @@ const PRODUCT_PER_PAGE = 9;
 const AVAILABLE_ENDPOINTS = ["allproducts", "mugs", "tshirts"];
 
 const AllProducts = () => {
+  const [searchParams] = useSearchParams();
+  const { filterValue } = useContext(FilterContext);
+  const endpoint = useCurrentLocation();
+
   const [page, setPage] = useState(1);
   const [totalProducts, setTotalProducts] = useState(20);
   const [products, setProducts] = useState(null);
-
-  const [searchParams] = useSearchParams();
-
   const [sortBy, setSortBy] = useState(searchParams.get("sortby") || "default");
-  const { filterValue } = useContext(FilterContext);
-
-  const endpoint = useCurrentLocation();
-
-  if (AVAILABLE_ENDPOINTS.indexOf(endpoint) === -1) {
-    return <NotFound />;
-  }
 
   const { data, isLoading, error } = useQuery({
     queryKey: [endpoint],
@@ -49,6 +43,7 @@ const AllProducts = () => {
     } else {
       setSortBy("default");
     }
+    // eslint-disable-next-line
   }, [searchParams.get("sortby")]);
 
   useEffect(() => {
@@ -58,12 +53,13 @@ const AllProducts = () => {
       setProducts(data);
       setSortBy("default");
     }
+    // eslint-disable-next-line
   }, [endpoint]);
 
   useEffect(() => {
     (async () => {
       if (data) {
-        const res = await getFilteredAndSortedProducts({
+        let res = await getFilteredAndSortedProducts({
           collection: endpoint,
           filterValue,
           sortBy,
@@ -72,11 +68,12 @@ const AllProducts = () => {
         setTotalProducts(res.length);
       }
     })();
+    // eslint-disable-next-line
   }, [filterValue, sortBy, data]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  }, [page]);
 
   let pageNumbersArray = useMemo(
     () =>
@@ -93,6 +90,10 @@ const AllProducts = () => {
     setPage(nextPage);
   };
 
+  if (AVAILABLE_ENDPOINTS.indexOf(endpoint) === -1) {
+    return <NotFound />;
+  }
+
   if (error) {
     return <NotFound />;
   }
@@ -101,6 +102,7 @@ const AllProducts = () => {
     return <div>Loading...</div>;
   }
 
+  console.log({ products, data });
   return (
     <>
       <div className="all-products__right">
@@ -139,6 +141,7 @@ const AllProducts = () => {
 export default AllProducts;
 
 function ContentDetails({ setSortBy, sortBy }) {
+  // eslint-disable-next-line
   const [searchParams, setSearchParams] = useSearchParams();
 
   return (
@@ -167,6 +170,11 @@ function ContentDetails({ setSortBy, sortBy }) {
     </div>
   );
 }
+
+ContentDetails.propTypes = {
+  setSortBy: PropTypes.func,
+  sortBy: PropTypes.string,
+};
 
 function PageNumbersButtons({ page, changePage, pageNumbersArray }) {
   return (
@@ -210,6 +218,12 @@ function PageNumbersButtons({ page, changePage, pageNumbersArray }) {
   );
 }
 
+PageNumbersButtons.propTypes = {
+  page: PropTypes.number,
+  changePage: PropTypes.func,
+  pageNumbersArray: PropTypes.array,
+};
+
 function ProductsContainer({ products, page }) {
   const initialProductNumber = (page - 1) * PRODUCT_PER_PAGE;
   const finalProductNumber = page * PRODUCT_PER_PAGE;
@@ -230,4 +244,8 @@ function ProductsContainer({ products, page }) {
   );
 }
 
+ProductsContainer.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  page: PropTypes.number,
+};
 // const skip = page * PRODUCT_PER_PAGE - PRODUCT_PER_PAGE;

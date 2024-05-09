@@ -1,7 +1,4 @@
-import React from "react";
-
-import ProductCart from "../../../components/ProductCard/ProductCard";
-import { query } from "firebase/firestore";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import ProductCard from "../../../components/ProductCard/ProductCard";
 import {
@@ -10,6 +7,7 @@ import {
 } from "../../../queries/getAllProducts";
 import { useQuery } from "@tanstack/react-query";
 
+// eslint-disable-next-line
 export const CATEGORY_QUERY_FUNCTIONS = {
   mugs: getAllMugsFromFirestore,
   tshirts: getAllTshirtsFromFirestore,
@@ -25,6 +23,10 @@ const RelatedProducts = ({ category, id }) => {
 
   if (isLoading) {
     return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error...</div>;
   }
 
   const newData = data.filter((product) => product.id !== id).slice(0, 4);
@@ -47,3 +49,8 @@ const RelatedProducts = ({ category, id }) => {
 };
 
 export default RelatedProducts;
+
+RelatedProducts.propTypes = {
+  category: PropTypes.String,
+  id: PropTypes.String,
+};

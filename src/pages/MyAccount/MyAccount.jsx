@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import withAuth from "../../hoc/withAuth";
 import Button from "../../components/ui/Button/Button";
 import { deleteUserFromLocalStorage, signOutUser } from "../../queries/auth";
@@ -23,9 +23,8 @@ const MyAccount = () => {
       </div>
       <Button
         isIconPresent={false}
-        onClick={async (e) => {
-          const res = await signOutUser();
-
+        onClick={async () => {
+          await signOutUser();
           setUser(null);
           deleteUserFromLocalStorage();
         }}
@@ -37,4 +36,6 @@ const MyAccount = () => {
   );
 };
 
-export default withAuth(MyAccount);
+const ExportMyAccount = withAuth(MyAccount);
+
+export default ExportMyAccount;

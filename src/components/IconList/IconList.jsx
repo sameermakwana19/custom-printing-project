@@ -1,10 +1,10 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 const IconList = ({ label = "label", icon }) => {
   return (
     <div className="icon-list-item">
       <div className="icon-container">
-        {icon ? icon : <i className="fab fa-gratipay"></i>}
+        {icon || <i className="fab fa-gratipay"></i>}
       </div>
       <p className="label">{label}</p>
     </div>
@@ -12,3 +12,8 @@ const IconList = ({ label = "label", icon }) => {
 };
 
 export default IconList;
+
+IconList.propTypes = {
+  label: PropTypes.string,
+  icon: PropTypes.element,
+};

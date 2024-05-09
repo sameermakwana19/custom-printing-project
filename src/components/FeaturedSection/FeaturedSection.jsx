@@ -1,4 +1,3 @@
-import React from "react";
 import Heading from "../ui/Heading/Heading";
 import logo1 from "../../assets/logo-1.png";
 import logo2 from "../../assets/logo-2.png";

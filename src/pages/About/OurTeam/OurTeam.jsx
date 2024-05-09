@@ -1,4 +1,3 @@
-import React from "react";
 import Heading from "../../../components/ui/Heading/Heading";
 import DividerLine from "../../../components/ui/DividerLine/DividerLine";
 import PopularSectionCard from "../../../components/PopularSection/PopularSectionCard/PopularSectionCard";

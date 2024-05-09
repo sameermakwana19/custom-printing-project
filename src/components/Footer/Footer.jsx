@@ -1,5 +1,3 @@
-import React from "react";
-import Heading from "../ui/Heading/Heading";
 import DividerLine from "../ui/DividerLine/DividerLine";
 
 const Footer = () => {
@@ -32,7 +30,7 @@ const Footer = () => {
           <div className="content">
             <p className="link">Know More About us</p>
             <p className="link">Visit Store</p>
-            <p className="link">Let's Connect</p>
+            <p className="link">Let&apos;s Connect</p>
           </div>
         </div>
         <div>

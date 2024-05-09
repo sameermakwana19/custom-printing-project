@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import PropTypes from "prop-types";
+
 const ratingArray = [1, 2, 3, 4, 5];
 
 const Rating = ({
@@ -24,3 +25,10 @@ const Rating = ({
 };
 
 export default Rating;
+
+Rating.propTypes = {
+  isRatingChangeable: PropTypes.bool,
+  ratingValue: PropTypes.number,
+  setRatingValue: PropTypes.func,
+  size: PropTypes.number,
+};

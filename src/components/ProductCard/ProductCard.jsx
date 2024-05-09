@@ -1,9 +1,7 @@
-import React from "react";
+import PropTypes from "prop-types";
 import product from "../../assets/product1.jpg";
 import Rating from "../ui/Rating/Rating";
 
-const ratingArray = [1, 2, 3, 4, 5];
-// const RATING = 4;
 const ProductCard = ({
   imageUrl = product,
   category = "Mugs",
@@ -35,28 +33,12 @@ const ProductCard = ({
 
 export default ProductCard;
 
-{
-  /* <i class="fa-solid fa-star"></i>
-<i class="fa-regular fa-star"></i> */
-}
-
-//
-{
-  /* {ratingArray.map((number) =>
-          number <= RATING ? (
-            <i class="fa-solid fa-star"></i>
-          ) : (
-            <i class="fa-regular fa-star"></i>
-          )
-        )} */
-}
-{
-  /* {ratingArray.map((number) => (
-          <i
-            key={number}
-            className={`${
-              number <= rating ? "fa-solid" : "fa-regular"
-            } fa-star`}
-          ></i>
-        ))} */
-}
+ProductCard.propTypes = {
+  imageUrl: PropTypes.string,
+  category: PropTypes.string,
+  name: PropTypes.string,
+  rating: PropTypes.number,
+  price: PropTypes.number,
+  isOnSale: PropTypes.bool,
+  oldPrice: PropTypes.number,
+};

@@ -1,17 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Heading from "../../../components/ui/Heading/Heading";
 import Button from "../../../components/ui/Button/Button";
-import { useSearchParams } from "react-router-dom";
 import { FilterContext } from "../../../context/products/FilterProvider";
 import { getQueryParams } from "../../../utlis/helper";
-
-// const Filter = ({ max, min }) => {
-// const [filterValue, setFilterValue] = useState(40);
-// const [searchParams, setSearchParams] = useSearchParams();
-
-// const applyFilterValue = () => {
-//   setSearchParams({ price: filterValue });
-// };
 
 const Filter = () => {
   const { applyFilterValue, min, max, filterValue } = useContext(FilterContext);
@@ -32,7 +23,6 @@ const Filter = () => {
           max={max}
           value={inputValue}
           onChange={(e) => {
-            // alert(e.target.value);
             const value = Number(e.target.value);
             setInputValue(value);
           }}
@@ -53,7 +43,6 @@ const Filter = () => {
                 setInputValue(max);
                 const QueryParams = getQueryParams();
                 delete QueryParams["price"];
-
                 applyFilterValue(max);
               }}
             >

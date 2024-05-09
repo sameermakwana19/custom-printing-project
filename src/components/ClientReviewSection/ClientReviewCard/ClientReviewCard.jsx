@@ -1,6 +1,6 @@
-import React from "react";
 import photo from "../../../assets/user2.png";
 import Rating from "../../ui/Rating/Rating";
+import PropTypes from "prop-types";
 
 const ClientReviewCard = ({
   rating = 3,
@@ -25,3 +25,10 @@ const ClientReviewCard = ({
 };
 
 export default ClientReviewCard;
+
+ClientReviewCard.propTypes = {
+  rating: PropTypes.number,
+  avatar: PropTypes.string,
+  reviewText: PropTypes.string,
+  name: PropTypes.string,
+};

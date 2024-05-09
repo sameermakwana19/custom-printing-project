@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 const HamburgerIcon = ({
   isHamburgerMenuExpanded,
@@ -19,3 +19,8 @@ const HamburgerIcon = ({
 };
 
 export default HamburgerIcon;
+
+HamburgerIcon.propTypes = {
+  isHamburgerMenuExpanded: PropTypes.bool,
+  toggleIsHamburgerMenuExpanded: PropTypes.func,
+};

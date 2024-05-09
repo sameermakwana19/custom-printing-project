@@ -1,4 +1,3 @@
-import React from "react";
 import Heading from "../../../components/ui/Heading/Heading";
 import { Link } from "react-router-dom";
 

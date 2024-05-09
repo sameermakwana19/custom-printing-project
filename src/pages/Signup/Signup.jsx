@@ -1,4 +1,4 @@
-import React, { useContext, useId, useState } from "react";
+import { useContext, useId, useState } from "react";
 import Heading from "../../components/ui/Heading/Heading";
 import Button from "../../components/ui/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,11 +7,8 @@ import { UserContext } from "../../context/User/UserContext";
 import {
   createUserInFirestore,
   saveUserToLocalStorage,
-  signInUser,
-  signOutUser,
 } from "../../queries/auth";
 import Backdrop from "../../components/Backdrop/Backdrop";
-import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
 
 const Signup = () => {
@@ -21,48 +18,15 @@ const Signup = () => {
     register,
     handleSubmit,
     formState: { errors },
-    control,
     reset,
   } = useForm();
 
-  // const [email, setEmail] = useState("");
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
   const [creatingUser, setCreatingUser] = useState(false);
-
   const { setUser } = useContext(UserContext);
-
-  // const handleSubmit = async (e) => {
-
-  //   e.preventDefault();
-  //   setCreatingUser(true);
-
-  //   const { user, error } = await createUserInFirestore(
-  //     email,
-  //     username,
-  //     password
-  //   );
-
-  //   setCreatingUser(false);
-
-  //   if (!user) {
-  //     setError(error);
-  //     return;
-  //   }
-  //   setEmail("");
-  //   setPassword("");
-  //   setError("");
-  //   setUser(user);
-  //   saveUserToLocalStorage(user);
-
-  //   navigate("/myaccount");
-  // };
 
   const signUpUser = async (data) => {
     setCreatingUser(true);
-
     const { user, error } = await createUserInFirestore(
       data.email,
       data.username,
@@ -141,7 +105,6 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      {/* <DevTool control={control} placement={"top-right"} /> */}
     </>
   );
 };

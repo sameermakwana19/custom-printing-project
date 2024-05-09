@@ -1,4 +1,3 @@
-import React from "react";
 import BenefitCard from "../BenefitsCard/BenefitCard";
 import photo1 from "../../../assets/about-footer-1.png";
 import photo2 from "../../../assets/about-footer-2.png";

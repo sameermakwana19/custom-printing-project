@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-import photo from "../../assets/product2.jpg";
+import { useContext, useEffect, useState } from "react";
 import { twoDigitAfterDecimal } from "../../utlis/helper";
 import Button from "../../components/ui/Button/Button";
 import ProductReviewAndDescription from "./ProductReviewAndDescriptionSection/ProductReviewAndDescription";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getSingleProductFromFirestore } from "../../queries/getSingleProduct";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useCurrentLocation from "../../hooks/useCurrentLocation";
@@ -13,17 +12,13 @@ import {
   isPresentInCartInFirestore,
   quantityPresentInCartInFirestore,
 } from "../../queries/CartQueries";
-import { TotalAmountContext } from "../../context/TotalAmount/TotalAmountProvider";
-import { UserContext, useUserContext } from "../../context/User/UserContext";
+import { UserContext } from "../../context/User/UserContext";
 import Rating from "../../components/ui/Rating/Rating";
+import PropTypes from "prop-types";
 
 const Product = () => {
   const category = useLocation().pathname.split("/").at(-2);
   const id = useCurrentLocation();
-  // const {
-  //   user: { uid },
-  // } = useUserContext();
-
   const { user } = useContext(UserContext);
   const uid = user ? user.uid : null;
 
@@ -38,7 +33,9 @@ const Product = () => {
 
   const {
     data: isPresentInCart,
+    // eslint-disable-next-line no-unused-vars
     isLoading: isPresentLoading,
+    // eslint-disable-next-line no-unused-vars
     isError: isPresentError,
     error: isPresentErrorObj,
   } = useQuery({
@@ -49,7 +46,9 @@ const Product = () => {
 
   const {
     data: quantityPresentInCart,
+    // eslint-disable-next-line no-unused-vars
     isError: quantityError,
+    // eslint-disable-next-line no-unused-vars
     isLoading: quantityLoading,
     error: quantityErrorObj,
   } = useQuery({
@@ -127,17 +126,13 @@ function ProductOverview({
   setItemAddedToCart,
 }) {
   const [quantity, setQuantity] = useState(1);
-  // const {
-  //   user: { uid },
-  // } = useContext(UserContext);
-
   const { user } = useContext(UserContext);
   const uid = user ? user.uid : null;
 
   const queryClient = useQueryClient();
   const { mutate, isError, error } = useMutation({
     mutationFn: addProductToCartInFirestore,
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries(["cart"]);
       setItemAddedToCart(true);
     },
@@ -184,7 +179,6 @@ function ProductOverview({
                 type="number"
                 defaultValue={quantity}
                 min={1}
-                max={10}
                 onChange={(e) => setQuantity(+e.target.value)}
               />
             </div>
@@ -224,3 +218,15 @@ function ProductOverview({
     </>
   );
 }
+
+ProductOverview.propTypes = {
+  imageUrl: PropTypes.string,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  oldPrice: PropTypes.number,
+  rating: PropTypes.number,
+  price: PropTypes.number,
+  category: PropTypes.string,
+  isOnSale: PropTypes.bool,
+  setItemAddedToCart: PropTypes.func,
+};

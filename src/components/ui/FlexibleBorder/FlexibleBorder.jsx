@@ -1,4 +1,3 @@
-import React from "react";
 import image from "../../../assets/Zig-Zag-border.png";
 
 const FlexibleBorder = () => {

@@ -7,7 +7,6 @@ import {
   where,
 } from "firebase/firestore";
 import { cartColRef } from "../firebase";
-import { update } from "firebase/database";
 
 export const updateQuantityInCartInFirestore = async ({
   id,

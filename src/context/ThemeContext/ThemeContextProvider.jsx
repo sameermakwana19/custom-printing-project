@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useCallback,
   useContext,
@@ -6,9 +6,11 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import PropTypes from "prop-types";
 
 export const ThemeContext = createContext();
 
+// eslint-disable-next-line
 export const useThemeContext = () => {
   return useContext(ThemeContext);
 };
@@ -37,6 +39,7 @@ const ThemeContextProvider = ({ children }) => {
       isDarkMode,
       toggleDarkMode,
     };
+    // eslint-disable-next-line
   }, [isDarkMode]);
 
   return (
@@ -45,3 +48,7 @@ const ThemeContextProvider = ({ children }) => {
 };
 
 export default ThemeContextProvider;
+
+ThemeContextProvider.propTypes = {
+  children: PropTypes.node,
+};

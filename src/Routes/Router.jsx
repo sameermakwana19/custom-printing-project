@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import { lazy } from "react";
 import {
   Route,
   RouterProvider,
@@ -32,13 +32,8 @@ const Router = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="allproducts" element={<AllProductsLayout />}>
           <Route index element={<AllProducts />} />
-          {/* <Route path="tshirts" element={<AllProducts />} />
-          <Route path="mugs" element={<AllProducts />} /> */}
           <Route path=":category" element={<AllProducts />} />
-          {/* <Route path=":category/:id" element={<Product />} /> */}
-          {/* <Route path=":id" element={<Product />} /> */}
         </Route>
-
         <Route path="/mugs/:id" element={<Product />} />
         <Route path="/t-shirts/:id" element={<Product />} />
         <Route path="*" element={<NotFound />} />

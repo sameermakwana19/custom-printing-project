@@ -1,4 +1,3 @@
-import React from "react";
 import ClientReviewCard from "./ClientReviewCard/ClientReviewCard";
 import user1 from "../../assets/user1.jpg";
 import user2 from "../../assets/user2.png";

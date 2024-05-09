@@ -1,5 +1,6 @@
+import PropTypes from "prop-types";
 import { useQuery } from "@tanstack/react-query";
-import React, { createContext, useEffect, useMemo, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import { getCartTotalAndNoOfItems } from "../../queries/CartQueries";
 import { useUserContext } from "../User/UserContext";
 import { calculateDiscount, checkCouponCode } from "../../utlis/helper";
@@ -42,6 +43,7 @@ const TotalAmountProvider = ({ children }) => {
         ? setTotal(data.total)
         : setTotal(data.total - calculateDiscount(data.total, discount));
     }
+    // eslint-disable-next-line
   }, [data, isDiscountApplied]);
 
   if (isLoading) {
@@ -60,3 +62,7 @@ const TotalAmountProvider = ({ children }) => {
 };
 
 export default TotalAmountProvider;
+
+TotalAmountProvider.propTypes = {
+  children: PropTypes.node,
+};

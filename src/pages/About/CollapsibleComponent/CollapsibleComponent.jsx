@@ -1,4 +1,4 @@
-import React, { useId } from "react";
+import PropTypes from "prop-types";
 
 const CollapsibleComponent = ({
   collapisibleExpandedIndex,
@@ -37,3 +37,11 @@ const CollapsibleComponent = ({
 };
 
 export default CollapsibleComponent;
+
+CollapsibleComponent.propTypes = {
+  collapisibleExpandedIndex: PropTypes.number,
+  currentIndex: PropTypes.number,
+  changeCollapsibleIndex: PropTypes.func,
+  heading: PropTypes.string,
+  content: PropTypes.string,
+};

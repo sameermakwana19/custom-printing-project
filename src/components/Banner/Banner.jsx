@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import DividerLine from "../ui/DividerLine/DividerLine";
 import Button from "../ui/Button/Button";
 import { Link } from "react-router-dom";
@@ -51,6 +51,17 @@ const Banner = ({
 };
 
 export default Banner;
+
+Banner.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string),
+  linkTo: PropTypes.string,
+  background: PropTypes.string,
+  tagline: PropTypes.string,
+  heading: PropTypes.string,
+  subHeading: PropTypes.string,
+  buttonText: PropTypes.string,
+  isDividerLineRequire: PropTypes.bool,
+};
 
 // enhanced version
 // contionally render background img, right side img ,

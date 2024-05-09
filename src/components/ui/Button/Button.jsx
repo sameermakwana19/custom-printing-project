@@ -34,6 +34,8 @@ const Button = ({
 
 Button.propTypes = {
   variant: PropsTypes.oneOf(Object.keys(VARIANTS)),
+  isIconPresent: PropsTypes.bool,
+  toolTip: PropsTypes.string,
   children: PropsTypes.node.isRequired,
 };
 

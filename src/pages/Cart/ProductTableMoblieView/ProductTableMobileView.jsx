@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import {
   calculateDiscount,
   checkCouponCode,
   twoDigitAfterDecimal,
 } from "../../../utlis/helper";
-import photo from "../../../assets/mostLovedProducts1.jpg";
 import {
   deleteProductFromCartInFirestore,
   getAllCartProductsFromFirestore,
@@ -48,9 +47,9 @@ const ProductTableMobileView = () => {
     },
   });
 
-  const { mutate: updateQuantity, isError: updateQuantityError } = useMutation({
+  const { mutate: updateQuantity } = useMutation({
     mutationFn: updateQuantityInCartInFirestore,
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries(["cart"]);
     },
   });

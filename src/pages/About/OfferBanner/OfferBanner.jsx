@@ -1,6 +1,4 @@
-import React from "react";
 import Button from "../../../components/ui/Button/Button";
-import Heading from "../../../components/ui/Heading/Heading";
 
 const OfferBanner = () => {
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ReviewSection from "./ReviewSection/ReviewSection";
 import useCurrentLocation from "../../../hooks/useCurrentLocation";
 import { getReviewsFromFirestore } from "../../../queries/reviews";

@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 const VARIANTS = ["h1", "h2", "h3", "h4", "h5"];
 
@@ -14,3 +14,8 @@ const Heading = ({ children, variant, ...delegated }) => {
 };
 
 export default Heading;
+
+Heading.propTypes = {
+  children: PropTypes.node.isRequired,
+  variant: PropTypes.oneOf(VARIANTS),
+};

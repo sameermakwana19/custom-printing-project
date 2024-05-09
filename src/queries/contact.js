@@ -27,7 +27,6 @@ export const getQueries = async (uid) => {
       )
     );
     const queries = querySnapshot.docs.map((doc) => doc.data());
-    console.log({ createdAt: queries[0]?.createdAt.seconds });
     return queries[0]?.createdAt.seconds ?? null;
   } catch (error) {
     return { error: error.message };

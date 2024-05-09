@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import photo from "../../../assets/mostLovedProducts1.jpg";
+import { useContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import {
   calculateDiscount,
   checkCouponCode,
@@ -21,7 +21,6 @@ import {
 import Heading from "../../../components/ui/Heading/Heading";
 import { TotalAmountContext } from "../../../context/TotalAmount/TotalAmountProvider";
 import { UserContext } from "../../../context/User/UserContext";
-import { set } from "firebase/database";
 
 const ProductTable = () => {
   // const [couponCode, setCouponCode] = useState("");
@@ -58,6 +57,8 @@ const ProductTable = () => {
     }
 
     return () => {};
+
+    // eslint-disable-next-line
   }, [data]);
 
   if (isLoading) {
@@ -170,13 +171,9 @@ function CartProductDetail({
     },
   });
 
-  const {
-    mutate: updateQuantity,
-    isLoading,
-    isError: updateQuantityError,
-  } = useMutation({
+  const { mutate: updateQuantity, isLoading } = useMutation({
     mutationFn: updateQuantityInCartInFirestore,
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries(["cart"]);
     },
   });
@@ -220,7 +217,6 @@ function CartProductDetail({
         <input
           type="number"
           min={1}
-          max={10}
           defaultValue={quantity}
           disabled={isDiscountApplied}
           onChange={(e) => {
@@ -234,3 +230,13 @@ function CartProductDetail({
     </div>
   );
 }
+
+CartProductDetail.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+  oldPrice: PropTypes.number,
+  isOnSale: PropTypes.bool,
+};

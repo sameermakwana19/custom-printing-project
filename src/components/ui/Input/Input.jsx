@@ -1,4 +1,5 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
+import PropTypes from "prop-types";
 
 const Input = (
   { label, id, type = "text", isMandatory = false, ...delegated },
@@ -19,4 +20,13 @@ const Input = (
   );
 };
 
-export default forwardRef(Input);
+const exportInput = forwardRef(Input);
+
+export default exportInput;
+
+Input.propTypes = {
+  label: PropTypes.string,
+  id: PropTypes.string,
+  type: PropTypes.oneOf(["text", "password", "email", "checkbox", "textarea"]),
+  isMandatory: PropTypes.bool,
+};

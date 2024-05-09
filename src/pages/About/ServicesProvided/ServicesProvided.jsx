@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Heading from "../../../components/ui/Heading/Heading";
 import CollapsibleComponent from "../CollapsibleComponent/CollapsibleComponent";
 import IconList from "../../../components/IconList/IconList";
@@ -64,51 +64,3 @@ const ServicesProvided = () => {
 };
 
 export default ServicesProvided;
-
-// function IconList({ label }) {
-//   return (
-//     <div className="icon-list-item">
-//       <div className="icon-container">
-//         <i className="fab fa-gratipay"></i>
-//       </div>
-//       <p className="label">{label}</p>
-//     </div>
-//   );
-// }
-
-//  collapsible Raw Component
-{
-  /* <div
-className={`${
-  collapisibleExpandedIndex === 2
-    ? "collapsible--expanded"
-    : "collapsible"
-}`}
->
-<div
-  className="collapsible__header"
-  onClick={() => changeCollapsibleIndex(2)}
->
-  Header
-</div>
-<div className={`collapsible__body`}>
-  Body Lorem ipsum dolor sit amet consectetur adipisicing elit. Id,
-  facilis?
-</div>
-</div>
-<div
-className={`${
-  collapisibleExpandedIndex === 3
-    ? "collapsible--expanded"
-    : "collapsible"
-}`}
->
-<div
-  className="collapsible__header"
-  onClick={() => changeCollapsibleIndex(3)}
->
-  Header
-</div>
-<div className={`collapsible__body`}>Body</div>
-</div> */
-}

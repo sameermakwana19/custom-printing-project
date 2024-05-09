@@ -1,11 +1,8 @@
-import React from "react";
 import Heading from "../../../components/ui/Heading/Heading";
 import ProductCard from "../../../components/ProductCard/ProductCard";
-import { query } from "firebase/firestore";
 import { useQuery } from "@tanstack/react-query";
 import { getAllHottestDealsFromFirestore } from "../../../queries/getAllProducts";
-import { Link, useLocation } from "react-router-dom";
-import useCurrentLocation from "../../../hooks/useCurrentLocation";
+import { Link } from "react-router-dom";
 
 const HottestDeal = () => {
   const { data, isLoading, error } = useQuery({
@@ -15,6 +12,10 @@ const HottestDeal = () => {
 
   if (isLoading) {
     return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
   }
   return (
     <div className="hottest-deals">

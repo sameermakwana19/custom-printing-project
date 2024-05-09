@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 import Filter from "../pages/AllProducts/Filter/Filter";
 import Category from "../pages/AllProducts/Category/Category";

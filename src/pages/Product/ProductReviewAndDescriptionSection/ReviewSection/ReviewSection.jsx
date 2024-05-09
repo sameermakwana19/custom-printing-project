@@ -1,9 +1,8 @@
-import React, { useId, useState } from "react";
+import { useId, useState } from "react";
 import Button from "../../../../components/ui/Button/Button";
 import Input from "../../../../components/ui/Input/Input";
 import Rating from "../../../../components/ui/Rating/Rating";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 import {
   getReviewsFromFirestore,
   saveReviewInFirestore,
@@ -14,25 +13,15 @@ import { useUserContext } from "../../../../context/User/UserContext";
 import Heading from "../../../../components/ui/Heading/Heading";
 
 const ReviewSection = () => {
-  const [ratingValue, setRatingValue] = useState(4);
   const productId = useCurrentLocation();
+  const { user } = useUserContext();
+  const [ratingValue, setRatingValue] = useState(4);
   const [addReviewerror, setAddReviewError] = useState(null);
+  const id = useId();
+
   const queryClient = useQueryClient();
 
-  const { user } = useUserContext();
-
-  const id = useId();
-  // const form = useForm();
-  // const { register, handleSubmit, control, formState } = form;
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState,
-    reset,
-    watch,
-    getValues,
-  } = useForm({
+  const { register, handleSubmit, formState, reset, watch } = useForm({
     defaultValues: {
       review: "",
       username: user?.displayName || "",
