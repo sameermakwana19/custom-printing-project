@@ -70,6 +70,7 @@ const AllProducts = () => {
             product.name.toLowerCase().includes(params.q.toLowerCase())
           );
         }
+        setPage(1);
         setProducts(res);
         setTotalProducts(res.length);
       }

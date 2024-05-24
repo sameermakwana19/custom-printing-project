@@ -10,7 +10,7 @@ export const TotalAmountContext = createContext();
 const TotalAmountProvider = ({ children }) => {
   const { user } = useUserContext();
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     enabled: !!user?.uid,
     queryKey: ["cart", "totalAmount", user?.uid],
     queryFn: () => getCartTotalAndNoOfItems(user?.uid),
@@ -51,7 +51,7 @@ const TotalAmountProvider = ({ children }) => {
   }
 
   if (isError) {
-    return <div>Error...</div>;
+    return <div>Error...,{error.message}navbar</div>;
   }
 
   return (

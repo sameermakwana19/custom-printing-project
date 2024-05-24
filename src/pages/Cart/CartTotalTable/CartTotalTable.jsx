@@ -34,7 +34,7 @@ const CartTotalTable = () => {
     return <div>Loading...</div>;
   }
   if (isError) {
-    return <div>Error...</div>;
+    return <div>Error... ,cardTable</div>;
   }
 
   if (data.noOfItems === 0) {

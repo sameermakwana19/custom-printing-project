@@ -96,20 +96,6 @@ export const deleteProductFromCartInFirestore = async ({ id, uid }) => {
   );
 };
 
-// export const increaseQuantityInCartInFirestore = async (id) => {
-//   const querySnapshot = await getDocs(cartColRef);
-
-//   await Promise.all(
-//     querySnapshot.docs.map(async (doc) => {
-//       if (doc.data().id === id) {
-//         await update(doc.ref, {
-//           quantity: doc.data().quantity + 1,
-//         });
-//       }
-//     })
-//   );
-// };
-
 export const addProductToCartInFirestore = async (product) => {
   // const querySnapshot = await getDocs(cartColRef);
 

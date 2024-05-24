@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../ui/Button/Button";
 import { useSearchParams } from "react-router-dom";
 import { getQueryParams } from "../../utlis/helper";
@@ -11,6 +11,12 @@ const SearchInput = () => {
     const params = getQueryParams();
     setSearchParams({ ...params, q: value.toLowerCase() });
   };
+
+  useEffect(() => {
+    if (!searchParams.get("q")) {
+      setValue("");
+    }
+  }, [searchParams.get("q")]);
 
   function updateSearch(value) {
     setValue(value ?? "");

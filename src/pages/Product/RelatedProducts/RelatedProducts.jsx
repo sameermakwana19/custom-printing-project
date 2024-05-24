@@ -26,7 +26,7 @@ const RelatedProducts = ({ category, id }) => {
   }
 
   if (isError) {
-    return <div>Error...</div>;
+    return <div>Error...,related products</div>;
   }
 
   const newData = data.filter((product) => product.id !== id).slice(0, 4);

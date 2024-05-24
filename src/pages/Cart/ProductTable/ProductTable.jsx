@@ -66,7 +66,7 @@ const ProductTable = () => {
   }
 
   if (isError) {
-    return <div>Error...</div>;
+    return <div>Error...,productTable</div>;
   }
 
   if (data.length === 0) {
@@ -181,7 +181,7 @@ function CartProductDetail({
   const { isDiscountApplied } = useContext(TotalAmountContext);
 
   if (isError) {
-    return <div>Error...</div>;
+    return <div>Error...,cardProductDetail</div>;
   }
   if (isLoading) {
     return <div>Loading...</div>;

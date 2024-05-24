@@ -46,7 +46,7 @@ const CartSideModal = ({ toggleModal, isModalOpen }) => {
   }
 
   if (isError || totalIsError) {
-    return <div>Error...</div>;
+    return <div>Error...22233</div>;
   }
 
   return createPortal(
