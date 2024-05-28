@@ -41,20 +41,24 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: 52.1rem;
-    gap: 5rem;
+    column-gap: 5rem;
 
     @include responsive(medium) {
       grid-template-columns: 1fr;
       grid-auto-rows: 40rem;
     }
 
+    @include responsive(small) {
+      flex-direction: column;
+    }
+
     &__left {
       width: 100%;
+      // height: 50rem;
       height: 100%;
-      overflow: hidden;
 
       @include responsive(medium) {
-        // width: 50%;
+        width: 50%;
         margin: 0 auto;
       }
 
@@ -64,7 +68,7 @@
 
         @include responsive(small) {
           // width: 50%;
-          margin: 2rem auto;
+          margin: 0 auto;
         }
 
         @include responsive(xsmall) {
