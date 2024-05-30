@@ -23,7 +23,6 @@ import { TotalAmountContext } from "../../../context/TotalAmount/TotalAmountProv
 import { UserContext } from "../../../context/User/UserContext";
 
 const ProductTable = () => {
-  // const [couponCode, setCouponCode] = useState("");
   const [isWrongCoupon, setIsWrongCoupon] = useState(false);
   const {
     setTotal,
@@ -217,9 +216,11 @@ function CartProductDetail({
         <input
           type="number"
           min={1}
+          max={10}
           defaultValue={quantity}
           disabled={isDiscountApplied}
           onChange={(e) => {
+            if (+e.target.value > 10 || +e.target.value === 0) return;
             updateQuantity({ id, quantity: +e.target.value, uid });
           }}
         />

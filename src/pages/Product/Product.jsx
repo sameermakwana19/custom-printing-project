@@ -61,15 +61,19 @@ const Product = () => {
 
   useEffect(() => {
     if (itemAddedToCart) {
+      let ignore = false;
       const timeout = setTimeout(() => {
-        setItemAddedToCart(false);
-      }, 5000);
+        if (!ignore) {
+          setItemAddedToCart(false);
+        }
+      }, 2000);
 
       return () => {
+        ignore = true;
         clearTimeout(timeout);
       };
     }
-  }, [itemAddedToCart]);
+  }, [quantityPresentInCart, itemAddedToCart]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -107,7 +111,7 @@ const Product = () => {
       <ProductOverview {...data} setItemAddedToCart={setItemAddedToCart} />
       <ProductReviewAndDescription />
 
-      <RelatedProducts category={data?.category.toLowerCase()} id={data?.id} />
+      <RelatedProducts category={data.category.toLowerCase()} id={data.id} />
     </div>
   );
 };
@@ -177,9 +181,14 @@ function ProductOverview({
             <div className="product__quantity">
               <input
                 type="number"
+                value={quantity}
                 defaultValue={quantity}
                 min={1}
-                onChange={(e) => setQuantity(+e.target.value)}
+                max={10}
+                onChange={(e) => {
+                  if (+e.target.value > 10 || +e.target.value === 0) return;
+                  setQuantity(+e.target.value);
+                }}
               />
             </div>
             <Button
@@ -187,6 +196,11 @@ function ProductOverview({
               disabled={!user}
               onClick={(e) => {
                 e.preventDefault();
+                if (quantity === 0 || quantity > 10) {
+                  setQuantity(1);
+                  return;
+                }
+
                 mutate({
                   imageUrl,
                   oldPrice,

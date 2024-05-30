@@ -1,11 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { twoDigitAfterDecimal } from "../../../utlis/helper";
 import Button from "../../../components/ui/Button/Button";
-import { query } from "firebase/firestore";
-import {
-  getAllCartProductsFromFirestore,
-  getCartTotalAndNoOfItems,
-} from "../../../queries/CartQueries";
+import { getCartTotalAndNoOfItems } from "../../../queries/CartQueries";
 import { useQuery } from "@tanstack/react-query";
 import { TotalAmountContext } from "../../../context/TotalAmount/TotalAmountProvider";
 import { useNavigate } from "react-router-dom";

@@ -128,6 +128,7 @@ const AllProducts = () => {
         {products?.length !== 0 ? (
           <main>
             <ContentDetails
+              page={page}
               setSortBy={setSortBy}
               sortBy={sortBy}
               length={products?.length}
@@ -150,14 +151,22 @@ const AllProducts = () => {
 
 export default AllProducts;
 
-function ContentDetails({ setSortBy, sortBy, length }) {
-  // eslint-disable-next-line
-  const [searchParams, setSearchParams] = useSearchParams();
+function ContentDetails({ page, setSortBy, sortBy, length }) {
+  // eslint-disable-next-line no-unused-vars
+  const [_, setSearchParams] = useSearchParams();
 
   return (
     <div className="content-details">
       <div className="current-page">
-        Showing {length <= 9 ? length : "1-9"} of {length}{" "}
+        Showing{" "}
+        {length <= 9
+          ? length
+          : `${PRODUCT_PER_PAGE * (page - 1)}-${
+              PRODUCT_PER_PAGE * page > length
+                ? length
+                : PRODUCT_PER_PAGE * page
+            }`}{" "}
+        of {length}{" "}
       </div>
       <div className="sort-by">
         <select
@@ -184,6 +193,7 @@ function ContentDetails({ setSortBy, sortBy, length }) {
 }
 
 ContentDetails.propTypes = {
+  page: PropTypes.number,
   setSortBy: PropTypes.func,
   sortBy: PropTypes.string,
   length: PropTypes.number,
