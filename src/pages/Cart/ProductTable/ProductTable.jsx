@@ -217,6 +217,7 @@ function CartProductDetail({
           type="number"
           min={1}
           max={10}
+          value={quantity}
           defaultValue={quantity}
           disabled={isDiscountApplied}
           onChange={(e) => {
